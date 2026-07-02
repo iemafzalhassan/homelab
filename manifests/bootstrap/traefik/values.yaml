@@ -22,11 +22,10 @@ gateway:
       hostname: "argocd.smapatticare.com"
       namespacePolicy:
         from: All
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - kind: Secret
-            name: argocd-tls-secret
+      mode: Terminate
+      certificateRefs:
+        - kind: Secret
+          name: argocd-tls-secret
 
 serviceAccountAnnotations:
   azure.workload.identity/client-id: "fea8dd93-be15-4804-a790-b200eda1bae5"
