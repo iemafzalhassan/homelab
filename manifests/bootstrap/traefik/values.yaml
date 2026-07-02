@@ -1,0 +1,23 @@
+providers:
+  kubernetesCRD:
+    enabled: false
+  kubernetesIngress:
+    enabled: false
+  kubernetesGateway:
+    enabled: true
+
+gateway:
+  enabled: true
+
+serviceAccountAnnotations:
+  azure.workload.identity/client-id: "fea8dd93-be15-4804-a790-b200eda1bae5"
+  azure.workload.identity/tenant-id: "b8eee1de-0853-417c-9dc9-c90794eb2751"
+
+deployment:
+  podLabels:
+    azure.workload.identity/use: "true"
+
+tolerations:
+  - key: "CriticalAddonsOnly"
+    operator: "Exists"
+    effect: "NoSchedule"

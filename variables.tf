@@ -14,3 +14,8 @@ variable "budget_contact_email" {
   type        = string
   description = "Email address to receive budget alerts"
 }
+
+variable "admin_ip_ranges" {
+  type        = list(string)
+  description = "The IP address ranges (CIDR) allowed to access the AKS API server."
+}

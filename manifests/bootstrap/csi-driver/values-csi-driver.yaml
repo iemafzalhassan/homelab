@@ -1,0 +1,11 @@
+# Values for secrets-store-csi-driver
+
+linux:
+  nodeSelector:
+    kubernetes.azure.com/mode: system
+
+syncSecret:
+  enabled: true
+
+tokenRequests:
+  - audience: "api://AzureADTokenExchange"

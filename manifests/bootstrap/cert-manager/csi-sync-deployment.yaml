@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+  annotations:
+    azure.workload.identity/client-id: "f94bd843-5f38-4512-8a29-ea97b2459736"
+    azure.workload.identity/tenant-id: "b8eee1de-0853-417c-9dc9-c90794eb2751"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cert-manager-csi-sync
+  namespace: cert-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cert-manager-csi-sync
+  template:
+    metadata:
+      labels:
+        app: cert-manager-csi-sync
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: cert-manager
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+        effect: "NoSchedule"
+      containers:
+      - name: sync
+        image: mcr.microsoft.com/cbl-mariner/base/core:2.0
+        command: ["/bin/sh", "-c", "sleep infinity"]
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "cloudflare-api-token"

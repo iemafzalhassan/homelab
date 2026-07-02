@@ -1,0 +1,8 @@
+# Values for csi-secrets-store-provider-azure
+
+secrets-store-csi-driver:
+  install: false
+
+linux:
+  nodeSelector:
+    kubernetes.azure.com/mode: system

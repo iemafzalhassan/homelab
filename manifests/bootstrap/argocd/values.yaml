@@ -1,0 +1,21 @@
+global:
+  domain: argocd.smapatticare.com
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
+      effect: "NoSchedule"
+
+server:
+  # Run ArgoCD server in insecure mode because Traefik handles TLS termination
+  extraArgs:
+    - --insecure
+  
+repoServer:
+  serviceAccount:
+    create: true
+    name: "argocd-repo-server"
+    annotations:
+      azure.workload.identity/client-id: "c019f6b2-96fd-4a60-914a-7df36bb36939"
+      azure.workload.identity/tenant-id: "b8eee1de-0853-417c-9dc9-c90794eb2751"
+  podLabels:
+    azure.workload.identity/use: "true"

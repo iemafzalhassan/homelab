@@ -56,3 +56,57 @@ resource "azurerm_consumption_budget_resource_group" "budget" {
     contact_emails = [var.budget_contact_email]
   }
 }
+
+module "aks" {
+  source              = "./modules/aks"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  vnet_id             = module.networking.vnet_id
+  system_subnet_id    = module.networking.system_subnet_id
+  admin_ip_ranges     = var.admin_ip_ranges
+}
+
+data "azurerm_client_config" "current" {}
+
+module "identity" {
+  source              = "./modules/identity"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  oidc_issuer_url     = module.aks.oidc_issuer_url
+  identities = {
+    argocd = {
+      namespace      = "argocd"
+      serviceaccount = "argocd-repo-server"
+    }
+    jenkins = {
+      namespace      = "jenkins"
+      serviceaccount = "jenkins"
+    }
+    traefik = {
+      namespace      = "traefik"
+      serviceaccount = "traefik"
+    }
+    cert-manager = {
+      namespace      = "cert-manager"
+      serviceaccount = "cert-manager"
+    }
+  }
+}
+
+module "keyvault" {
+  source              = "./modules/keyvault"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  vnet_id             = module.networking.vnet_id
+  infra_subnet_id     = module.networking.infra_subnet_id
+  admin_principal_id  = data.azurerm_client_config.current.object_id
+  admin_ip_ranges     = var.admin_ip_ranges
+}
+
+resource "azurerm_role_assignment" "kv_secrets_user" {
+  for_each             = module.identity.principal_ids
+  scope                = module.keyvault.id
+  role_definition_name = "Key Vault Secrets User"
+  principal_id         = each.value
+}
+

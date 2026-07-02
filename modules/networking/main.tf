@@ -54,6 +54,18 @@ resource "azurerm_network_security_group" "system_nsg" {
   }
 
   security_rule {
+    name                       = "AllowVnetOutbound"
+    priority                   = 105
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "VirtualNetwork"
+  }
+
+  security_rule {
     name                       = "AllowInternetOutbound"
     priority                   = 100
     direction                  = "Outbound"
@@ -76,7 +88,7 @@ resource "azurerm_network_security_group" "system_nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "Internet"
   }
-  
+
   security_rule {
     name                       = "DenyAllOutbound"
     priority                   = 4096
@@ -115,6 +127,18 @@ resource "azurerm_network_security_group" "user_nsg" {
   }
 
   security_rule {
+    name                       = "AllowVnetOutbound"
+    priority                   = 105
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "VirtualNetwork"
+  }
+
+  security_rule {
     name                       = "AllowInternetOutbound"
     priority                   = 100
     direction                  = "Outbound"
@@ -137,7 +161,7 @@ resource "azurerm_network_security_group" "user_nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "Internet"
   }
-  
+
   security_rule {
     name                       = "DenyAllOutbound"
     priority                   = 4096
@@ -176,6 +200,18 @@ resource "azurerm_network_security_group" "infra_nsg" {
   }
 
   security_rule {
+    name                       = "AllowVnetOutbound"
+    priority                   = 105
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "VirtualNetwork"
+  }
+
+  security_rule {
     name                       = "AllowInternetOutbound"
     priority                   = 100
     direction                  = "Outbound"
@@ -186,7 +222,7 @@ resource "azurerm_network_security_group" "infra_nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "Internet"
   }
-  
+
   security_rule {
     name                       = "DenyAllOutbound"
     priority                   = 4096
@@ -237,6 +273,18 @@ resource "azurerm_network_security_group" "ingress_nsg" {
   }
 
   security_rule {
+    name                       = "AllowVnetOutbound"
+    priority                   = 105
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "VirtualNetwork"
+  }
+
+  security_rule {
     name                       = "AllowInternetOutbound"
     priority                   = 100
     direction                  = "Outbound"
@@ -247,7 +295,7 @@ resource "azurerm_network_security_group" "ingress_nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "Internet"
   }
-  
+
   security_rule {
     name                       = "DenyAllOutbound"
     priority                   = 4096
