@@ -5,8 +5,12 @@ metadata:
   namespace: jenkins
 spec:
   parentRefs:
-    - name: traefik
+    - name: traefik-gateway
       namespace: traefik
+      sectionName: web
+    - name: traefik-gateway
+      namespace: traefik
+      sectionName: jenkins
   hostnames:
     - "jenkins.smapatticare.com"
   rules:
