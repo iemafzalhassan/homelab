@@ -37,11 +37,13 @@ spec:
       name: cert-manager-webhook
       jqPathExpressions:
         - .webhooks[]?.clientConfig.caBundle
+        - .webhooks[]?.namespaceSelector
     - group: admissionregistration.k8s.io
       kind: MutatingWebhookConfiguration
       name: cert-manager-webhook
       jqPathExpressions:
         - .webhooks[]?.clientConfig.caBundle
+        - .webhooks[]?.namespaceSelector
     - group: apiextensions.k8s.io
       kind: CustomResourceDefinition
       jqPathExpressions:
