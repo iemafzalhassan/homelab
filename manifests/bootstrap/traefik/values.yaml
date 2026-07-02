@@ -29,3 +29,8 @@ tolerations:
   - key: "CriticalAddonsOnly"
     operator: "Exists"
     effect: "NoSchedule"
+
+service:
+  type: LoadBalancer
+  spec:
+    externalTrafficPolicy: Local
