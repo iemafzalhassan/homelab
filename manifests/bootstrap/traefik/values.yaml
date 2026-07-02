@@ -32,7 +32,5 @@ tolerations:
 
 service:
   type: LoadBalancer
-  annotations:
-    service.beta.kubernetes.io/azure-disable-load-balancer-floating-ip: "true"
   spec:
     externalTrafficPolicy: Local
