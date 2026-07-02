@@ -110,3 +110,15 @@ resource "azurerm_role_assignment" "kv_secrets_user" {
   principal_id         = each.value
 }
 
+module "acr" {
+  source              = "./modules/acr"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  tags                = local.tags
+}
+
+resource "azurerm_role_assignment" "acr_push_jenkins" {
+  scope                = module.acr.id
+  role_definition_name = "AcrPush"
+  principal_id         = module.identity.principal_ids["jenkins"]
+}

@@ -1,0 +1,61 @@
+controller:
+  ingress:
+    enabled: false
+  podLabels:
+    azure.workload.identity/use: "true"
+  serviceAccount:
+    create: true
+    name: "jenkins"
+    annotations:
+      azure.workload.identity/client-id: "50a296e5-6b94-42cb-8297-7778ce689fc9"
+  JCasC:
+    defaultConfig: true
+    configScripts:
+      jobs: |
+        jobs:
+          - script: >
+              pipelineJob('sample-build') {
+                  definition {
+                      cpsScm {
+                          scm {
+                              git {
+                                  remote {
+                                      url('https://github.com/iemafzalhassan/homelab.git')
+                                  }
+                                  branches('*/main')
+                              }
+                          }
+                          scriptPath('Jenkinsfile')
+                      }
+                  }
+              }
+
+agent:
+  enabled: true
+  podLabels:
+    azure.workload.identity/use: "true"
+  customJenkinsLabels: "spot"
+  nodeSelector:
+    kubernetes.azure.com/scalesetpriority: "spot"
+  tolerations:
+    - key: "kubernetes.azure.com/scalesetpriority"
+      operator: "Equal"
+      value: "spot"
+      effect: "NoSchedule"
+  podTemplates:
+    kaniko: |
+      - name: kaniko
+        label: kaniko
+        nodeSelector:
+          kubernetes.azure.com/scalesetpriority: "spot"
+        tolerations:
+          - key: "kubernetes.azure.com/scalesetpriority"
+            operator: "Equal"
+            value: "spot"
+            effect: "NoSchedule"
+        containers:
+          - name: kaniko
+            image: gcr.io/kaniko-project/executor:debug
+            command:
+              - /busybox/cat
+            tty: true

@@ -41,3 +41,36 @@ resource "azurerm_kubernetes_cluster" "aks" {
     managed-by  = "terraform"
   }
 }
+
+resource "azurerm_kubernetes_cluster_node_pool" "spot" {
+  name                  = "spot"
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
+  vm_size               = "Standard_D2as_v5"
+  
+  priority              = "Spot"
+  eviction_policy       = "Delete"
+  spot_max_price        = -1
+  
+  zones                 = ["1", "2"]
+  
+  auto_scaling_enabled  = true
+  min_count             = 0
+  max_count             = 4
+  
+  os_disk_type          = "Managed"
+  os_disk_size_gb       = 30
+  vnet_subnet_id        = var.system_subnet_id
+
+  node_taints = [
+    "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
+  ]
+  
+  node_labels = {
+    "kubernetes.azure.com/scalesetpriority" = "spot"
+  }
+
+  tags = {
+    environment = "homelab"
+    managed-by  = "terraform"
+  }
+}
