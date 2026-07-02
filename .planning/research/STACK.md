@@ -93,7 +93,7 @@ resource "azurerm_federated_identity_credential" "argocd" {
 - **CNI Overlay**: Pod IPs don't consume VNet address space; supports large pod counts on /24 subnets
 - **Secrets Store CSI v1.6.0**: Requires K8s 1.30+; pairs with AKV provider for zero-credential secret access
 - **ArgoCD 10.x (v3.x)**: Major version with improved ApplicationSet support and multi-source Apps
-- **Traefik v3 not ingress-nginx**: `kubernetes/ingress-nginx` reached EOL March 2026 — archived, no patches. Traefik v3 is the CNCF-backed replacement with dual support for legacy `IngressRoute` CRDs and modern `Gateway API` (`HTTPRoute`)
+- **Traefik v3 + Gateway API over ingress-nginx + IngressRoute**: `kubernetes/ingress-nginx` EOL March 2026. Traefik v3 with Kubernetes **Gateway API** (`HTTPRoute`) is the correct modern choice — GA (v1.5 Feb 2026), 100% Traefik conformance, no vendor CRD lock-in, cert-manager native support
 
 ## ⛔ ingress-nginx EOL — Decision Log
 
@@ -105,23 +105,46 @@ resource "azurerm_federated_identity_credential" "argocd" {
 | — No security patches | `nginxinc/kubernetes-ingress` (F5, still active) |
 | — No K8s version compatibility updates | Traefik, Kong, Envoy Gateway, etc. |
 
-**Chosen replacement: Traefik v3** (`traefik/traefik` Helm chart `41.0.1`)
+**Chosen routing API: Kubernetes Gateway API** (not legacy Ingress or Traefik IngressRoute CRDs)
 
-**Why Traefik over F5 NGINX Ingress:**
-- CNCF project, fully open-source, no commercial strings
-- Native **Gateway API** support (`HTTPRoute`, `GatewayClass`) — future-proof
-- Legacy `IngressRoute` CRD still supported for gradual migration
-- Single `LoadBalancer` service = same single public IP architecture as before
-- Built-in dashboard (useful for homelab visibility)
-- Clean cert-manager + Cloudflare DNS-01 integration
+### Why Gateway API > IngressRoute CRD
 
-**Traefik v3 Helm values for AKS (key settings):**
+| | Traefik IngressRoute CRD | **Kubernetes Gateway API** |
+|---|---|---|
+| Standard | Traefik-proprietary | ✅ Upstream Kubernetes (GA v1.5) |
+| cert-manager | Manual `secretName` | ✅ Annotate `Gateway` → auto-issued |
+| Portability | Traefik-only | ✅ Works on any conformant controller |
+| Role separation | None | ✅ `GatewayClass` / `Gateway` / `HTTPRoute` |
+| Multi-tenancy | Weak | ✅ `ReferenceGrant` cross-namespace |
+| Future | Traefik maintains it | ✅ Kubernetes SIG-Network standard |
+
+### Gateway API CRDs Install (required before Traefik)
+```bash
+# Gateway API v1.5.1 — Standard channel (stable resources only)
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.5.1/standard-install.yaml
+```
+
+**Resources installed:** `GatewayClass`, `Gateway`, `HTTPRoute`, `GRPCRoute`, `ReferenceGrant`
+
+### Traefik v3 Helm values (Gateway API first-class)
 ```yaml
 providers:
   kubernetesIngress:
-    enabled: true      # Backwards compat with Ingress resources
+    enabled: false     # Disable legacy Ingress — we use Gateway API exclusively
   kubernetesGateway:
-    enabled: true      # Forward-compat with Gateway API HTTPRoutes
+    enabled: true      # Gateway API is PRIMARY routing API
+  kubernetesCRD:
+    enabled: false     # No IngressRoute CRDs needed
+
+gateway:
+  enabled: true        # Auto-create GatewayClass + default Gateway
+  listeners:
+    web:
+      port: 8000
+      protocol: HTTP
+    websecure:
+      port: 8443
+      protocol: HTTPS
 
 service:
   type: LoadBalancer
@@ -140,13 +163,76 @@ entryPoints:
     address: ":443"
 
 dashboard:
-  enabled: true   # Expose via IngressRoute, auth-protected
+  enabled: true        # Secure via HTTPRoute + auth middleware
 ```
 
-**cert-manager integration pattern with Traefik:**
-- cert-manager issues `Certificate` resources (Cloudflare DNS-01)
-- TLS secret referenced explicitly in `IngressRoute.spec.tls.secretName`
-- (Unlike ingress-nginx, Traefik does NOT auto-watch cert-manager annotations — explicit Certificate object required)
+### cert-manager integration with Gateway API
+```yaml
+# cert-manager >= v1.15 with Gateway API enabled
+# helm upgrade cert-manager ... --set config.enableGatewayAPI=true
+
+# Annotate the Gateway to auto-trigger certificate issuance:
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: homelab-gateway
+  namespace: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod   # ← triggers auto-issuance
+spec:
+  gatewayClassName: traefik
+  listeners:
+  - name: https
+    port: 443
+    protocol: HTTPS
+    hostname: "*.yourdomain.com"
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - name: wildcard-tls-secret   # cert-manager creates this automatically
+```
+
+### Application routing pattern (HTTPRoute)
+```yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  parentRefs:
+  - name: homelab-gateway
+    namespace: traefik     # cross-namespace: requires ReferenceGrant
+  hostnames:
+  - "argocd.yourdomain.com"
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - name: argocd-server
+      port: 80
+```
+
+### Cross-namespace ReferenceGrant (required for Gateway API)
+```yaml
+# In each app namespace: allows traefik Gateway to bind HTTPRoutes
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: ReferenceGrant
+metadata:
+  name: allow-traefik-gateway
+  namespace: argocd   # repeat per namespace (argocd, jenkins, monitoring)
+spec:
+  from:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    namespace: traefik
+  to:
+  - group: ""
+    kind: Service
+```
 
 ---
-*Confidence: HIGH — versions verified against ArtifactHub, Traefik GitHub, and official docs July 2026*
+*Confidence: HIGH — Gateway API v1.5 GA, Traefik v3 conformance verified, cert-manager Gateway API docs confirmed July 2026*
+
