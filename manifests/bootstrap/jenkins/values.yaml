@@ -49,8 +49,7 @@ agent:
     kaniko: |
       - name: kaniko
         label: kaniko
-        nodeSelector:
-          kubernetes.azure.com/scalesetpriority: "spot"
+        nodeSelector: "kubernetes.azure.com/scalesetpriority=spot"
         tolerations:
           - key: "kubernetes.azure.com/scalesetpriority"
             operator: "Equal"
