@@ -50,11 +50,13 @@ agent:
       - name: kaniko
         label: kaniko
         nodeSelector: "kubernetes.azure.com/scalesetpriority=spot"
-        tolerations:
-          - key: "kubernetes.azure.com/scalesetpriority"
-            operator: "Equal"
-            value: "spot"
-            effect: "NoSchedule"
+        yaml: |
+          spec:
+            tolerations:
+              - key: "kubernetes.azure.com/scalesetpriority"
+                operator: "Equal"
+                value: "spot"
+                effect: "NoSchedule"
         containers:
           - name: kaniko
             image: gcr.io/kaniko-project/executor:debug
