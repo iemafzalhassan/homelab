@@ -54,6 +54,18 @@ resource "azurerm_network_security_group" "system_nsg" {
   }
 
   security_rule {
+    name                       = "AllowInternetInbound"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_ranges    = ["80", "443"]
+    source_address_prefix      = "Internet"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
     name                       = "AllowVnetOutbound"
     priority                   = 105
     direction                  = "Outbound"
@@ -85,6 +97,18 @@ resource "azurerm_network_security_group" "system_nsg" {
     protocol                   = "Udp"
     source_port_range          = "*"
     destination_port_range     = "123"
+    source_address_prefix      = "*"
+    destination_address_prefix = "Internet"
+  }
+
+  security_rule {
+    name                       = "AllowDNSOutbound"
+    priority                   = 115
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "53"
     source_address_prefix      = "*"
     destination_address_prefix = "Internet"
   }

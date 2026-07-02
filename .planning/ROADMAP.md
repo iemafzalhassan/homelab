@@ -6,12 +6,12 @@ Build a production-grade, cost-optimized Kubernetes homelab on Azure (Central In
 
 ## Phases
 
-- [ ] **Phase 1: Azure Foundation** — VNet, subnets, NSGs, resource groups, budget alert
-- [ ] **Phase 2: AKS Cluster** — Free tier AKS, system node pool, CNI Overlay, OIDC + Workload Identity
-- [ ] **Phase 3: Identities & Secrets** — Per-workload managed identities, federated credentials, AKV + Private Endpoint
-- [ ] **Phase 4: Secrets Distribution** — Secrets Store CSI Driver + AKV Provider; validate zero-credential secret mounting
-- [ ] **Phase 5: Gateway & TLS** — Gateway API CRDs → Traefik v3 → cert-manager → Cloudflare wildcard cert
-- [ ] **Phase 6: GitOps Bootstrap** — ArgoCD Helm install → App-of-Apps pattern → self-managed ArgoCD
+- [x] **Phase 1: Azure Foundation** — VNet, subnets, NSGs, resource groups, budget alert
+- [x] **Phase 2: AKS Cluster** — Free tier AKS, system node pool, CNI Overlay, OIDC + Workload Identity
+- [x] **Phase 3: Identities & Secrets** — Per-workload managed identities, federated credentials, AKV + Private Endpoint
+- [x] **Phase 4: Secrets Distribution** — Secrets Store CSI Driver + AKV Provider; validate zero-credential secret mounting
+- [x] **Phase 5: Gateway & TLS** — Gateway API CRDs → Traefik v3 → cert-manager → Cloudflare wildcard cert
+- [x] **Phase 6: GitOps Bootstrap** — ArgoCD Helm install → App-of-Apps pattern → self-managed ArgoCD
 - [ ] **Phase 7: CI/CD** — Jenkins controller + spot node pool + JNLP ephemeral agents + sample pipeline
 - [ ] **Phase 8: Observability** — kube-prometheus-stack + Grafana dashboards + Alertmanager
 - [ ] **Phase 9: Security Hardening** — NetworkPolicies, PodDisruptionBudgets, LimitRanges, pod security
