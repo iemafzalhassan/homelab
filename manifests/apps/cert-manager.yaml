@@ -35,14 +35,14 @@ spec:
     - group: admissionregistration.k8s.io
       kind: ValidatingWebhookConfiguration
       name: cert-manager-webhook
-      jqPathExpressions:
-        - .webhooks[].clientConfig.caBundle
+      managedFieldsManagers:
+        - cert-manager-cainjector
     - group: admissionregistration.k8s.io
       kind: MutatingWebhookConfiguration
       name: cert-manager-webhook
-      jqPathExpressions:
-        - .webhooks[].clientConfig.caBundle
+      managedFieldsManagers:
+        - cert-manager-cainjector
     - group: apiextensions.k8s.io
       kind: CustomResourceDefinition
-      jqPathExpressions:
-        - .spec.conversion.webhook.clientConfig.caBundle
+      managedFieldsManagers:
+        - cert-manager-cainjector
