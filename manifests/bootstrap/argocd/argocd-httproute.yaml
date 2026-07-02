@@ -7,7 +7,7 @@ spec:
   parentRefs:
     - name: traefik-gateway
       namespace: traefik
-      sectionName: websecure
+      sectionName: web
   hostnames:
     - "argocd.smapatticare.com"
   rules:

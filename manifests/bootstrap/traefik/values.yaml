@@ -12,16 +12,8 @@ gateway:
     web:
       port: 8000
       protocol: HTTP
-      allowedRoutes:
-        namespaces:
-          from: All
-    websecure:
-      port: 8443
-      protocol: HTTPS
-      allowedRoutes:
-        namespaces:
-          from: All
-
+      namespacePolicy:
+        from: All
 
 serviceAccountAnnotations:
   azure.workload.identity/client-id: "fea8dd93-be15-4804-a790-b200eda1bae5"
