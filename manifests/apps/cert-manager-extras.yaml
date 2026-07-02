@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager-extras
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/iemafzalhassan/homelab.git'
+    targetRevision: HEAD
+    path: manifests/bootstrap/cert-manager
+    directory:
+      include: 'cluster-issuer.yaml,csi-secret-provider.yaml,csi-sync-deployment.yaml'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
