@@ -33,20 +33,21 @@ A real, running Kubernetes platform that teaches production-grade patterns (GitO
 <!-- Platform Services via GitOps/Helm -->
 - [ ] ArgoCD (GitOps controller) — manages all platform and workload deployments
 - [ ] Jenkins controller with Kubernetes plugin (JNLP ephemeral agents, scale-to-zero)
-- [ ] ingress-nginx (type: LoadBalancer in ingress-subnet, single public IP)
+- [ ] Traefik v3 (replaces ingress-nginx, EOL March 2026) — type: LoadBalancer, single public IP, supports IngressRoute CRDs + Gateway API HTTPRoute
 - [ ] cert-manager with Let's Encrypt ClusterIssuer (automatic TLS for all services)
 - [ ] kube-prometheus-stack (Prometheus + Grafana + Alertmanager, scrape 30s interval)
 - [ ] External Secrets Operator or Secrets Store CSI to surface AKV secrets as K8s secrets
 
 <!-- Security & Networking -->
-- [ ] Cloudflare DNS proxy → Azure Public Load Balancer (ingress-nginx) → cluster services
-- [ ] All platform UIs (ArgoCD, Jenkins, Grafana) behind ingress with TLS (Cloudflare + cert-manager)
+- [ ] Cloudflare DNS proxy → Azure Public Load Balancer (Traefik v3) → cluster services
+- [ ] All platform UIs (ArgoCD, Jenkins, Grafana) behind Traefik IngressRoute with TLS (Cloudflare + cert-manager)
 - [ ] NetworkPolicies: default-deny ingress/egress per namespace, allow only required paths
 - [ ] Managed Identity per workload via Workload Identity (zero service principal credentials)
 - [ ] Azure Key Vault RBAC: least-privilege per identity (Key Vault Secrets User role)
 
 ### Out of Scope
 
+- ~~ingress-nginx (`kubernetes/ingress-nginx`)~~ — **EOL March 2026**, repo archived/read-only, no security patches. Replaced by Traefik v3
 - Multi-region or cross-subscription setup — budget constraint makes this impractical
 - Azure VPN Gateway — adds ~$27/mo (kills budget), replaced by authorized IP ranges
 - Azure Bastion / Jumpbox VM — adds ~$4-8/mo; authorized IP ranges is sufficient for homelab
@@ -81,11 +82,12 @@ A real, running Kubernetes platform that teaches production-grade patterns (GitO
 - Helm charts stored in Git → ArgoCD ApplicationSets deploy platform services
 - Jenkins pipelines build images → push to registry → update image tags in Git → ArgoCD syncs
 
-**Cloudflare + ingress-nginx strategy:**
-- Cloudflare (free tier): DNS + proxy + DDoS protection — no Azure Front Door cost
-- Single Azure Public IP on ingress-nginx LoadBalancer service
-- cert-manager issues Let's Encrypt certs for in-cluster TLS
+**Traefik v3 + cert-manager + Cloudflare strategy:**
+- Traefik v3 (CNCF, Helm chart 41.0.1) replaces EOL `kubernetes/ingress-nginx` (archived March 2026)
+- Single Azure Public IP on Traefik `LoadBalancer` service
+- cert-manager issues `Certificate` resources (Cloudflare DNS-01 challenge) — TLS secret referenced in `IngressRoute.spec.tls.secretName`
 - Cloudflare SSL mode: "Full (strict)" — encrypts both edge-to-origin leg
+- Traefik dashboard exposed via auth-protected IngressRoute (homelab visibility)
 
 **VNet design:**
 - VNet: 10.0.0.0/16 | System subnet: 10.0.1.0/24 | User/spot subnet: 10.0.2.0/24
@@ -113,7 +115,7 @@ A real, running Kubernetes platform that teaches production-grade patterns (GitO
 | 1-year reserved instance for system node | ~50% discount vs pay-go; system node runs 24x7 so reserved is pure savings | — Pending |
 | AKV CSI + Workload Identity over HashiCorp Vault | Zero infra to operate, effectively free, teaches production-grade zero-trust pattern | — Pending |
 | 2-zone (Zone 1+2) not 3-zone | 3-zone requires 3 system nodes minimum; doubles/triples base cost beyond budget | — Pending |
-| Cloudflare free tier as edge | Free DDoS protection + CDN + DNS — no Azure Front Door or Application Gateway cost | — Pending |
+| Traefik v3 over ingress-nginx | `kubernetes/ingress-nginx` EOL March 2026 — archived, no patches. Traefik v3 is CNCF-backed, supports both IngressRoute CRDs and Gateway API HTTPRoute, integrates cleanly with cert-manager | — Pending |
 | ArgoCD as sole deployment operator | Single source of truth for K8s state; Terraform handles infra, ArgoCD handles K8s manifests | — Pending |
 
 ## Evolution
