@@ -16,6 +16,13 @@ gateway:
       protocol: HTTP
       namespacePolicy:
         from: All
+    websecure:
+      port: 8443
+      protocol: HTTPS
+      namespacePolicy:
+        from: All
+      tls:
+        mode: Terminate
 
 serviceAccountAnnotations:
   azure.workload.identity/client-id: "fea8dd93-be15-4804-a790-b200eda1bae5"
