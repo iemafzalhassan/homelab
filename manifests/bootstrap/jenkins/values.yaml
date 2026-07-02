@@ -1,4 +1,6 @@
 controller:
+  additionalPlugins:
+    - job-dsl
   ingress:
     enabled: false
   podLabels:
