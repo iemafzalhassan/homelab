@@ -3,6 +3,9 @@ controller:
     enabled: false
   podLabels:
     azure.workload.identity/use: "true"
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
   serviceAccount:
     create: true
     name: "jenkins"
