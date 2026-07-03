@@ -1,0 +1,82 @@
+---
+# ArgoCD ServiceMonitors for grafana/k8s-monitoring (Alloy-based scraping)
+#
+# Prerequisites:
+#   - ArgoCD Helm chart deployed with global.addPrometheusAnnotations: true
+#     (this creates argocd-metrics:8082 and argocd-server-metrics:8083 Services)
+#   - k8s-monitoring deployed with prometheusOperatorObjects.enabled: true
+#     (Alloy watches for ServiceMonitor CRDs cluster-wide)
+#
+# Metrics endpoints:
+#   argocd-metrics:8082          → argocd_app_info, argocd_app_sync_total, etc.
+#   argocd-server-metrics:8083   → argocd_login_request_total, grpc_server_*, etc.
+#   argocd-repo-server:8084      → argocd_git_request_*, argocd_repo_*, etc.
+#   argocd-applicationset-controller:7000 → argocd_appset_info, etc.
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-metrics
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/component: metrics-scraping
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-metrics
+  endpoints:
+    - port: metrics
+      interval: 30s
+      path: /metrics
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-server-metrics
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/component: metrics-scraping
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-server-metrics
+  endpoints:
+    - port: metrics
+      interval: 30s
+      path: /metrics
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-repo-server-metrics
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/component: metrics-scraping
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-repo-server
+  endpoints:
+    - port: metrics
+      interval: 30s
+      path: /metrics
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-applicationset-controller-metrics
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/component: metrics-scraping
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-applicationset-controller
+  endpoints:
+    - port: metrics
+      interval: 30s
+      path: /metrics
