@@ -348,3 +348,12 @@ alloy-metrics:
         forward_to = [prometheus.remote_write.grafana_cloud_metrics.receiver]
         scrape_interval = "30s"
       }
+
+      // ── Traefik native metrics ─────────────────────────────
+      prometheus.scrape "traefik_native" {
+        targets = [
+          { __address__ = "traefik-metrics.traefik.svc.cluster.local:9100", job = "traefik" }
+        ]
+        forward_to = [prometheus.remote_write.grafana_cloud_metrics.receiver]
+        scrape_interval = "30s"
+      }

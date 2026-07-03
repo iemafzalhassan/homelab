@@ -54,3 +54,16 @@ service:
   type: LoadBalancer
   spec:
     externalTrafficPolicy: Local
+
+accessLog:
+  enabled: true
+  format: json
+
+metrics:
+  prometheus:
+    enabled: true
+    addEntryPointsLabels: true
+    addRoutersLabels: true
+    addServicesLabels: true
+    service:
+      enabled: true
