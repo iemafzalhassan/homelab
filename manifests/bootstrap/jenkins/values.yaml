@@ -17,6 +17,10 @@ controller:
   JCasC:
     defaultConfig: true
     configScripts:
+      prometheus: |
+        unclassified:
+          prometheusConfiguration:
+            defaultNamespace: ""
       jobs: |
         jobs:
           - script: >
