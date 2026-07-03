@@ -72,6 +72,13 @@ alloy:
         value: "true"
         effect: "NoSchedule"
 
+configValidator:
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
 alloy-events:
   controller:
     tolerations:
