@@ -90,6 +90,10 @@ module "identity" {
       namespace      = "cert-manager"
       serviceaccount = "cert-manager"
     }
+    monitoring = {
+      namespace      = "monitoring"
+      serviceaccount = "k8s-monitoring-alloy"
+    }
   }
 }
 
