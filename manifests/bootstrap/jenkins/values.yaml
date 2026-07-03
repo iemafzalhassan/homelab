@@ -20,7 +20,7 @@ controller:
       prometheus: |
         unclassified:
           prometheusConfiguration:
-            defaultNamespace: ""
+            defaultNamespace: "jenkins"
       jobs: |
         jobs:
           - script: >
