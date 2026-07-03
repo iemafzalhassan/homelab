@@ -120,6 +120,22 @@ collectors:
     presets:
       - clustered
       - statefulset
+    extraConfig: |
+      // ── ArgoCD native metrics ──────────────────────────────
+      prometheus.scrape "argocd_native" {
+        targets = [
+          // application-controller (argocd_app_*, argocd_reconcile_*)
+          { __address__ = "argocd-application-controller-metrics.argocd.svc.cluster.local:8082", job = "argocd/application-controller" },
+          // server (argocd_login_request_total, grpc_server_*)
+          { __address__ = "argocd-server-metrics.argocd.svc.cluster.local:8083", job = "argocd/server" },
+          // repo-server (argocd_git_request_*, argocd_repo_*)
+          { __address__ = "argocd-repo-server-metrics.argocd.svc.cluster.local:8084", job = "argocd/repo-server" },
+          // applicationset-controller (argocd_appset_info)
+          { __address__ = "argocd-applicationset-controller-metrics.argocd.svc.cluster.local:8080", job = "argocd/applicationset-controller" }
+        ]
+        forward_to = [prometheus.remote_write.grafana_cloud_metrics.receiver]
+        scrape_interval = "30s"
+      }
   alloy-singleton:
     presets:
       - singleton
