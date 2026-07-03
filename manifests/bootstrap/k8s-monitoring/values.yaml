@@ -52,18 +52,20 @@ alloy:
     annotations:
       azure.workload.identity/client-id: "fbec24a9-4d43-4c32-8a4a-f1e8056e8736"
   alloy:
-    extraVolumes:
-      - name: secrets-store-inline
-        csi:
-          driver: secrets-store.csi.k8s.io
+    mounts:
+      extra:
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets-store"
           readOnly: true
-          volumeAttributes:
-            secretProviderClass: "grafana-cloud-token"
-    extraVolumeMounts:
-      - name: secrets-store-inline
-        mountPath: "/mnt/secrets-store"
-        readOnly: true
   controller:
+    volumes:
+      extra:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "grafana-cloud-token"
     podLabels:
       azure.workload.identity/use: "true"
     tolerations:
@@ -120,6 +122,8 @@ extraObjects:
         data:
         - key: password
           objectName: grafana-cloud-token
+        - key: username
+          objectName: grafana-prom-username
       parameters:
         usePodIdentity: "false"
         useVMManagedIdentity: "false"
@@ -130,6 +134,10 @@ extraObjects:
           array:
             - |
               objectName: grafana-cloud-token
+              objectType: secret
+              objectVersion: ""
+            - |
+              objectName: grafana-prom-username
               objectType: secret
               objectVersion: ""
         tenantId: "b8eee1de-0853-417c-9dc9-c90794eb2751"
