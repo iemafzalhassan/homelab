@@ -36,8 +36,8 @@ A real, running Kubernetes platform that teaches production-grade patterns (GitO
 - [ ] Traefik v3 (replaces ingress-nginx EOL March 2026) — type: LoadBalancer, single public IP, **Gateway API as primary routing API** (HTTPRoute, GatewayClass)
 - [ ] Kubernetes Gateway API CRDs v1.5.1 installed (GatewayClass, Gateway, HTTPRoute, ReferenceGrant)
 - [ ] cert-manager with Let's Encrypt ClusterIssuer (automatic TLS for all services)
-- [ ] kube-prometheus-stack (Prometheus + Grafana + Alertmanager, scrape 30s interval)
-- [ ] External Secrets Operator or Secrets Store CSI to surface AKV secrets as K8s secrets
+- [x] kube-prometheus-stack (Prometheus + Grafana + Alertmanager, scrape 30s interval) (via grafana/k8s-monitoring Alloy)
+- [x] External Secrets Operator or Secrets Store CSI to surface AKV secrets as K8s secrets
 
 <!-- Security & Networking -->
 - [ ] Cloudflare DNS proxy → Azure Public Load Balancer (Traefik v3) → cluster services
