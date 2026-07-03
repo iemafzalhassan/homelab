@@ -313,4 +313,9 @@ alloy-operator:
       operator: "Equal"
       value: "true"
       effect: "NoSchedule"
-
+  waitForAlloyRemoval:
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
