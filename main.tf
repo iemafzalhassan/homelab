@@ -92,7 +92,7 @@ module "identity" {
     }
     monitoring = {
       namespace      = "monitoring"
-      serviceaccount = "k8s-monitoring-alloy"
+      serviceaccount = "k8s-monitoring-kube-state-metrics"
     }
   }
 }
