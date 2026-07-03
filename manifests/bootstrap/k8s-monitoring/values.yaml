@@ -251,3 +251,24 @@ extraObjects:
               objectType: secret
               objectVersion: ""
         tenantId: "b8eee1de-0853-417c-9dc9-c90794eb2751"
+
+beyla:
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+  k8sCache:
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+
+alloy-operator:
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
