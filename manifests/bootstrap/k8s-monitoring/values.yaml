@@ -252,6 +252,8 @@ extraObjects:
         data:
         - key: password
           objectName: grafana-cloud-token
+        - key: username
+          objectName: grafana-cloud-username
       parameters:
         usePodIdentity: "false"
         useVMManagedIdentity: "false"
@@ -262,6 +264,10 @@ extraObjects:
           array:
             - |
               objectName: grafana-cloud-token
+              objectType: secret
+              objectVersion: ""
+            - |
+              objectName: grafana-cloud-username
               objectType: secret
               objectVersion: ""
         tenantId: "b8eee1de-0853-417c-9dc9-c90794eb2751"
