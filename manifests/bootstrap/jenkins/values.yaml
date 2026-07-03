@@ -1,6 +1,7 @@
 controller:
   additionalPlugins:
     - job-dsl
+    - prometheus
   ingress:
     enabled: false
   podLabels:

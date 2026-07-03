@@ -338,3 +338,13 @@ alloy-metrics:
         forward_to = [prometheus.remote_write.grafana_cloud_metrics.receiver]
         scrape_interval = "30s"
       }
+
+      // ── Jenkins native metrics ─────────────────────────────
+      prometheus.scrape "jenkins_native" {
+        targets = [
+          { __address__ = "jenkins.jenkins.svc.cluster.local:8080", job = "jenkins/controller" }
+        ]
+        metrics_path = "/prometheus"
+        forward_to = [prometheus.remote_write.grafana_cloud_metrics.receiver]
+        scrape_interval = "30s"
+      }
