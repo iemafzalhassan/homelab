@@ -12,7 +12,7 @@ Build a production-grade, cost-optimized Kubernetes homelab on Azure (Central In
 - [x] **Phase 4: Secrets Distribution** — Secrets Store CSI Driver + AKV Provider; validate zero-credential secret mounting
 - [x] **Phase 5: Gateway & TLS** — Gateway API CRDs → Traefik v3 → cert-manager → Cloudflare wildcard cert
 - [x] **Phase 6: GitOps Bootstrap** — ArgoCD Helm install → App-of-Apps pattern → self-managed ArgoCD
-- [ ] **Phase 7: CI/CD** — Jenkins controller + spot node pool + JNLP ephemeral agents + sample pipeline
+- [x] **Phase 7: CI/CD** — Jenkins controller + spot node pool + JNLP ephemeral agents + sample pipeline
 - [ ] **Phase 8: Observability** — kube-prometheus-stack + Grafana dashboards + Alertmanager
 - [ ] **Phase 9: Security Hardening** — NetworkPolicies, PodDisruptionBudgets, LimitRanges, pod security
 - [ ] **Phase 10: Validation** — End-to-end smoke test, cost review, runbook documentation
