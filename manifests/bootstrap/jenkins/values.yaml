@@ -47,6 +47,13 @@ agent:
       operator: "Equal"
       value: "spot"
       effect: "NoSchedule"
+  yamlTemplate: |
+    spec:
+      tolerations:
+        - key: "kubernetes.azure.com/scalesetpriority"
+          operator: "Equal"
+          value: "spot"
+          effect: "NoSchedule"
   podTemplates:
     kaniko: |
       - name: kaniko
