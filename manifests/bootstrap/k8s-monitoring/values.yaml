@@ -83,11 +83,12 @@ kube-state-metrics:
       effect: "NoSchedule"
 
 opencost:
-  tolerations:
-    - key: "CriticalAddonsOnly"
-      operator: "Equal"
-      value: "true"
-      effect: "NoSchedule"
+  opencost:
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
 
 alloy-events:
   controller:
