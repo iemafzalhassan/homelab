@@ -4,17 +4,20 @@ global:
     - key: "CriticalAddonsOnly"
       operator: "Exists"
       effect: "NoSchedule"
-  # Adds prometheus.io/scrape annotations to all metrics Services so Alloy
-  # annotation-based autodiscovery can also find them. More importantly,
-  # this flag causes the Helm chart to CREATE the argocd-metrics (port 8082)
-  # and argocd-server-metrics (port 8083) Services in the first place.
-  addPrometheusAnnotations: true
 
 server:
   # Run ArgoCD server in insecure mode because Traefik handles TLS termination
   extraArgs:
     - --insecure
-  
+  metrics:
+    # Creates argocd-server-metrics Service on port 8083
+    enabled: true
+
+controller:
+  metrics:
+    # Creates argocd-metrics Service on port 8082 (argocd_app_info lives here)
+    enabled: true
+
 repoServer:
   serviceAccount:
     create: true
@@ -24,3 +27,11 @@ repoServer:
       azure.workload.identity/tenant-id: "b8eee1de-0853-417c-9dc9-c90794eb2751"
   podLabels:
     azure.workload.identity/use: "true"
+  metrics:
+    # Adds metrics port (8084) to argocd-repo-server Service
+    enabled: true
+
+applicationSet:
+  metrics:
+    # Adds metrics port to argocd-applicationset-controller Service (port 8085)
+    enabled: true
