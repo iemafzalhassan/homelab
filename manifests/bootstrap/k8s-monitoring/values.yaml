@@ -7,6 +7,7 @@ externalServices:
     basicAuth:
       username: "3347824"
     secret:
+      create: false
       name: "grafana-cloud-credentials"
       namespace: "monitoring"
   loki:
@@ -14,6 +15,7 @@ externalServices:
     basicAuth:
       username: "1669587"
     secret:
+      create: false
       name: "grafana-cloud-credentials"
       namespace: "monitoring"
 
