@@ -7,7 +7,7 @@ destinations:
     url: https://prometheus-prod-43-prod-ap-south-1.grafana.net/api/prom/push
     secret:
       create: false
-      name: grafana-cloud-credentials
+      name: grafana-cloud-metrics-credentials
     auth:
       type: basic
       username: "3347824"
@@ -16,7 +16,7 @@ destinations:
     url: https://logs-prod-028.grafana.net/loki/api/v1/push
     secret:
       create: false
-      name: grafana-cloud-credentials
+      name: grafana-cloud-logs-credentials
     auth:
       type: basic
       username: "1669587"
@@ -26,7 +26,7 @@ destinations:
     protocol: http
     secret:
       create: false
-      name: grafana-cloud-credentials
+      name: grafana-cloud-otlp-credentials
     auth:
       type: basic
       username: "1711800"
@@ -41,7 +41,7 @@ destinations:
     url: https://profiles-prod-018.grafana.net:443
     secret:
       create: false
-      name: grafana-cloud-credentials
+      name: grafana-cloud-otlp-credentials
     auth:
       type: basic
       username: "1711800"
@@ -155,7 +155,7 @@ collectorCommon:
       url: https://fleet-management-prod-018.grafana.net
       secret:
         create: false
-        name: grafana-cloud-credentials
+        name: grafana-cloud-otlp-credentials
       auth:
         type: basic
         username: "1711800"
@@ -202,7 +202,7 @@ telemetryServices:
       exporter:
         defaultClusterId: homelab-aks
       prometheus:
-        existingSecretName: grafana-cloud-credentials
+        existingSecretName: grafana-cloud-metrics-credentials
         password_key: password
         external:
           url: https://prometheus-prod-43-prod-ap-south-1.grafana.net/api/prom
@@ -247,13 +247,27 @@ extraObjects:
     spec:
       provider: azure
       secretObjects:
-      - secretName: grafana-cloud-credentials
+      - secretName: grafana-cloud-metrics-credentials
         type: Opaque
         data:
         - key: password
           objectName: grafana-cloud-token
         - key: username
-          objectName: grafana-cloud-username
+          objectName: grafana-metrics-username
+      - secretName: grafana-cloud-logs-credentials
+        type: Opaque
+        data:
+        - key: password
+          objectName: grafana-cloud-token
+        - key: username
+          objectName: grafana-logs-username
+      - secretName: grafana-cloud-otlp-credentials
+        type: Opaque
+        data:
+        - key: password
+          objectName: grafana-cloud-token
+        - key: username
+          objectName: grafana-otlp-username
       parameters:
         usePodIdentity: "false"
         useVMManagedIdentity: "false"
@@ -267,7 +281,15 @@ extraObjects:
               objectType: secret
               objectVersion: ""
             - |
-              objectName: grafana-cloud-username
+              objectName: grafana-metrics-username
+              objectType: secret
+              objectVersion: ""
+            - |
+              objectName: grafana-logs-username
+              objectType: secret
+              objectVersion: ""
+            - |
+              objectName: grafana-otlp-username
               objectType: secret
               objectVersion: ""
         tenantId: "b8eee1de-0853-417c-9dc9-c90794eb2751"
