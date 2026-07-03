@@ -12,11 +12,13 @@ phase: 08
 - Alertmanager configured (Grafana Cloud alerting)
 - Grafana dashboards stored as ConfigMaps (N/A, hosted in Grafana Cloud)
 - ArgoCD metrics scraping correctly enabled and discovered by Grafana Alloy collector via ServiceMonitors.
+- Applied `extraConfig` to bypass `k8s-monitoring` allowlist drop filter for non-native metrics like ArgoCD, ensuring `argocd_app_info` reaches Grafana Cloud.
 
 ## Verification Steps
 1. Validated that `k8s-monitoring` helm chart is synced and healthy via ArgoCD.
 2. Validated that Alloy metrics collector pods are running.
 3. Verified the four `ServiceMonitor` CRDs for ArgoCD metrics were successfully picked up by `k8s-monitoring-alloy-metrics-0`.
+4. Applied the `extraConfig` to `alloy-metrics.alloy` which adds `prometheus.scrape "argocd_native"` and explicitly routes to `prometheus.remote_write.grafana_cloud_metrics.receiver`.
 
 ## Outcome
 All required platform metrics (including ArgoCD `argocd_app_info`) are now correctly exposed and scraped by Alloy to Grafana Cloud.
