@@ -128,6 +128,13 @@ extraObjects:
           objectName: grafana-cloud-token
         - key: username
           objectName: grafana-prom-username
+      - secretName: prometheus-k8s-monitoring
+        type: Opaque
+        data:
+        - key: password
+          objectName: grafana-cloud-token
+        - key: username
+          objectName: grafana-prom-username
       parameters:
         usePodIdentity: "false"
         useVMManagedIdentity: "false"
