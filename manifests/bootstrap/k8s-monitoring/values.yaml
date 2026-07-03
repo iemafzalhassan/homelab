@@ -86,6 +86,10 @@ kube-state-metrics:
 
 opencost:
   opencost:
+    prometheus:
+      external:
+        url: "https://prometheus-prod-43-prod-ap-south-1.grafana.net"
+      existingSecretName: "grafana-cloud-credentials"
     tolerations:
       - key: "CriticalAddonsOnly"
         operator: "Equal"
