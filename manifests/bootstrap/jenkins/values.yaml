@@ -42,6 +42,7 @@ controller:
 
 agent:
   enabled: true
+  connectTimeout: 300
   podLabels:
     azure.workload.identity/use: "true"
   customJenkinsLabels: "spot"
