@@ -23,11 +23,10 @@ gateway:
       port: 8443
       protocol: HTTPS
       hostname: "argocd.smapatticare.com"
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - kind: Secret
-            name: argocd-tls-secret
+      mode: Terminate
+      certificateRefs:
+        - kind: Secret
+          name: argocd-tls-secret
       allowedRoutes:
         namespaces:
           from: All
@@ -35,11 +34,10 @@ gateway:
       port: 8443
       protocol: HTTPS
       hostname: "auth.smapatticare.com"
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: smapatticare-tls
-            namespace: default
+      mode: Terminate
+      certificateRefs:
+        - kind: Secret
+          name: sso-tls-secret
       allowedRoutes:
         namespaces:
           from: All
