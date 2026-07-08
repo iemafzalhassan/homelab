@@ -27,9 +27,8 @@ gateway:
       certificateRefs:
         - kind: Secret
           name: argocd-tls-secret
-      allowedRoutes:
-        namespaces:
-          from: All
+      namespacePolicy:
+        from: All
     authsecure:
       port: 8443
       protocol: HTTPS
@@ -38,9 +37,8 @@ gateway:
       certificateRefs:
         - kind: Secret
           name: sso-tls-secret
-      allowedRoutes:
-        namespaces:
-          from: All
+      namespacePolicy:
+        from: All
     jenkins:
       port: 8443
       protocol: HTTPS
