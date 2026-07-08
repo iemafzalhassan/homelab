@@ -1,8 +1,11 @@
 global:
   domain: argocd.smapatticare.com
+  nodeSelector:
+    kubernetes.azure.com/scalesetpriority: "spot"
   tolerations:
-    - key: "CriticalAddonsOnly"
-      operator: "Exists"
+    - key: "kubernetes.azure.com/scalesetpriority"
+      operator: "Equal"
+      value: "spot"
       effect: "NoSchedule"
 
 server:
