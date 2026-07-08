@@ -20,6 +20,10 @@ configs:
   rbac:
     policy.csv: |
       g, homelab-admins, role:admin
+      g, devops, role:admin
+      g, developers, role:readonly
+      g, viewers, role:readonly
+    policy.default: role:''
 
 server:
   # Run ArgoCD server in insecure mode because Traefik handles TLS termination

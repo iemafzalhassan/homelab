@@ -46,8 +46,22 @@ controller:
           authorizationStrategy:
             globalMatrix:
               permissions:
+                # homelab-admins → full administrator
                 - "Overall/Administer:homelab-admins"
+                # devops → administer (pipeline config, agent config, credential mgmt)
+                - "Overall/Administer:devops"
+                # All authenticated users can read overall UI
                 - "Overall/Read:authenticated"
+                # developers → build, cancel, read jobs; read workspace; view builds
+                - "Job/Build:developers"
+                - "Job/Cancel:developers"
+                - "Job/Read:developers"
+                - "Job/Workspace:developers"
+                - "Run/Replay:developers"
+                - "Run/Update:developers"
+                # viewers → read only
+                - "Job/Read:viewers"
+
       prometheus: |
         unclassified:
           prometheusConfiguration:
