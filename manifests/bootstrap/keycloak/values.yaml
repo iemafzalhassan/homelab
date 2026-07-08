@@ -28,3 +28,7 @@ externalDatabase:
   database: keycloak
   existingSecret: keycloak-db-app
   existingSecretPasswordKey: password
+
+image:
+  registry: docker.io
+  repository: bitnamilegacy/keycloak
