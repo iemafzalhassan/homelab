@@ -1,4 +1,5 @@
 controller:
+  jenkinsUrl: "https://jenkins.smapatticare.com/"
   additionalPlugins:
     - job-dsl
     - prometheus
