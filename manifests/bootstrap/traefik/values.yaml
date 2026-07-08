@@ -20,19 +20,19 @@ gateway:
       namespacePolicy:
         from: All
     websecure:
-      port: 443
+      port: 8443
       protocol: HTTPS
-      hostname: "sso.smapatticare.com"
+      hostname: "argocd.smapatticare.com"
       tls:
         mode: Terminate
         certificateRefs:
-          - name: smapatticare-tls
-            namespace: default
+          - kind: Secret
+            name: argocd-tls-secret
       allowedRoutes:
         namespaces:
           from: All
     authsecure:
-      port: 443
+      port: 8443
       protocol: HTTPS
       hostname: "auth.smapatticare.com"
       tls:
