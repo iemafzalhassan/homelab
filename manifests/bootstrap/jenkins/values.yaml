@@ -35,8 +35,10 @@ controller:
             oic:
               clientId: "jenkins"
               clientSecret: "${OIDC_CLIENT_SECRET}"
-              wellKnownOpenIDConfigurationUrl: "https://sso.smapatticare.com/realms/Platform/.well-known/openid-configuration"
-              scopes: "openid email profile groups"
+              serverConfiguration:
+                wellKnown:
+                  wellKnownOpenIDConfigurationUrl: "https://sso.smapatticare.com/realms/Platform/.well-known/openid-configuration"
+                  scopesOverride: "openid email profile groups"
               userNameField: "preferred_username"
               groupsFieldName: "groups"
               logoutFromOpenidProvider: true
