@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gpt-researcher-backend
+  namespace: gpt-researcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gpt-researcher-backend
+  template:
+    metadata:
+      labels:
+        app: gpt-researcher-backend
+    spec:
+      containers:
+      - name: backend
+        image: gptresearcher/gpt-researcher:latest
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: gpt-researcher-secrets
+        env:
+        - name: LOGGING_LEVEL
+          value: "INFO"
+        - name: OPENAI_BASE_URL
+          value: "http://ollama:11434/v1"
+        - name: LLM_PROVIDER
+          value: "ollama"
+        - name: OLLAMA_BASE_URL
+          value: "http://ollama:11434"
+        - name: FAST_LLM_MODEL
+          value: "ollama:openhermes"
+        - name: SMART_LLM_MODEL
+          value: "ollama:openhermes"
+        volumeMounts:
+        - name: data-volume
+          mountPath: /usr/src/app/outputs
+          subPath: outputs
+        - name: data-volume
+          mountPath: /usr/src/app/my-docs
+          subPath: my-docs
+        livenessProbe:
+          httpGet:
+            path: /api/health # Or equivalent health endpoint
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: gpt-researcher-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gpt-researcher-backend
+  namespace: gpt-researcher
+spec:
+  type: ClusterIP
+  selector:
+    app: gpt-researcher-backend
+  ports:
+  - port: 8000
+    targetPort: 8000
