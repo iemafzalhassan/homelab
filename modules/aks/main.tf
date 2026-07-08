@@ -54,7 +54,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "spot" {
   zones                 = ["1", "2"]
   
   auto_scaling_enabled  = true
-  min_count             = 0
+  min_count             = 1
   max_count             = 4
   
   os_disk_type          = "Managed"

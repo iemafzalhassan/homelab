@@ -39,6 +39,16 @@ gateway:
       certificateRefs:
         - kind: Secret
           name: jenkins-tls-secret
+    keycloak:
+      port: 8443
+      protocol: HTTPS
+      hostname: "sso.smapatticare.com"
+      namespacePolicy:
+        from: All
+      mode: Terminate
+      certificateRefs:
+        - kind: Secret
+          name: sso-tls-secret
 
 serviceAccountAnnotations:
   azure.workload.identity/client-id: "fea8dd93-be15-4804-a790-b200eda1bae5"
