@@ -1,0 +1,31 @@
+auth:
+  adminUser: admin
+  adminPassword: "HomelabAdmin123!"
+
+proxyHeaders: "xforwarded"
+proxy: edge
+
+production: true
+
+ingress:
+  enabled: false
+
+# Spot Node Tolerations
+nodeSelector:
+  kubernetes.azure.com/scalesetpriority: "spot"
+tolerations:
+  - key: "kubernetes.azure.com/scalesetpriority"
+    operator: "Equal"
+    value: "spot"
+    effect: "NoSchedule"
+
+postgresql:
+  enabled: true
+  primary:
+    nodeSelector:
+      kubernetes.azure.com/scalesetpriority: "spot"
+    tolerations:
+      - key: "kubernetes.azure.com/scalesetpriority"
+        operator: "Equal"
+        value: "spot"
+        effect: "NoSchedule"
