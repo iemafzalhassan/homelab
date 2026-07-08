@@ -8,7 +8,13 @@ proxy: edge
 production: true
 
 ingress:
-  enabled: false
+  enabled: true
+  hostname: sso.smapatticare.com
+  ingressClassName: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  tls: true
 
 # Spot Node Tolerations
 nodeSelector:
