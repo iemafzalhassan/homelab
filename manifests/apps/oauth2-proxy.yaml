@@ -7,14 +7,18 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: https://github.com/iemafzalhassan/homelab.git
-    targetRevision: HEAD
-    path: manifests/bootstrap/oauth2-proxy
-    directory:
-      recurse: true
+  sources:
+    - repoURL: 'https://oauth2-proxy.github.io/manifests'
+      chart: oauth2-proxy
+      targetRevision: 7.8.1
+      helm:
+        valueFiles:
+          - $values/manifests/bootstrap/oauth2-proxy/values.yaml
+    - repoURL: 'https://github.com/iemafzalhassan/homelab.git'
+      targetRevision: HEAD
+      ref: values
   destination:
-    server: https://kubernetes.default.svc
+    server: 'https://kubernetes.default.svc'
     namespace: oauth2-proxy
   syncPolicy:
     automated:
@@ -22,3 +26,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true
