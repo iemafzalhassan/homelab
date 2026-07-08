@@ -16,5 +16,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: oauth2-proxy-stack
+        - name: oauth2-proxy
           port: 80
