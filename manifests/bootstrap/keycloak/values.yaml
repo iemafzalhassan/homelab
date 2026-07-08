@@ -20,12 +20,11 @@ tolerations:
     effect: "NoSchedule"
 
 postgresql:
-  enabled: true
-  primary:
-    nodeSelector:
-      kubernetes.azure.com/scalesetpriority: "spot"
-    tolerations:
-      - key: "kubernetes.azure.com/scalesetpriority"
-        operator: "Equal"
-        value: "spot"
-        effect: "NoSchedule"
+  enabled: false
+
+externalDatabase:
+  host: keycloak-db-rw
+  user: app
+  database: keycloak
+  existingSecret: keycloak-db-app
+  existingSecretPasswordKey: password

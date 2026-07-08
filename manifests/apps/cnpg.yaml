@@ -1,22 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: keycloak-extras
+  name: cnpg
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/iemafzalhassan/homelab.git'
-    targetRevision: HEAD
-    path: manifests/bootstrap/keycloak
-    directory:
-      exclude: 'values.yaml'
+    repoURL: 'https://cloudnative-pg.github.io/charts'
+    chart: cloudnative-pg
+    targetRevision: 0.22.1
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: keycloak
+    namespace: cnpg-system
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

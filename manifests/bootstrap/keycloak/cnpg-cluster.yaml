@@ -1,0 +1,23 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: keycloak-db
+  namespace: keycloak
+spec:
+  instances: 1
+  storage:
+    size: 10Gi
+    storageClass: managed-csi
+  # Spot Node Targeting
+  affinity:
+    nodeSelector:
+      kubernetes.azure.com/scalesetpriority: "spot"
+    tolerations:
+      - key: "kubernetes.azure.com/scalesetpriority"
+        operator: "Equal"
+        value: "spot"
+        effect: "NoSchedule"
+  bootstrap:
+    initdb:
+      database: keycloak
+      owner: app
