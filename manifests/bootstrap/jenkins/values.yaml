@@ -2,6 +2,14 @@ controller:
   additionalPlugins:
     - job-dsl
     - prometheus
+    - oic-auth
+    - matrix-auth
+  containerEnv:
+    - name: OIDC_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: jenkins-oidc-secret
+          key: client-secret
   ingress:
     enabled: false
   podLabels:
@@ -21,6 +29,22 @@ controller:
   JCasC:
     defaultConfig: true
     configScripts:
+      security: |
+        jenkins:
+          securityRealm:
+            oic:
+              clientId: "jenkins"
+              clientSecret: "${OIDC_CLIENT_SECRET}"
+              wellKnownOpenIDConfigurationUrl: "https://sso.smapatticare.com/realms/Platform/.well-known/openid-configuration"
+              scopes: "openid email profile groups"
+              userNameField: "preferred_username"
+              groupsFieldName: "groups"
+              logoutFromOpenidProvider: true
+          authorizationStrategy:
+            globalMatrix:
+              permissions:
+                - "Overall/Administer:homelab-admins"
+                - "Overall/Read:authenticated"
       prometheus: |
         unclassified:
           prometheusConfiguration:

@@ -8,6 +8,19 @@ global:
       value: "spot"
       effect: "NoSchedule"
 
+configs:
+  cm:
+    url: https://argocd.smapatticare.com
+    oidc.config: |
+      name: Keycloak
+      issuer: https://sso.smapatticare.com/realms/Platform
+      clientID: argocd
+      clientSecret: $argocd-oidc-secret:client-secret
+      requestedScopes: ["openid", "profile", "email", "groups"]
+  rbac:
+    policy.csv: |
+      g, homelab-admins, role:admin
+
 server:
   # Run ArgoCD server in insecure mode because Traefik handles TLS termination
   extraArgs:

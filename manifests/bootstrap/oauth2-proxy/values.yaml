@@ -1,0 +1,28 @@
+oauth2-proxy:
+  config:
+    clientID: "oauth2-proxy"
+    clientSecret: "Vs8kCIwlWyOC3evvbpRjzeKBgaM4shTc"
+    cookieSecret: "N2P+fPpqttrnV92hJ0g4m3J19jW7HZoPR9LHxccWULE="
+
+  extraArgs:
+    - --provider=keycloak-oidc
+    - --client-id=oauth2-proxy
+    - --client-secret=Vs8kCIwlWyOC3evvbpRjzeKBgaM4shTc
+    - --oidc-issuer-url=https://sso.smapatticare.com/realms/Platform
+    - --redirect-url=https://auth.smapatticare.com/oauth2/callback
+    - --email-domain=*
+    - --cookie-domain=.smapatticare.com
+    - --cookie-secure=true
+    - --reverse-proxy=true
+    - --upstream=file:///dev/null
+
+  ingress:
+    enabled: false
+
+  nodeSelector:
+    kubernetes.azure.com/scalesetpriority: "spot"
+  tolerations:
+    - key: "kubernetes.azure.com/scalesetpriority"
+      operator: "Equal"
+      value: "spot"
+      effect: "NoSchedule"
