@@ -2,7 +2,7 @@
 config:
   clientID: "oauth2-proxy"
   clientSecret: "Vs8kCIwlWyOC3evvbpRjzeKBgaM4shTc"
-  cookieSecret: "N2P+fPpqttrnV92hJ0g4m3J19jW7HZoPR9LHxccWULE="
+  cookieSecret: "6z+l+amyhmGj1hHcVhB37n4KKRBnWemf"
 
 extraArgs:
   - --provider=keycloak-oidc
