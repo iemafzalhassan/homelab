@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/iemafzal/homelab.git
+    repoURL: https://github.com/iemafzalhassan/homelab.git
     targetRevision: HEAD
     path: manifests/bootstrap/oauth2-proxy
     directory:
