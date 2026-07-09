@@ -220,7 +220,7 @@ Plans:
   3. Clicking "Promote" in the Kargo UI for the UAT Stage triggers ArgoCD sync of the UAT ArgoCD Application
   4. Clicking "Promote" in the Kargo UI for the PROD Stage requires a manual approval gate before ArgoCD syncs PROD
   5. `devops` and `homelab-admins` groups can approve PROD promotions; `developers` group can only trigger UAT promotions
-**Plans**: TBD
+**Plans**: [11-01-PLAN.md](file://.planning/phases/11-gitops-promotion-kargo/11-01-PLAN.md), [11-02-PLAN.md](file://.planning/phases/11-gitops-promotion-kargo/11-02-PLAN.md), [11-03-PLAN.md](file://.planning/phases/11-gitops-promotion-kargo/11-03-PLAN.md)
 
 Plans:
 - [ ] 11-01: Kargo Helm install (spot-node toleration, Keycloak OIDC, HTTPRoute for UI, resource-capped)
@@ -243,4 +243,4 @@ Plans:
 | 8. Observability | 0/3 | Not started | - |
 | 9. Security Hardening | 0/3 | Not started | - |
 | 10. Validation | 0/3 | Not started | - |
-| 11. GitOps Promotion (Kargo) | 0/3 | Not started | - |
+| 11. GitOps Promotion (Kargo) | 0/3 | Planned | - |
