@@ -5,6 +5,9 @@ api:
   host: kargo.smapatticare.com
   service:
     type: ClusterIP
+  tls:
+    enabled: false
+    terminatedUpstream: true
   oidc:
     enabled: true
     issuerURL: "https://sso.smapatticare.com/realms/Platform"
