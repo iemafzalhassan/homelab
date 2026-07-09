@@ -1,4 +1,7 @@
 api:
+  adminAccount:
+    passwordHash: "$2b$10$j7vj1k7KxJ4F3E8F3e8KmWyRCDHmnKd3ZVVfCtp8dd1c10bd2"
+    tokenSigningKey: "D9yMQtk8xanrF88u4XMh+plmi16lvGpTrw18AWR/3zs="
   host: kargo.smapatticare.com
   service:
     type: ClusterIP
