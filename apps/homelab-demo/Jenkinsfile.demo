@@ -61,7 +61,7 @@ spec:
                         git add manifests/apps/homelab-demo/uat/deployment.yaml
                         git commit -m "ci: update homelab-demo UAT image to ${IMAGE_TAG}"
                     """
-                    withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
+                    withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GH_USER', passwordVariable: 'GH_TOKEN')]) {
                         sh """
                             git push https://${GH_TOKEN}@github.com/iemafzalhassan/homelab.git HEAD:main
                         """

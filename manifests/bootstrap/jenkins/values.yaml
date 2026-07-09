@@ -11,6 +11,11 @@ controller:
         secretKeyRef:
           name: jenkins-oidc-secret
           key: client-secret
+    - name: GITHUB_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: jenkins-github-token
+          key: github-token
   ingress:
     enabled: false
   podLabels:
@@ -30,6 +35,17 @@ controller:
   JCasC:
     defaultConfig: true
     configScripts:
+      credentials: |
+        credentials:
+          system:
+            domainCredentials:
+              - credentials:
+                  - usernamePassword:
+                      scope: GLOBAL
+                      id: "github-token"
+                      username: "iemafzalhassan"
+                      password: "${GITHUB_TOKEN}"
+                      description: "GitHub Token for GitOps updates"
       security: |
         jenkins:
           securityRealm:
@@ -92,6 +108,7 @@ controller:
                               git {
                                   remote {
                                       url('https://github.com/iemafzalhassan/homelab.git')
+                                      credentials('github-token')
                                   }
                                   branches('*/main')
                               }
