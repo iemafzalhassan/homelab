@@ -13,10 +13,8 @@ spec:
     path: kargo
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: homelab-demo
+    namespace: kargo
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
