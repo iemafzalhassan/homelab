@@ -1,3 +1,40 @@
+api:
+  host: kargo.smapatticare.com
+  service:
+    type: ClusterIP
+  oidc:
+    enabled: true
+    issuerURL: "https://sso.smapatticare.com/realms/Platform"
+    clientID: "kargo"
+    additionalScopes: ["groups"]
+    admins:
+      claims:
+        groups: ["homelab-admins", "devops"]
+    viewers:
+      claims:
+        groups: ["developers", "viewers"]
+  argocd:
+    urls:
+      "": "https://argocd.smapatticare.com"
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+controller:
+  argocd:
+    integrationEnabled: true
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+
 global:
   nodeSelector:
     kubernetes.azure.com/scalesetpriority: "spot"
@@ -6,44 +43,3 @@ global:
       operator: "Equal"
       value: "spot"
       effect: "NoSchedule"
-
-api:
-  host: kargo.smapatticare.com
-  env:
-    - name: OIDC_CLIENT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: kargo-oidc-secret
-          key: client-secret
-  resources:
-    requests:
-      cpu: 100m
-      memory: 128Mi
-    limits:
-      cpu: 500m
-      memory: 256Mi
-  oidc:
-    enabled: true
-    issuerURL: "https://sso.smapatticare.com/realms/Platform"
-    clientID: "kargo"
-    additionalScopes:
-      - groups
-    admins:
-      claims:
-        groups:
-          - homelab-admins
-          - devops
-    viewers:
-      claims:
-        groups:
-          - developers
-          - viewers
-
-controller:
-  resources:
-    requests:
-      cpu: 200m
-      memory: 256Mi
-    limits:
-      cpu: 1000m
-      memory: 512Mi
