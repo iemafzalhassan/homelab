@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: homelab-demo-prod
+  namespace: argocd
+  annotations:
+    kargo.akuity.io/authorized-stage: "homelab-demo:prod"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/iemafzalhassan/homelab.git'
+    targetRevision: HEAD
+    path: manifests/apps/homelab-demo/prod
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: demo-prod
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

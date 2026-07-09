@@ -1,0 +1,20 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: uat
+  namespace: homelab-demo
+spec:
+  requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: homelab-demo
+      sources:
+        direct: true
+  promotionTemplate:
+    spec:
+      steps:
+        - uses: argocd-update
+          config:
+            apps:
+              - name: homelab-demo-uat
+                namespace: argocd
