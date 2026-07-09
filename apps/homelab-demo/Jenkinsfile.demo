@@ -46,6 +46,8 @@ spec:
             steps {
                 container('kaniko') {
                     sh """
+                        mkdir -p /kaniko/.docker
+                        echo '{"credHelpers": {"${ACR_URL}": "acr-env"}}' > /kaniko/.docker/config.json
                         /kaniko/executor --context=`pwd`/apps/homelab-demo --dockerfile=`pwd`/apps/homelab-demo/Dockerfile --destination=${ACR_URL}/${IMAGE_NAME}:${IMAGE_TAG}
                     """
                 }
