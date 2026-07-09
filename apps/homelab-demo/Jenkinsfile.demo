@@ -1,0 +1,73 @@
+pipeline {
+    agent {
+        kubernetes {
+            yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    azure.workload.identity/use: "true"
+spec:
+  tolerations:
+    - key: "kubernetes.azure.com/scalesetpriority"
+      operator: "Equal"
+      value: "spot"
+      effect: "NoSchedule"
+  nodeSelector:
+    kubernetes.azure.com/scalesetpriority: "spot"
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:debug
+    command: ["/busybox/cat"]
+    tty: true
+  - name: git
+    image: alpine/git:latest
+    command: ["cat"]
+    tty: true
+'''
+        }
+    }
+    environment {
+        ACR_URL = "homelabacrepb3n6.azurecr.io"
+        IMAGE_NAME = "homelab-demo"
+        IMAGE_TAG = "git-${env.GIT_COMMIT[0..6]}"
+    }
+    stages {
+        stage('Prepare Version') {
+            steps {
+                container('git') {
+                    sh """
+                        sed -i 's/VERSION_PLACEHOLDER/${IMAGE_TAG}/g' apps/homelab-demo/index.html
+                    """
+                }
+            }
+        }
+        stage('Build and Push Image') {
+            steps {
+                container('kaniko') {
+                    sh """
+                        /kaniko/executor --context=`pwd`/apps/homelab-demo --dockerfile=`pwd`/apps/homelab-demo/Dockerfile --destination=${ACR_URL}/${IMAGE_NAME}:${IMAGE_TAG}
+                    """
+                }
+            }
+        }
+        stage('Update GitOps UAT') {
+            steps {
+                container('git') {
+                    sh """
+                        sed -i 's|image: .*${IMAGE_NAME}.*|image: ${ACR_URL}/${IMAGE_NAME}:${IMAGE_TAG}|' manifests/apps/homelab-demo/uat/deployment.yaml
+                        git config user.email "jenkins@smapatticare.com"
+                        git config user.name "Jenkins CI"
+                        git add manifests/apps/homelab-demo/uat/deployment.yaml
+                        git commit -m "ci: update homelab-demo UAT image to ${IMAGE_TAG}"
+                    """
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
+                        sh """
+                            git push https://${GH_TOKEN}@github.com/iemafzalhassan/homelab.git HEAD:main
+                        """
+                    }
+                }
+            }
+        }
+    }
+}

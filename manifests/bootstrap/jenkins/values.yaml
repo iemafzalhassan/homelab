@@ -80,7 +80,23 @@ controller:
                                   branches('*/main')
                               }
                           }
-                          scriptPath('Jenkinsfile')
+                          scriptPath('Utils/Jenkinsfile')
+                      }
+                  }
+              }
+          - script: >
+              pipelineJob('homelab-demo') {
+                  definition {
+                      cpsScm {
+                          scm {
+                              git {
+                                  remote {
+                                      url('https://github.com/iemafzalhassan/homelab.git')
+                                  }
+                                  branches('*/main')
+                              }
+                          }
+                          scriptPath('apps/homelab-demo/Jenkinsfile.demo')
                       }
                   }
               }
