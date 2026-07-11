@@ -15,10 +15,10 @@ api:
     additionalScopes: ["groups"]
     admins:
       claims:
-        groups: ["homelab-admins", "devops"]
+        groups: ["platform-admins", "platform-devops"]
     viewers:
       claims:
-        groups: ["developers", "viewers"]
+        groups: ["platform-devs", "platform-viewers"]
   argocd:
     urls:
       "": "https://argocd.smapatticare.com"
