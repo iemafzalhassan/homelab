@@ -29,15 +29,15 @@ spec:
                 name: otel-demo-config
           env:
             - name: FRONTEND_PORT
-              value: "8080"
+              value: "3000"
             - name: OTEL_SERVICE_NAME
               value: frontend
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
           readinessProbe:
             httpGet:
               path: /
-              port: 8080
+              port: 3000
             initialDelaySeconds: 10
             periodSeconds: 10
 ---
