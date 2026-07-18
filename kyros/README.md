@@ -7,8 +7,8 @@
 Kyros is a cloud-native, OCI-compliant software supply chain platform that provides hardened container images, vulnerability scanning, SBOM generation, and cryptographic signing. Every image hosted on Kyros has a **Trust Score** — a transparent, weighted composite of security signals.
 
 **MVP URLs:**
-- Dashboard: `https://kyros.smapatticare.com`
-- Registry: `https://registry.kyros.smapatticare.com`
+- Dashboard: `https://kyros.iemafzalhassan.tech`
+- Registry: `https://registry.kyros.iemafzalhassan.tech`
 
 ## Stack
 

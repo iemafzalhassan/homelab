@@ -12,7 +12,7 @@ spec:
       namespace: traefik
       sectionName: jenkins
   hostnames:
-    - "jenkins.smapatticare.com"
+    - "jenkins.iemafzalhassan.tech"
   rules:
     - backendRefs:
         - name: jenkins

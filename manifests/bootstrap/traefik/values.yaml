@@ -22,7 +22,7 @@ gateway:
     websecure:
       port: 8443
       protocol: HTTPS
-      hostname: "argocd.smapatticare.com"
+      hostname: "argocd.iemafzalhassan.tech"
       mode: Terminate
       certificateRefs:
         - kind: Secret
@@ -32,7 +32,7 @@ gateway:
     authsecure:
       port: 8443
       protocol: HTTPS
-      hostname: "auth.smapatticare.com"
+      hostname: "auth.iemafzalhassan.tech"
       mode: Terminate
       certificateRefs:
         - kind: Secret
@@ -42,7 +42,7 @@ gateway:
     jenkins:
       port: 8443
       protocol: HTTPS
-      hostname: "jenkins.smapatticare.com"
+      hostname: "jenkins.iemafzalhassan.tech"
       namespacePolicy:
         from: All
       mode: Terminate
@@ -52,7 +52,7 @@ gateway:
     keycloak:
       port: 8443
       protocol: HTTPS
-      hostname: "sso.smapatticare.com"
+      hostname: "sso.iemafzalhassan.tech"
       namespacePolicy:
         from: All
       mode: Terminate
@@ -62,7 +62,7 @@ gateway:
     kargo:
       port: 8443
       protocol: HTTPS
-      hostname: "kargo.smapatticare.com"
+      hostname: "kargo.iemafzalhassan.tech"
       namespacePolicy:
         from: All
       mode: Terminate

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homelab-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homelab-demo
+  template:
+    metadata:
+      labels:
+        app: homelab-demo
+    spec:
+      containers:
+      - name: homelab-demo
+        image: homelabacrepb3n6.azurecr.io/homelab-demo:latest
+        ports:
+        - containerPort: 80

@@ -26,7 +26,13 @@ func New(port string, log *zap.Logger, serviceName string) *Server {
 	r := chi.NewRouter()
 
 	r.Use(middleware.RequestID)
-	r.Use(middleware.RealIP)
+	// NOTE: middleware.RealIP was removed. It is deprecated in go-chi v5
+	// because it unconditionally trusts X-Forwarded-For / X-Real-IP /
+	// True-Client-IP — which is exploitable when the service is reachable
+	// without going through a known proxy (e.g. a debug port-forward
+	// during a CVE triage). RemoteAddr remains the source of truth; any
+	// proxy-header trust must be wired explicitly at the edge (Traefik
+	// middleware) and passed in via a configured IP extractor.
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.Timeout(60 * time.Second))
 
@@ -50,9 +56,20 @@ func New(port string, log *zap.Logger, serviceName string) *Server {
 }
 
 func (s *Server) ListenAndServe() {
+	// ReadHeaderTimeout caps the time a client may spend sending the
+	// request line + headers. Without it, a slow/large-header client can
+	// hold a goroutine indefinitely (Slowloris — gosec G112). We set it
+	// to 5s: long enough for any realistic client, short enough to bound
+	// the resource a single misbehaving connection can consume.
+	//
+	// ReadTimeout is intentionally NOT set: the per-request Timeout
+	// middleware already bounds the body read + handler execution, and
+	// services that accept large request bodies (the OCI registry blob
+	// push endpoint) need ReadTimeout=0.
 	srv := &http.Server{
-		Addr:    ":" + s.port,
-		Handler: s.Router,
+		Addr:              ":" + s.port,
+		Handler:           s.Router,
+		ReadHeaderTimeout: 5 * time.Second,
 	}
 
 	go func() {

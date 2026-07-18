@@ -2,7 +2,7 @@ api:
   adminAccount:
     passwordHash: "$2b$10$j7vj1k7KxJ4F3E8F3e8KmWyRCDHmnKd3ZVVfCtp8dd1c10bd2"
     tokenSigningKey: "D9yMQtk8xanrF88u4XMh+plmi16lvGpTrw18AWR/3zs="
-  host: kargo.smapatticare.com
+  host: kargo.iemafzalhassan.tech
   service:
     type: ClusterIP
   tls:
@@ -10,7 +10,7 @@ api:
     terminatedUpstream: true
   oidc:
     enabled: true
-    issuerURL: "https://sso.smapatticare.com/realms/Platform"
+    issuerURL: "https://sso.iemafzalhassan.tech/realms/Platform"
     clientID: "kargo"
     additionalScopes: ["groups"]
     admins:
@@ -21,7 +21,7 @@ api:
         groups: ["platform-devs", "platform-viewers"]
   argocd:
     urls:
-      "": "https://argocd.smapatticare.com"
+      "": "https://argocd.iemafzalhassan.tech"
   resources:
     requests:
       cpu: 100m

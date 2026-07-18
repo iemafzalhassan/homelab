@@ -1,5 +1,5 @@
 controller:
-  jenkinsUrl: "https://jenkins.smapatticare.com/"
+  jenkinsUrl: "https://jenkins.iemafzalhassan.tech/"
   additionalPlugins:
     - job-dsl
     - prometheus
@@ -54,7 +54,7 @@ controller:
               clientSecret: "${OIDC_CLIENT_SECRET}"
               serverConfiguration:
                 wellKnown:
-                  wellKnownOpenIDConfigurationUrl: "https://sso.smapatticare.com/realms/Platform/.well-known/openid-configuration"
+                  wellKnownOpenIDConfigurationUrl: "https://sso.iemafzalhassan.tech/realms/Platform/.well-known/openid-configuration"
                   scopesOverride: "openid email profile groups"
               userNameField: "preferred_username"
               groupsFieldName: "groups"

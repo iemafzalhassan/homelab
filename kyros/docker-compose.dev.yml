@@ -14,6 +14,66 @@ services:
     image: nats:2-alpine
     command: ["-js"]
     ports: ["4222:4222", "8222:8222"]
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports: ["3333:3333"]
+    environment:
+      - PORT=3333
+      - AUTH_SECRET=dev-secret-key-12345
+      - AUTH_TRUST_HOST=true
+  
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: api
+    ports: ["8080:8080"]
+    environment:
+      - KYROS_PORT=8080
+      - KYROS_DATABASE_URL=postgres://kyros:kyros_dev@postgres:5432/kyros?sslmode=disable
+    depends_on:
+      - postgres
+
+  kyros-registry:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: registry
+    ports: ["5050:5050"]
+    environment:
+      - KYROS_PORT=5050
+      - KYROS_REGISTRY_BACKEND_URL=http://upstream-registry:5000
+      - KYROS_DATABASE_URL=postgres://kyros:kyros_dev@postgres:5432/kyros?sslmode=disable
+    depends_on:
+      - upstream-registry
+      - postgres
+
+  upstream-registry:
+    image: registry:2
+    environment:
+      - REGISTRY_STORAGE_DELETE_ENABLED=true
+    # Internal to compose, no exposed port needed unless debugging
+
+  keycloak:
+    build:
+      context: .
+      dockerfile: Dockerfile.keycloak
+    command: start-dev --import-realm
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/kyros
+      KC_DB_USERNAME: kyros
+      KC_DB_PASSWORD: kyros_dev
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports: ["8081:8080"]
+    depends_on:
+      - postgres
 
 volumes:
   postgres_data:
+

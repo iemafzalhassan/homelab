@@ -27,15 +27,15 @@ func (h *Handler) RegisterRoutes(r chi.Router) {
 	r.Get("/ready", h.Ready)
 }
 
-func (h *Handler) Health(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) Health(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"status":"ok","service":"` + h.ServiceName + `","version":"` + h.Version + `"}`))
+	_, _ = w.Write([]byte(`{"status":"ok","service":"` + h.ServiceName + `","version":"` + h.Version + `"}`))
 }
 
-func (h *Handler) Live(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) Live(w http.ResponseWriter, _ *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("ok"))
+	_, _ = w.Write([]byte("ok"))
 }
 
 func (h *Handler) Ready(w http.ResponseWriter, r *http.Request) {
@@ -43,10 +43,10 @@ func (h *Handler) Ready(w http.ResponseWriter, r *http.Request) {
 		if err := checker.Check(r.Context()); err != nil {
 			h.Log.Error("Readiness check failed", zap.String("checker", name), zap.Error(err))
 			w.WriteHeader(http.StatusServiceUnavailable)
-			w.Write([]byte("unavailable"))
+			_, _ = w.Write([]byte("unavailable"))
 			return
 		}
 	}
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("ready"))
+	_, _ = w.Write([]byte("ready"))
 }

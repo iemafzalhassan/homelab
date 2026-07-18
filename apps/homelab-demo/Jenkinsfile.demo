@@ -58,7 +58,7 @@ spec:
                 container('git') {
                     sh """
                         sed -i 's|image: .*${IMAGE_NAME}.*|image: ${ACR_URL}/${IMAGE_NAME}:${IMAGE_TAG}|' manifests/apps/homelab-demo/uat/deployment.yaml
-                        git config user.email "jenkins@smapatticare.com"
+                        git config user.email "jenkins@iemafzalhassan.tech"
                         git config user.name "Jenkins CI"
                         git add manifests/apps/homelab-demo/uat/deployment.yaml
                         git commit -m "ci: update homelab-demo UAT image to ${IMAGE_TAG}"

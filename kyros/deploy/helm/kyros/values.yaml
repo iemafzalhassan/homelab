@@ -1,0 +1,27 @@
+registry:
+  image:
+    repository: registry
+    tag: 2.8.3
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  azure:
+    accountName: ""
+    container: "kyros-registry-blobs"
+  webhook:
+    endpoint: "http://kyros-api:8080/webhooks/registry"
+  auth:
+    proxyUrl: "http://kyros-registry:5000"
+
+proxy:
+  replicaCount: 1
+  image:
+    repository: kyros/registry
+    tag: latest
+  port: 5000
+
+api:
+  replicaCount: 1
+  image:
+    repository: kyros/api
+    tag: latest
+  port: 8080

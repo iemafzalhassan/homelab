@@ -9,7 +9,7 @@ spec:
       namespace: traefik
       sectionName: kargo
   hostnames:
-    - "kargo.smapatticare.com"
+    - "kargo.iemafzalhassan.tech"
   rules:
     - backendRefs:
         - name: kargo-api

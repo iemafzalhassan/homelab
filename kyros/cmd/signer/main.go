@@ -9,7 +9,7 @@ import (
 func main() {
 	cfg := config.Load("signer")
 	log := logger.New(cfg.LogLevel, cfg.Env)
-	defer log.Sync()
+	defer func() { _ = log.Sync() }()
 
 	srv := httpserver.New(cfg.Port, log, "signer")
 

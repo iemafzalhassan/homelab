@@ -9,7 +9,7 @@ spec:
       namespace: traefik
       sectionName: authsecure
   hostnames:
-    - auth.smapatticare.com
+    - auth.iemafzalhassan.tech
   rules:
     - matches:
         - path:

@@ -1,5 +1,5 @@
 global:
-  domain: argocd.smapatticare.com
+  domain: argocd.iemafzalhassan.tech
   nodeSelector:
     kubernetes.azure.com/scalesetpriority: "spot"
   tolerations:
@@ -10,10 +10,10 @@ global:
 
 configs:
   cm:
-    url: https://argocd.smapatticare.com
+    url: https://argocd.iemafzalhassan.tech
     oidc.config: |
       name: Keycloak
-      issuer: https://sso.smapatticare.com/realms/Platform
+      issuer: https://sso.iemafzalhassan.tech/realms/Platform
       clientID: argocd
       clientSecret: $argocd-oidc-secret:client-secret
       requestedScopes: ["openid", "profile", "email", "groups"]

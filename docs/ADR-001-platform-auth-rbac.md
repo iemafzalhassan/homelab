@@ -59,19 +59,19 @@ User → Traefik → OAuth2-Proxy → Keycloak (OIDC) → Cookie set → Upstrea
 
 | Group | Members | Purpose |
 |-------|---------|---------|
-| `homelab-admins` | `admin@smapatticare.com`, `iemafzalhassan@gmail.com` | Super administrators |
-| `devops` | `devops@smapatticare.com` | DevOps operators |
-| `developers` | `dev@smapatticare.com` | Software developers |
-| `viewers` | `viewer@smapatticare.com` | Read-only auditors |
+| `homelab-admins` | `admin@iemafzalhassan.tech`, `iemafzalhassan@gmail.com` | Super administrators |
+| `devops` | `devops@iemafzalhassan.tech` | DevOps operators |
+| `developers` | `dev@iemafzalhassan.tech` | Software developers |
+| `viewers` | `viewer@iemafzalhassan.tech` | Read-only auditors |
 
 ### Platform Realm: OIDC Clients
 
 | Client ID | Redirect URI | Groups Claim Mapper |
 |-----------|-------------|-------------------|
-| `argocd` | `https://argocd.smapatticare.com/auth/callback` | ✅ `oidc-group-membership-mapper` → `groups` claim |
-| `jenkins` | `https://jenkins.smapatticare.com/securityRealm/finishLogin` | ✅ `oidc-group-membership-mapper` → `groups` claim |
-| `oauth2-proxy` | `https://auth.smapatticare.com/oauth2/callback` | ✅ `oidc-group-membership-mapper` → `groups` claim |
-| `kargo` | `https://kargo.smapatticare.com/auth/callback` | ✅ `oidc-group-membership-mapper` → `groups` claim (PKCE required) |
+| `argocd` | `https://argocd.iemafzalhassan.tech/auth/callback` | ✅ `oidc-group-membership-mapper` → `groups` claim |
+| `jenkins` | `https://jenkins.iemafzalhassan.tech/securityRealm/finishLogin` | ✅ `oidc-group-membership-mapper` → `groups` claim |
+| `oauth2-proxy` | `https://auth.iemafzalhassan.tech/oauth2/callback` | ✅ `oidc-group-membership-mapper` → `groups` claim |
+| `kargo` | `https://kargo.iemafzalhassan.tech/auth/callback` | ✅ `oidc-group-membership-mapper` → `groups` claim (PKCE required) |
 
 ---
 
@@ -127,7 +127,7 @@ g, viewers, role:readonly
 
 **Symptom:** After Keycloak login, OAuth2-Proxy redirects to `/oauth2/callback` and returns `HTTP 500` with log:
 ```
-Error redeeming code during OAuth2 callback: email in id_token (dev@smapatticare.com) isn't verified
+Error redeeming code during OAuth2 callback: email in id_token (dev@iemafzalhassan.tech) isn't verified
 ```
 
 **Root Cause:** All Keycloak users were created with `emailVerified: false`. By default, OAuth2-Proxy (and many OIDC clients) enforce that the email address in the JWT must be verified (`email_verified: true` claim). Keycloak does NOT auto-verify emails unless configured to do so or email verification is explicitly triggered.
@@ -157,11 +157,11 @@ kubectl exec keycloak-0 -n keycloak -- /opt/bitnami/keycloak/bin/kcadm.sh \
 
 ### Issue 3: Keycloak `sso-tls-secret` covers wrong SANs initially
 
-**Symptom:** The original `sso-tls-secret` certificate only covered `auth.smapatticare.com`, not `sso.smapatticare.com`.
+**Symptom:** The original `sso-tls-secret` certificate only covered `auth.iemafzalhassan.tech`, not `sso.iemafzalhassan.tech`.
 
 **Root Cause:** The Traefik Gateway `keycloak` listener was added after the initial certificate was issued for the `authsecure` listener. cert-manager's Gateway shim combines DNS names from all listeners referencing the same secret name — but this only triggers a certificate refresh when the `Certificate` resource's `spec.dnsNames` diverges from the existing secret.
 
-**Resolution:** Traefik Helm chart was updated to define separate listeners (`authsecure` for `auth.smapatticare.com`, `keycloak` for `sso.smapatticare.com`) both referencing `sso-tls-secret`. cert-manager automatically detected the SAN change and reissued the certificate with both domains.
+**Resolution:** Traefik Helm chart was updated to define separate listeners (`authsecure` for `auth.iemafzalhassan.tech`, `keycloak` for `sso.iemafzalhassan.tech`) both referencing `sso-tls-secret`. cert-manager automatically detected the SAN change and reissued the certificate with both domains.
 
 ---
 

@@ -1,0 +1,70 @@
+{
+  "realm": "kyros",
+  "enabled": true,
+  "registrationAllowed": true,
+  "resetPasswordAllowed": true,
+  "verifyEmail": true,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "users": [
+    {
+      "username": "admin",
+      "email": "admin@kyros.local",
+      "firstName": "Admin",
+      "lastName": "User",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["admin"]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "kyros-web",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "kyros-web-secret-for-dev",
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": [
+        "http://localhost:3333/api/auth/callback/keycloak",
+        "http://localhost:3333/*"
+      ],
+      "webOrigins": ["http://localhost:3333"]
+    },
+    {
+      "clientId": "kyros-api",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "bearerOnly": true
+    }
+  ],
+  "identityProviders": [
+    {
+      "alias": "google",
+      "providerId": "google",
+      "enabled": true,
+      "config": {
+        "clientId": "placeholder-google-client-id",
+        "clientSecret": "placeholder-google-client-secret"
+      }
+    },
+    {
+      "alias": "github",
+      "providerId": "github",
+      "enabled": true,
+      "config": {
+        "clientId": "placeholder-github-client-id",
+        "clientSecret": "placeholder-github-client-secret"
+      }
+    }
+  ]
+}

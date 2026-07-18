@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-registry-config
+data:
+  config.yml: |
+    version: 0.1
+    log:
+      fields:
+        service: registry
+    storage:
+      azure:
+        accountname: ${AZURE_STORAGE_ACCOUNT_NAME}
+        container: {{ .Values.registry.azure.container }}
+      cache:
+        blobdescriptor: inmemory
+    http:
+      addr: :5000
+      headers:
+        X-Content-Type-Options: [nosniff]
+    health:
+      storagedriver:
+        enabled: true
+        interval: 10s
+        threshold: 3
+    notifications:
+      endpoints:
+        - name: kyros-api
+          url: {{ .Values.registry.webhook.endpoint }}
+          headers:
+            Authorization: [Bearer internal-webhook-token]
+          timeout: 1s
+          threshold: 10
+          backoff: 1s
+          disabled: false
+          ignoredmediatypes:
+            - application/octet-stream
+    # For phase 2, we leave auth open on the backend since the proxy handles it
+    # But we could configure it as a token server later
