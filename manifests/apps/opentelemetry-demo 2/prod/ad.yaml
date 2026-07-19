@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ad
+  namespace: demo-prod
+  labels:
+    app: ad
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ad
+  template:
+    metadata:
+      labels:
+        app: ad
+    spec:
+      tolerations:
+        - key: "kubernetes.azure.com/scalesetpriority"
+          operator: "Equal"
+          value: "spot"
+          effect: "NoSchedule"
+      containers:
+        - name: ad
+          image: ghcr.io/open-telemetry/demo:latest-ad
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: otel-demo-config
+          env:
+            - name: OTEL_SERVICE_NAME
+              value: ad
+            - name: AD_PORT
+              value: "9555"
+          ports:
+            - containerPort: 9555
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ad
+  namespace: demo-prod
+spec:
+  selector:
+    app: ad
+  ports:
+    - port: 9555
+      targetPort: 9555

@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package kyros.registry.v1;
+
+// The registry service definition.
+service Registry {
+  // Gets the metadata of an artifact.
+  rpc GetArtifact (GetArtifactRequest) returns (GetArtifactResponse);
+  // Lists artifacts in a repository.
+  rpc ListArtifacts (ListArtifactsRequest) returns (ListArtifactsResponse);
+}
+
+// Request message for GetArtifact.
+message GetArtifactRequest {
+  string repository = 1;
+  string artifact = 2;
+}
+
+// Response message for GetArtifact.
+message GetArtifactResponse {
+  string manifest = 1;
+  repeated string layers = 2;
+}
+
+// Request message for ListArtifacts.
+message ListArtifactsRequest {
+  string repository = 1;
+  int32 limit = 2;
+  string page_token = 3;
+}
+
+// Response message for ListArtifacts.
+message ListArtifactsResponse {
+  repeated string artifacts = 1;
+  string next_page_token = 2;
+}

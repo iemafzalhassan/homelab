@@ -1,28 +1,43 @@
 version: '3'
+
 tasks:
+  default:
+    desc: "Show available tasks"
+    cmds:
+      - task --list-all
+
   dev:web:
     desc: "Start Next.js dev server"
     cmd: bun --filter web dev
+
   dev:api:
     desc: "Start Go API server"
     cmd: go run ./cmd/api/main.go
+
   dev:all:
     deps: [dev:web, dev:api]
+    desc: "Start both web and API servers"
+
   build:go:
     desc: "Build all Go binaries"
     cmd: go build ./...
+
   build:web:
     desc: "Build Next.js"
     cmd: bun --filter web build
+
   test:go:
     desc: "Run Go tests"
     cmd: go test ./...
+
   test:web:
     desc: "Run TypeScript tests"
     cmd: bun test
+
   lint:go:
     desc: "Lint Go code"
     cmd: golangci-lint run ./...
+
   lint:web:
     desc: "Lint TypeScript code"
     cmd: bun lint
@@ -30,3 +45,25 @@ tasks:
   migrate:
     desc: "Run DB migrations"
     cmd: migrate -path ./database/migrations -database $DATABASE_URL up
+
+  proto:install-go-plugin:
+    desc: "Install Go protobuf plugins"
+    cmd: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest && go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+  proto:generate:
+    desc: "Generate Go and TypeScript code from proto files"
+    cmds:
+      - protoc --proto_path=proto --go_out=gen/go --go_opt=paths=source_relative --go-grpc_out=gen/go --go-grpc_opt=paths=source_relative proto/**/*.proto
+      - npx ts-proto --protoPath=proto --outDir=gen/ts --target=ts --outputServices=grpc-js --outputJsonMethods=false proto/**/*.proto
+
+  swagger:init:
+    desc: "Install Swagger CLI"
+    cmd: go install github.com/swaggo/swag/cmd/swag@latest
+
+  swagger:generate:
+    desc: "Generate Swagger docs from Go code"
+    cmd: swag init -g ./cmd/api/main.go -o ./docs/swagger
+
+  # Convenience tasks
+  proto:all: proto:install-go-plugin proto:generate
+  swagger:all: swagger:init swagger:generate
