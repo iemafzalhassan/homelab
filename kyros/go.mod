@@ -9,6 +9,10 @@ require (
 	github.com/prometheus/client_golang v1.23.2
 	github.com/spf13/viper v1.21.0
 	go.uber.org/zap v1.28.0
+	go.opentelemetry.io/otel v1.19.0
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.19.0
+	go.opentelemetry.io/otel/sdk v1.19.0
+	go.opentelemetry.io/otel/semconv v1.19.0
 )
 
 require (

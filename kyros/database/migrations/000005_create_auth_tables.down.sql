@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS api_keys;
+DROP TABLE IF EXISTS sessions;
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS role_permissions;
+DROP TABLE IF EXISTS permissions;
+DROP TABLE IF EXISTS roles;
