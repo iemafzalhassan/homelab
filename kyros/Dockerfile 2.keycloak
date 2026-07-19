@@ -1,2 +1,0 @@
-FROM quay.io/keycloak/keycloak:26.0.0
-COPY kyros-realm-export.json /opt/keycloak/data/import/kyros-realm-export.json

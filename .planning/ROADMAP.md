@@ -227,30 +227,6 @@ Plans:
 - [ ] 11-02: Kargo `Project`, `Warehouse`, `Stage` CRs for UAT and PROD (image tag source, ArgoCD Application targets)
 - [ ] 11-03: RBAC wiring (Kargo `Role`/`RoleBinding` mapped to Keycloak groups) + end-to-end promotion test
 
-### Phase 12: Kyros — The Trusted Software Supply Chain Platform
-**Goal**: Build Kyros (OCI registry + publisher dashboard + Trust Score engine + Trivy/Syft/Cosign keyless signing pipeline) on the existing AKS homelab cluster. MVP: private-only, 3-month timeline, reuses homelab Traefik/Keycloak/cert-manager/LGTM.
-**Depends on**: Phase 5 (Gateway API + cert-manager), Phase 6 (ArgoCD), Phase 8 (LGTM observability), Phase 11 (Kargo promotion pattern)
-**Requirements**: TBD — Kyros will get its own `KYROS-NN` REQ-IDs during planning; no v1-platform REQ-IDs apply
-**Success Criteria** (what must be TRUE):
-  1. `docker login registry.kyros.smapatticare.com` succeeds; `docker push` of any image to `registry.kyros.smapatticare.com/{org}/{image}:{tag}` succeeds with HTTP 201
-  2. `https://kyros.smapatticare.com` loads the publisher dashboard with valid TLS and Keycloak SSO
-  3. Every pushed image has a Trust Score with the 6-factor breakdown visible in the dashboard
-  4. All pushed images have a Syft-generated SBOM (both SPDX and CycloneDX), a Trivy scan, and a Cosign keyless signature verifiable via `cosign verify`
-  5. cncf/distribution GC CronJob runs daily at 03:00 IST without manual intervention and reclaims at least 1 untagged blob per week
-  6. Per-org storage quota (default 50 GB) is enforced — pushes exceeding quota return 413
-  7. Postgres RLS prevents cross-tenant data leaks — `psql -c "SET app.current_tenant = '<other-tenant-uuid>'; SELECT * FROM repositories;"` returns 0 rows for a tenant that has no repos
-  8. Public OCI hosting and self-serve org signup are **explicitly not in scope** — every repo is private; every org is created via Keycloak admin invitation
-**Plans**: TBD (run `/gsd-plan-phase 12` after `/gsd-discuss-phase 12`)
-
-Plans:
-- [ ] 12-01: Foundation — monorepo audit, Postgres schema + RLS, Keycloak SSO clients, cncf/distribution Helm deploy, HTTPRoute for `registry.kyros.smapatticare.com`
-- [ ] 12-02: Registry Core — Typesense indexer, per-org quota enforcement, tag/manifest API, basic Next.js dashboard
-- [ ] 12-03: Security Pipeline — NATS JetStream workers, Trivy scanner, Syft SBOM, Trust Score engine + UI, private-only access enforced
-- [ ] 12-04: Publisher Dashboard — org/team mgmt UI, Kaniko image builder (spot node pool), Cosign keyless signing, GC CronJob
-- [ ] 12-05: Polish — LGTM instrumentation, Typesense search UI, Cloudflare cache rules, landing page, runbooks
-
-> **See also:** `.planning/phases/12-kyros-platform/12-CONTEXT.md` (decisions log) and `12-MAINTAINER.md` (LLM-optimized build sheet). Pre-planning cross-AI review is in `12-REVIEWS.md`.
-
 ---
 
 ## Progress

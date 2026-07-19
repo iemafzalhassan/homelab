@@ -1,5 +1,0 @@
-.git/
-.planning/
-apps/web/.next/
-node_modules/
-**/*.test.go
