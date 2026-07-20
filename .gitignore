@@ -4,6 +4,8 @@
 tfplan
 .terraform.lock.hcl
 tf_outputs.json
+.agents/*
+.claude/*
 
 # ── GSD baseline (auto-generated) ──
 .gsd
