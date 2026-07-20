@@ -1,12 +1,12 @@
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Warehouse
 metadata:
-  name: homelab-demo
-  namespace: homelab-demo
+  name: microservices-demo
+  namespace: microservices-demo
 spec:
   subscriptions:
     - git:
         repoURL: https://github.com/iemafzalhassan/homelab.git
         branch: main
         includePaths:
-          - manifests/apps/homelab-demo/
+          - manifests/apps/microservices-demo/

@@ -28,14 +28,17 @@ The deliverable is a live, end-to-end promotion pipeline demonstrated with a min
 - Kargo intercepts before ArgoCD syncs PROD — ArgoCD's PROD Application will be set to `syncPolicy: {}` (manual sync), controlled by Kargo.
 - ArgoCD's UAT Application remains auto-sync; Kargo triggers it by updating the UAT Stage's Git path.
 
-### D-03: Demo Application — Minimal "hello-world" Container
-- Create a new minimal demo app (`homelab-demo`) — a simple nginx or custom hello-world container.
-- The app will have:
-  - A `Dockerfile` in `apps/homelab-demo/` in the homelab repo
-  - A Jenkins pipeline (`Jenkinsfile.demo`) that builds, tags, and pushes to ACR, then commits the image tag update to `manifests/apps/homelab-demo/uat/values.yaml`
-  - Two ArgoCD Applications: `homelab-demo-uat` (namespace: `demo-uat`) and `homelab-demo-prod` (namespace: `demo-prod`)
-  - Two Kargo Stages: `uat` and `prod` under a Kargo `Project: homelab-demo`
-- This gives a clean, standalone demo story for the Grafana talk without touching platform tools.
+### D-03: Demo Application — Google microservices-demo (Online Boutique)
+- Use the upstream `microservices-demo` (Online Boutique) — a 10-service e-commerce app — instead of a minimal hello-world.
+- Deployed via the upstream Helm chart (`https://github.com/GoogleCloudPlatform/microservices-demo/tree/main/release/charts/online-boutique`) to keep it maintainable.
+- Two ArgoCD Applications per environment:
+  - `microservices-demo-uat` (namespace: `demo-uat`) — auto-sync enabled
+  - `microservices-demo-prod` (namespace: `demo-prod`) — manual sync (`syncPolicy: {}`), controlled by Kargo
+- Two Kargo Stages: `uat` and `prod` under a Kargo `Project: microservices-demo`
+- Kargo Warehouse watches the Helm values file for image tag changes (e.g., `manifests/apps/microservices-demo/uat/values.yaml`)
+- Jenkins CI: single pipeline builds all service images (or uses upstream pre-built images with tag override), updates the Helm values file with new tags, commits to GitOps repo.
+- Spot pool (Standard_D2as_v5, 8GB, max 4 nodes) comfortably runs the full stack (~2-3GB total).
+- This gives a production-realistic, visually impressive demo for the Grafana talk — real services, real dependencies, real promotion flow.
 
 ### D-04: Kargo RBAC — Keycloak Group Mapping
 - `homelab-admins` → Kargo `admin` role (full control, approve PROD, manage Projects)

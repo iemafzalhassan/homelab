@@ -1,8 +1,8 @@
 apiVersion: kargo.akuity.io/v1alpha1
 kind: ProjectConfig
 metadata:
-  name: homelab-demo
-  namespace: homelab-demo
+  name: microservices-demo
+  namespace: microservices-demo
 spec:
   promotionPolicies:
     - stageSelector:

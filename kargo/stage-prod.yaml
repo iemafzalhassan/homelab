@@ -2,12 +2,12 @@ apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
 metadata:
   name: prod
-  namespace: homelab-demo
+  namespace: microservices-demo
 spec:
   requestedFreight:
     - origin:
         kind: Warehouse
-        name: homelab-demo
+        name: microservices-demo
       sources:
         stages:
           - uat
@@ -17,11 +17,5 @@ spec:
         - uses: argocd-update
           config:
             apps:
-              - name: homelab-demo-prod
+              - name: microservices-demo-prod
                 namespace: argocd
-                sources:
-                  - repoURL: https://github.com/iemafzalhassan/homelab.git
-                    kustomize:
-                      images:
-                        - image: homelabacrepb3n6.azurecr.io/homelab-demo
-                          tag: ${{ freight.commits[0].id }}
