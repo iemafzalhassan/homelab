@@ -1,24 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: homelab-demo-uat
+  name: microservices-demo-prod
   namespace: argocd
   annotations:
-    kargo.akuity.io/authorized-stage: "homelab-demo:uat"
+    kargo.akuity.io/authorized-stage: "microservices-demo:prod"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/iemafzalhassan/homelab.git'
+    repoURL: https://github.com/GoogleCloudPlatform/microservices-demo.git
     targetRevision: HEAD
-    path: manifests/apps/homelab-demo/uat
+    path: kubernetes-manifests
   destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: demo-uat
+    server: https://kubernetes.default.svc
+    namespace: demo-prod
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true

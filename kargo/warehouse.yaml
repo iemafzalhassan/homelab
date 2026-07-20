@@ -6,7 +6,11 @@ metadata:
 spec:
   subscriptions:
     - git:
-        repoURL: https://github.com/iemafzalhassan/homelab.git
+        repoURL: https://github.com/GoogleCloudPlatform/microservices-demo.git
         branch: main
         includePaths:
-          - manifests/apps/microservices-demo/
+          - kubernetes-manifests/
+      commitSelectionStrategy: NewestFromBranch
+      discoveryLimit: 20
+  freightCreationPolicy: Automatic
+  interval: 5m0s

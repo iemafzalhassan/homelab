@@ -3,6 +3,8 @@ kind: Stage
 metadata:
   name: uat
   namespace: microservices-demo
+  labels:
+    kargo.akuity.io/promotion-phase: "uat"
 spec:
   requestedFreight:
     - origin:
@@ -17,4 +19,28 @@ spec:
           config:
             apps:
               - name: microservices-demo-uat
+                namespace: argocd
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: prod
+  namespace: microservices-demo
+  labels:
+    kargo.akuity.io/promotion-phase: "prod"
+spec:
+  requestedFreight:
+    - origin:
+        kind: Warehouse
+        name: microservices-demo
+      sources:
+        stages:
+          - uat
+  promotionTemplate:
+    spec:
+      steps:
+        - uses: argocd-update
+          config:
+            apps:
+              - name: microservices-demo-prod
                 namespace: argocd
