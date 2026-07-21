@@ -94,26 +94,9 @@ applicationObservability:
       enabled: true
       port: 9411
 autoInstrumentation:
-  enabled: true
-  collector: alloy-metrics
-  beyla:
-    deliverTracesToApplicationObservability: false
-    tolerations:
-      - key: "CriticalAddonsOnly"
-        operator: "Equal"
-        value: "true"
-        effect: "NoSchedule"
-    k8sCache:
-      tolerations:
-        - key: "CriticalAddonsOnly"
-          operator: "Equal"
-          value: "true"
-          effect: "NoSchedule"
+  enabled: false
 profiling:
-  enabled: true
-  collector: alloy-profiles
-  ebpf:
-    enabled: true
+  enabled: false
 
 collectors:
   alloy-metrics:
@@ -196,30 +179,9 @@ telemetryServices:
   windows-exporter:
     deploy: false
   opencost:
-    deploy: true
-    metricsSource: grafana-cloud-metrics
-    opencost:
-      exporter:
-        defaultClusterId: homelab-aks
-      prometheus:
-        existingSecretName: grafana-cloud-metrics-credentials
-        password_key: password
-        external:
-          url: https://prometheus-prod-43-prod-ap-south-1.grafana.net/api/prom
-      tolerations:
-        - key: "CriticalAddonsOnly"
-          operator: "Equal"
-          value: "true"
-          effect: "NoSchedule"
-    podAnnotations:
-      kubernetes.azure.com/set-kube-service-host-fqdn: "true"
+    deploy: false
   kepler:
-    deploy: true
-    tolerations:
-      - key: "CriticalAddonsOnly"
-        operator: "Equal"
-        value: "true"
-        effect: "NoSchedule"
+    deploy: false
   k8s-manifest-tail:
     deploy: true
     config:
