@@ -6,7 +6,6 @@ This platform should use a single shared identity and platform-services layer fo
 - Keycloak for SSO/OIDC
 - Argo CD for GitOps orchestration
 - Jenkins for CI/CD
-- Kargo for promotion
 - Traefik for ingress
 - Monitoring for observability
 
@@ -19,7 +18,6 @@ Application-specific workloads should live in their own app namespaces, but shar
 Keep these in dedicated shared namespaces:
 - argocd
 - jenkins
-- kargo
 - monitoring
 - traefik
 - keycloak
@@ -36,16 +34,14 @@ Example:
 - `platform` database for shared platform metadata
 - `keycloak` database for Keycloak
 - `jenkins` database if Jenkins needs an internal DB
-- `kargo` database if Kargo requires one
 
 ### 3. Use one shared Keycloak realm for all platform apps
 
-The current setup already uses the `Platform` realm for ArgoCD, Jenkins, Kargo, and OAuth2-Proxy. That is the right model.
+The current setup already uses the `Platform` realm for ArgoCD, Jenkins, and OAuth2-Proxy. That is the right model.
 
 Use the same realm and same user/group model for:
 - ArgoCD
 - Jenkins
-- Kargo
 - OAuth2-Proxy
 - future admin portals
 
@@ -87,7 +83,7 @@ Avoid creating separate PostgreSQL, Keycloak, ingress, or observability stacks f
 ## Suggested next steps
 
 1. Add a shared CNPG cluster for platform databases.
-2. Create separate databases inside the cluster for Keycloak, Jenkins, Kargo, and future apps.
+2. Create separate databases inside the cluster for Keycloak, Jenkins, and future apps.
 3. Keep app-specific namespaces for workloads such as demo-prod and demo-uat.
 4. Continue using the existing shared Keycloak realm for SSO.
 5. Reuse the monitoring, ingress, and certificate stack across all applications.

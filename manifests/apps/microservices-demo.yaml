@@ -1,10 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: microservices-demo-uat
+  name: microservices-demo
   namespace: argocd
-  annotations:
-    kargo.akuity.io/authorized-stage: "microservices-demo:uat"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -15,7 +13,7 @@ spec:
     path: kubernetes-manifests
   destination:
     server: https://kubernetes.default.svc
-    namespace: microservices-demo-uat
+    namespace: microservices-demo
   syncPolicy:
     automated:
       prune: true

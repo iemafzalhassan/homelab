@@ -71,7 +71,6 @@ User → Traefik → OAuth2-Proxy → Keycloak (OIDC) → Cookie set → Upstrea
 | `argocd` | `https://argocd.iemafzalhassan.tech/auth/callback` | ✅ `oidc-group-membership-mapper` → `groups` claim |
 | `jenkins` | `https://jenkins.iemafzalhassan.tech/securityRealm/finishLogin` | ✅ `oidc-group-membership-mapper` → `groups` claim |
 | `oauth2-proxy` | `https://auth.iemafzalhassan.tech/oauth2/callback` | ✅ `oidc-group-membership-mapper` → `groups` claim |
-| `kargo` | `https://kargo.iemafzalhassan.tech/auth/callback` | ✅ `oidc-group-membership-mapper` → `groups` claim (PKCE required) |
 
 ---
 
@@ -110,16 +109,6 @@ g, viewers, role:readonly
 | `developers` | ❌ No login access to Keycloak console |
 | `viewers` | ❌ No login access to Keycloak console |
 
-### Kargo (api.oidc claims mapping)
-
-| Group | Kargo Role | Capability |
-|-------|------------|------------|
-| `homelab-admins` | `admin` | Approve PROD, manage Projects |
-| `devops` | `admin` | Approve PROD on `homelab-demo` Project |
-| `developers` | `viewer` | View UAT status + Freight, no promote |
-| `viewers` | `viewer` | Read-only everywhere |
-
----
 
 ## Known Issues & Resolutions (Post-Mortem)
 
@@ -179,7 +168,6 @@ kubectl exec keycloak-0 -n keycloak -- /opt/bitnami/keycloak/bin/kcadm.sh \
 |------|--------|
 | `manifests/bootstrap/argocd/values.yaml` | Added `devops`, `developers`, `viewers` to `policy.csv`; added `policy.default: role:''` |
 | `manifests/bootstrap/jenkins/values.yaml` | Added group-scoped permissions to `globalMatrix` for `devops`, `developers`, `viewers` |
-| `manifests/bootstrap/kargo/values.yaml` | Added Kargo OIDC config and mapped Keycloak groups |
-| `manifests/bootstrap/traefik/values.yaml` | Added HTTPS listener for Kargo and certificate generation |
+| `manifests/bootstrap/traefik/values.yaml` | Added HTTPS listener and certificate generation |
 
 All Keycloak changes (group creation, user assignments, `emailVerified`) were applied imperatively via `kcadm.sh`. These should be captured in a future Keycloak realm export and committed as `manifests/bootstrap/keycloak/realm-export.json` for GitOps reproducibility.
