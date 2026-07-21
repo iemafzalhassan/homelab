@@ -14,7 +14,7 @@ spec:
     helm:
       valuesObject:
         default:
-          env:
+          envOverrides:
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://k8s-monitoring-alloy-receiver.monitoring.svc:4318"
           schedulingRules:
