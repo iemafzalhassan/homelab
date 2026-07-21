@@ -50,7 +50,7 @@ clusterMetrics:
   enabled: true
   collector: alloy-metrics
 hostMetrics:
-  enabled: true
+  enabled: false
   collector: alloy-metrics
   linuxHosts:
     enabled: true
@@ -162,7 +162,7 @@ collectorCommon:
 
 telemetryServices:
   kube-state-metrics:
-    deploy: true
+    deploy: false
     serviceAccount:
       annotations:
         azure.workload.identity/client-id: "fbec24a9-4d43-4c32-8a4a-f1e8056e8736"
@@ -187,7 +187,7 @@ telemetryServices:
         mountPath: "/mnt/secrets-store"
         readOnly: true
   node-exporter:
-    deploy: true
+    deploy: false
     tolerations:
       - key: "CriticalAddonsOnly"
         operator: "Equal"
