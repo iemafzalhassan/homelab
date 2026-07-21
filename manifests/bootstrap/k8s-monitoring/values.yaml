@@ -133,6 +133,17 @@ collectorCommon:
           operator: "Equal"
           value: "true"
           effect: "NoSchedule"
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "grafana-cloud-token"
+      volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
     remoteConfig:
       enabled: true
       url: https://fleet-management-prod-018.grafana.net
@@ -145,7 +156,7 @@ collectorCommon:
 
 telemetryServices:
   kube-state-metrics:
-    deploy: false
+    deploy: true
     serviceAccount:
       annotations:
         azure.workload.identity/client-id: "fbec24a9-4d43-4c32-8a4a-f1e8056e8736"
