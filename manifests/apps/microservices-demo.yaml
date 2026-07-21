@@ -8,9 +8,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/GoogleCloudPlatform/microservices-demo.git
+    repoURL: https://github.com/iemafzalhassan/homelab.git
     targetRevision: HEAD
-    path: kubernetes-manifests
+    path: manifests/apps/microservices-demo-manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: microservices-demo
