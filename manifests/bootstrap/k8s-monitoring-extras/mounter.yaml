@@ -14,7 +14,7 @@ spec:
         app: grafana-cloud-token-mounter
         azure.workload.identity/use: "true"
     spec:
-      serviceAccountName: k8s-monitoring-alloy-receiver
+      serviceAccountName: k8s-monitoring-kube-state-metrics
       nodeSelector:
         kubernetes.azure.com/mode: "system"
       tolerations:
