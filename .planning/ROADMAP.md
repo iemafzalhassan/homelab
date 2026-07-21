@@ -16,7 +16,7 @@ Build a production-grade, cost-optimized Kubernetes homelab on Azure (Central In
 - [x] **Phase 8: Observability** — kube-prometheus-stack + Grafana dashboards + Alertmanager
 - [ ] **Phase 9: Security Hardening** — NetworkPolicies, PodDisruptionBudgets, LimitRanges, pod security
 - [ ] **Phase 10: Validation** — End-to-end smoke test, cost review, runbook documentation
-- [ ] **Phase 11: GitOps Promotion (Kargo)** — Single-click UAT→PROD environment promotion with Kargo; Keycloak OIDC SSO; staged delivery pipeline
+
 
 ## Phase Details
 
@@ -210,25 +210,6 @@ Plans:
 
 ---
 
-### Phase 11: GitOps Promotion (Kargo)
-**Goal**: Single-click UAT→PROD environment promotion via Kargo; OIDC SSO through Keycloak Platform realm; staged delivery pipeline integrated with Jenkins CI and ArgoCD CD
-**Depends on**: Phase 7 (Jenkins CI produces artefacts), Phase 6 (ArgoCD manages Applications)
-**Requirements**: PROMO-01, PROMO-02, PROMO-03, PROMO-04, PROMO-05
-**Success Criteria** (what must be TRUE):
-  1. `https://kargo.smapatticare.com` loads Kargo UI with valid TLS and Keycloak SSO login
-  2. Kargo `Warehouse` detects a new image tag pushed by Jenkins and creates a `Freight` object automatically
-  3. Clicking "Promote" in the Kargo UI for the UAT Stage triggers ArgoCD sync of the UAT ArgoCD Application
-  4. Clicking "Promote" in the Kargo UI for the PROD Stage requires a manual approval gate before ArgoCD syncs PROD
-  5. `devops` and `homelab-admins` groups can approve PROD promotions; `developers` group can only trigger UAT promotions
-**Plans**: [11-01-PLAN.md](file://.planning/phases/11-gitops-promotion-kargo/11-01-PLAN.md), [11-02-PLAN.md](file://.planning/phases/11-gitops-promotion-kargo/11-02-PLAN.md), [11-03-PLAN.md](file://.planning/phases/11-gitops-promotion-kargo/11-03-PLAN.md)
-
-Plans:
-- [ ] 11-01: Kargo Helm install (spot-node toleration, Keycloak OIDC, HTTPRoute for UI, resource-capped)
-- [ ] 11-02: Kargo `Project`, `Warehouse`, `Stage` CRs for UAT and PROD (image tag source, ArgoCD Application targets)
-- [ ] 11-03: RBAC wiring (Kargo `Role`/`RoleBinding` mapped to Keycloak groups) + end-to-end promotion test
-
----
-
 ## Progress
 
 | Phase | Plans Complete | Status | Completed |
@@ -243,4 +224,4 @@ Plans:
 | 8. Observability | 0/3 | Not started | - |
 | 9. Security Hardening | 0/3 | Not started | - |
 | 10. Validation | 0/3 | Not started | - |
-| 11. GitOps Promotion (Kargo) | 0/3 | Planned | - |
+
