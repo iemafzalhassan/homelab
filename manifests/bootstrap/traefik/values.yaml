@@ -69,16 +69,6 @@ gateway:
       certificateRefs:
         - kind: Secret
           name: shop-tls-secret
-    nginx:
-      port: 8443
-      protocol: HTTPS
-      hostname: "nginx.iemafzalhassan.tech"
-      namespacePolicy:
-        from: All
-      mode: Terminate
-      certificateRefs:
-        - kind: Secret
-          name: nginx-tls-secret
 
 
 serviceAccountAnnotations:
