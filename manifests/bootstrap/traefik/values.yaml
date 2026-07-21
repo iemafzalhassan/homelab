@@ -59,6 +59,16 @@ gateway:
       certificateRefs:
         - kind: Secret
           name: sso-tls-secret
+    shop:
+      port: 8443
+      protocol: HTTPS
+      hostname: "shop.iemafzalhassan.tech"
+      namespacePolicy:
+        from: All
+      mode: Terminate
+      certificateRefs:
+        - kind: Secret
+          name: shop-tls-secret
 
 
 serviceAccountAnnotations:
