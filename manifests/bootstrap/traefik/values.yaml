@@ -104,6 +104,8 @@ metrics:
     addServicesLabels: true
     service:
       enabled: true
+    serviceMonitor:
+      enabled: true
 
 tracing:
   openTelemetry:
