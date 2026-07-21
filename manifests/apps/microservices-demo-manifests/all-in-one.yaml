@@ -138,7 +138,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: frontend
   ports:
@@ -193,13 +193,6 @@ spec:
         env:
         - name: PORT
           value: "9555"
-        resources:
-          requests:
-            cpu: 200m
-            memory: 180Mi
-          limits:
-            cpu: 300m
-            memory: 300Mi
         readinessProbe:
           initialDelaySeconds: 20
           periodSeconds: 15
@@ -282,13 +275,6 @@ spec:
         livenessProbe:
           grpc:
             port: 7000
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -352,13 +338,6 @@ spec:
         env:
         - name: REDIS_ADDR
           value: "redis-cart:6379"
-        resources:
-          requests:
-            cpu: 200m
-            memory: 64Mi
-          limits:
-            cpu: 300m
-            memory: 128Mi
         readinessProbe:
           initialDelaySeconds: 15
           grpc:
@@ -437,13 +416,6 @@ spec:
         volumeMounts:
         - mountPath: /data
           name: redis-data
-        resources:
-          limits:
-            memory: 256Mi
-            cpu: 125m
-          requests:
-            cpu: 70m
-            memory: 200Mi
       volumes:
       - name: redis-data
         emptyDir: {}
@@ -542,13 +514,6 @@ spec:
           value: "10"
         - name: RATE
           value: "1"
-        resources:
-          requests:
-            cpu: 300m
-            memory: 256Mi
-          limits:
-            cpu: 500m
-            memory: 512Mi
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -609,13 +574,6 @@ spec:
           value: "productcatalogservice:3550"
         - name: DISABLE_PROFILER
           value: "1"
-        resources:
-          requests:
-            cpu: 100m
-            memory: 220Mi
-          limits:
-            cpu: 200m
-            memory: 450Mi
 ---
 apiVersion: v1
 kind: Service
@@ -776,13 +734,6 @@ spec:
           periodSeconds: 5
           grpc:
             port: 8080
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -854,13 +805,6 @@ spec:
         livenessProbe:
           grpc:
             port: 50051
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -932,13 +876,6 @@ spec:
         livenessProbe:
           grpc:
             port: 50051
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -1010,13 +947,6 @@ spec:
         livenessProbe:
           grpc:
             port: 3550
-        resources:
-          requests:
-            cpu: 100m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
