@@ -4,13 +4,7 @@ metadata:
   name: nginx-demo
   labels:
     app: nginx-demo
-nodeSelector:
-  kubernetes.azure.com/scalesetpriority: "spot"
-tolerations:
-  - key: "kubernetes.azure.com/scalesetpriority"
-    operator: "Equal"
-    value: "spot"
-    effect: "NoSchedule"
+
 spec:
   replicas: 1
   selector:
@@ -21,6 +15,13 @@ spec:
       labels:
         app: nginx-demo
     spec:
+      nodeSelector:
+        kubernetes.azure.com/scalesetpriority: "spot"
+      tolerations:
+        - key: "kubernetes.azure.com/scalesetpriority"
+          operator: "Equal"
+          value: "spot"
+          effect: "NoSchedule"
       containers:
       - name: nginx
         image: nginx:1.25.4-alpine
