@@ -17,11 +17,12 @@ spec:
           env:
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://k8s-monitoring-alloy-receiver.monitoring.svc:4318"
-          tolerations:
-            - key: "kubernetes.azure.com/scalesetpriority"
-              operator: "Equal"
-              value: "spot"
-              effect: "NoSchedule"
+          schedulingRules:
+            tolerations:
+              - key: "kubernetes.azure.com/scalesetpriority"
+                operator: "Equal"
+                value: "spot"
+                effect: "NoSchedule"
         prometheus:
           enabled: false
         grafana:
