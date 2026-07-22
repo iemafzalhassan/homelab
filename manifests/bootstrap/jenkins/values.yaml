@@ -1,5 +1,16 @@
 controller:
   jenkinsUrl: "https://jenkins.iemafzalhassan.tech/"
+  installPlugins:
+    - kubernetes:latest
+    - workflow-aggregator:latest
+    - git:latest
+    - configuration-as-code:latest
+    - job-dsl:latest
+    - prometheus:latest
+    - oic-auth:latest
+    - matrix-auth:latest
+    - github-branch-source:latest
+    - github:latest
   additionalPlugins:
     - job-dsl
     - prometheus
