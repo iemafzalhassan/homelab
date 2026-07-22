@@ -69,6 +69,16 @@ gateway:
       certificateRefs:
         - kind: Secret
           name: shop-tls-secret
+    portfolio:
+      port: 8443
+      protocol: HTTPS
+      hostname: "portfolio.iemafzalhassan.tech"
+      namespacePolicy:
+        from: All
+      mode: Terminate
+      certificateRefs:
+        - kind: Secret
+          name: portfolio-tls-secret
 
 
 serviceAccountAnnotations:
