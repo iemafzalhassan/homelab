@@ -9,6 +9,7 @@ controller:
     - prometheus:latest
     - oic-auth:latest
     - matrix-auth:latest
+    - jjwt-api:latest
     - github-branch-source:latest
     - github:latest
   additionalPlugins:
