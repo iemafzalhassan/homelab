@@ -1,0 +1,61 @@
+pipeline {
+    agent {
+        kubernetes {
+            yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    azure.workload.identity/use: "true"
+spec:
+  serviceAccountName: jenkins
+  nodeSelector:
+    kubernetes.azure.com/scalesetpriority: "spot"
+  tolerations:
+    - key: "kubernetes.azure.com/scalesetpriority"
+      operator: "Equal"
+      value: "spot"
+      effect: "NoSchedule"
+  containers:
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:debug
+      command:
+        - /busybox/cat
+      tty: true
+'''
+        }
+    }
+    environment {
+        REGISTRY = 'homelabacrepb3n6.azurecr.io'
+        IMAGE_NAME = 'portfolio'
+        REPO_URL = 'https://github.com/iemafzalhassan/portfolio.git'
+    }
+    stages {
+        stage('Checkout Portfolio') {
+            steps {
+                git url: "${REPO_URL}", branch: 'main'
+            }
+        }
+        stage('Build and Push Image') {
+            steps {
+                container('kaniko') {
+                    sh '''
+                        /kaniko/executor \
+                            --context=dir://. \
+                            --dockerfile=Dockerfile \
+                            --destination=${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER} \
+                            --destination=${REGISTRY}/${IMAGE_NAME}:latest
+                    '''
+                }
+            }
+        }
+    }
+    post {
+        success {
+            echo "Successfully built and pushed portfolio image tag ${BUILD_NUMBER}"
+        }
+        failure {
+            echo "Failed to build portfolio image."
+        }
+    }
+}

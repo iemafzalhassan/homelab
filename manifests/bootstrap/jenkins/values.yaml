@@ -117,6 +117,23 @@ controller:
                       }
                   }
               }
+          - script: >
+              pipelineJob('portfolio-build') {
+                  definition {
+                      cpsScm {
+                          scm {
+                              git {
+                                  remote {
+                                      url('https://github.com/iemafzalhassan/homelab.git')
+                                      credentials('github-token')
+                                  }
+                                  branches('*/main')
+                              }
+                          }
+                          scriptPath('Utils/Jenkinsfile.portfolio')
+                      }
+                  }
+              }
 
 agent:
   enabled: true

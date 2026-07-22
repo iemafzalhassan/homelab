@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: opentelemetry-demo-extras
+  name: portfolio
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: 'https://github.com/iemafzalhassan/homelab.git'
     targetRevision: HEAD
-    path: manifests/opentelemetry-demo-extras
+    path: manifests/portfolio
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: otel-demo
+    namespace: portfolio
   syncPolicy:
     automated:
       prune: true
