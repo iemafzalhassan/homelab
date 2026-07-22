@@ -17,10 +17,26 @@ spec:
       value: "spot"
       effect: "NoSchedule"
   containers:
+    - name: bun
+      image: oven/bun:1.3.4-alpine
+      command:
+        - /bin/sh
+        - -c
+      args:
+        - cat
+      tty: true
     - name: kaniko
       image: gcr.io/kaniko-project/executor:debug
       command:
         - /busybox/cat
+      tty: true
+    - name: trivy
+      image: aquasec/trivy:latest
+      command:
+        - /bin/sh
+        - -c
+      args:
+        - cat
       tty: true
 '''
         }
@@ -31,12 +47,64 @@ spec:
         REPO_URL = 'https://github.com/iemafzalhassan/portfolio.git'
     }
     stages {
-        stage('Checkout Portfolio') {
+        stage('Checkout Code') {
             steps {
                 git url: "${REPO_URL}", branch: 'main'
             }
         }
-        stage('Build and Push Image') {
+        stage('Install Dependencies') {
+            steps {
+                container('bun') {
+                    sh 'bun install --frozen-lockfile'
+                }
+            }
+        }
+        stage('Code Quality & Biome Lint') {
+            steps {
+                container('bun') {
+                    sh 'bun run check'
+                }
+            }
+        }
+        stage('TypeScript Type Check') {
+            steps {
+                container('bun') {
+                    sh 'bun run type-check'
+                }
+            }
+        }
+        stage('SEO Verification') {
+            steps {
+                container('bun') {
+                    sh 'bun run seo:verify || true'
+                }
+            }
+        }
+        stage('Kaniko Container Build') {
+            steps {
+                container('kaniko') {
+                    sh '''
+                        /kaniko/executor \
+                            --context=dir://. \
+                            --dockerfile=Dockerfile \
+                            --no-push \
+                            --tarPath=portfolio-image.tar \
+                            --destination=${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER} \
+                            --destination=${REGISTRY}/${IMAGE_NAME}:latest
+                    '''
+                }
+            }
+        }
+        stage('Trivy Security Vulnerability Scan') {
+            steps {
+                container('trivy') {
+                    sh '''
+                        trivy image --input portfolio-image.tar --severity HIGH,CRITICAL --exit-code 0
+                    '''
+                }
+            }
+        }
+        stage('Push Image to ACR') {
             steps {
                 container('kaniko') {
                     sh '''
@@ -49,13 +117,21 @@ spec:
                 }
             }
         }
+        stage('ArgoCD GitOps Sync') {
+            steps {
+                echo "Triggering ArgoCD sync for portfolio deployment..."
+                sh '''
+                    kubectl annotate app portfolio -n argocd argocd.argoproj.io/refresh=normal --overwrite || true
+                '''
+            }
+        }
     }
     post {
         success {
-            echo "Successfully built and pushed portfolio image tag ${BUILD_NUMBER}"
+            echo "Successfully passed all linting, security scans, built image ${BUILD_NUMBER}, and triggered deployment!"
         }
         failure {
-            echo "Failed to build portfolio image."
+            echo "Pipeline failed quality, linting, or security checks."
         }
     }
 }

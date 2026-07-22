@@ -5,6 +5,8 @@ controller:
     - prometheus
     - oic-auth
     - matrix-auth
+    - github-branch-source
+    - git
   containerEnv:
     - name: OIDC_CLIENT_SECRET
       valueFrom:
@@ -131,6 +133,27 @@ controller:
                               }
                           }
                           scriptPath('Utils/Jenkinsfile.portfolio')
+                      }
+                  }
+              }
+          - script: >
+              multibranchPipelineJob('portfolio-multibranch') {
+                  branchSources {
+                      branchSource {
+                          source {
+                              github {
+                                  id('portfolio-github')
+                                  repoOwner('iemafzalhassan')
+                                  repository('portfolio')
+                                  credentialsId('github-token')
+                                  configuredByUrl(false)
+                              }
+                          }
+                      }
+                  }
+                  factory {
+                      workflowBranchProjectFactory {
+                          scriptPath('Jenkinsfile')
                       }
                   }
               }
