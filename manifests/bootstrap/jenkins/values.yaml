@@ -150,16 +150,10 @@ controller:
           - script: >
               multibranchPipelineJob('portfolio-multibranch') {
                   branchSources {
-                      branchSource {
-                          source {
-                              github {
-                                  id('portfolio-github')
-                                  repoOwner('iemafzalhassan')
-                                  repository('portfolio')
-                                  credentialsId('github-token')
-                                  configuredByUrl(false)
-                              }
-                          }
+                      git {
+                          id('portfolio-git')
+                          remote('https://github.com/iemafzalhassan/portfolio.git')
+                          credentialsId('github-token')
                       }
                   }
                   factory {
