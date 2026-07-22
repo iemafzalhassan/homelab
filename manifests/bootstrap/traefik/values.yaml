@@ -117,9 +117,5 @@ metrics:
     serviceMonitor:
       enabled: true
 
-tracing:
-  openTelemetry:
-    grpc:
-      endpoint: "k8s-monitoring-alloy-receiver.monitoring.svc.cluster.local:4317"
-      insecure: true
+
 
