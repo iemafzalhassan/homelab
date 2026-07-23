@@ -24,6 +24,11 @@ server:
       memory: 200Mi
     limits:
       memory: 1Gi
+  tolerations:
+    - key: "kubernetes.azure.com/scalesetpriority"
+      operator: "Equal"
+      value: "spot"
+      effect: "NoSchedule"
 
   # We enable the Remote Write receiver so Alloy can push metrics here
   extraFlags:
