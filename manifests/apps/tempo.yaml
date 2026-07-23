@@ -7,13 +7,16 @@ metadata:
     argocd.argoproj.io/sync-wave: "10"
 spec:
   project: default
-  source:
-    repoURL: 'https://grafana.github.io/helm-charts'
-    chart: tempo
-    targetRevision: 1.10.3
-    helm:
-      valueFiles:
-        - $values/manifests/bootstrap/tempo/values.yaml
+  sources:
+    - repoURL: 'https://grafana.github.io/helm-charts'
+      chart: tempo
+      targetRevision: 1.10.3
+      helm:
+        valueFiles:
+          - $values/manifests/bootstrap/tempo/values.yaml
+    - repoURL: 'https://github.com/iemafzalhassan/homelab.git'
+      targetRevision: main
+      ref: values
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring
