@@ -70,7 +70,7 @@ extraObjects:
       parentRefs:
         - name: traefik-gateway
           namespace: traefik
-          sectionName: websecure
+          sectionName: grafana
       hostnames:
         - "grafana.iemafzalhassan.tech"
       rules:
