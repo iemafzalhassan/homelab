@@ -14,7 +14,14 @@ spec:
     helm:
       valuesObject:
         default:
-          envOverrides:
+          env:
+            - name: OTEL_SERVICE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: "metadata.labels['app.kubernetes.io/component']"
+            - name: OTEL_COLLECTOR_NAME
+              value: "opentelemetry-demo-otelcol"
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://k8s-monitoring-alloy-receiver.monitoring.svc:4318"
           schedulingRules:
@@ -36,11 +43,7 @@ spec:
               otlphttp/alloy:
                 endpoint: "http://k8s-monitoring-alloy-receiver.monitoring.svc:4318"
         opensearch:
-          tolerations:
-            - key: "kubernetes.azure.com/scalesetpriority"
-              operator: "Equal"
-              value: "spot"
-              effect: "NoSchedule"
+          enabled: false
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: otel-demo
