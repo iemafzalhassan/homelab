@@ -36,14 +36,13 @@ spec:
           enabled: false
         opentelemetry-collector:
           enabled: false
-        components:
-          load-generator:
-            resources:
-              requests:
-                memory: "50Mi"
-                cpu: "10m"
-              limits:
-                memory: "100Mi"
+        load-generator:
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "10m"
+            limits:
+              memory: "100Mi"
 
         opensearch:
           enabled: false
