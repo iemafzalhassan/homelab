@@ -237,14 +237,7 @@ alloy-receiver:
           mountPath: "/mnt/secrets-store"
           readOnly: true
     remoteConfig:
-      enabled: true
-      url: https://fleet-management-prod-018.grafana.net
-      secret:
-        create: false
-        name: grafana-cloud-otlp-credentials
-      auth:
-        type: basic
-        username: "1711800"
+      enabled: false
 
 telemetryServices:
   kube-state-metrics:
