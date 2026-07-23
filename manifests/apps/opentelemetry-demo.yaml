@@ -21,9 +21,7 @@ spec:
                   apiVersion: v1
                   fieldPath: "metadata.labels['app.kubernetes.io/component']"
             - name: OTEL_COLLECTOR_NAME
-              value: "opentelemetry-demo-otelcol"
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: "http://k8s-monitoring-alloy-receiver.monitoring.svc:4318"
+              value: "k8s-monitoring-alloy-receiver.monitoring.svc"
           schedulingRules:
             tolerations:
               - key: "kubernetes.azure.com/scalesetpriority"
@@ -37,19 +35,7 @@ spec:
         jaeger:
           enabled: false
         opentelemetry-collector:
-          enabled: true
-          config:
-            exporters:
-              otlphttp/alloy:
-                endpoint: "http://k8s-monitoring-alloy-receiver.monitoring.svc:4318"
-            service:
-              pipelines:
-                traces:
-                  exporters: [otlphttp/alloy]
-                metrics:
-                  exporters: [otlphttp/alloy]
-                logs:
-                  exporters: [otlphttp/alloy]
+          enabled: false
         components:
           loadgenerator:
             enabled: false
