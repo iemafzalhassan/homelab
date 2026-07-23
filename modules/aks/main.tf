@@ -43,7 +43,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "spot" {
-  name                  = "spot"
+  name                  = "spot2"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vm_size               = "Standard_D2s_v3"
   
@@ -51,7 +51,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "spot" {
   eviction_policy       = "Delete"
   spot_max_price        = -1
   
-  zones                 = ["1", "2"]
+  zones                 = ["1", "3"]
   
   auto_scaling_enabled  = true
   min_count             = 2
