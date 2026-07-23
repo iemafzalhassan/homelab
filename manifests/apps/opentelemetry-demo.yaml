@@ -14,7 +14,7 @@ spec:
     helm:
       valuesObject:
         default:
-          env:
+          envOverrides:
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://k8s-monitoring-alloy-receiver.monitoring.svc:4318"
           schedulingRules:
@@ -35,6 +35,12 @@ spec:
             exporters:
               otlphttp/alloy:
                 endpoint: "http://k8s-monitoring-alloy-receiver.monitoring.svc:4318"
+        opensearch:
+          tolerations:
+            - key: "kubernetes.azure.com/scalesetpriority"
+              operator: "Equal"
+              value: "spot"
+              effect: "NoSchedule"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: otel-demo
