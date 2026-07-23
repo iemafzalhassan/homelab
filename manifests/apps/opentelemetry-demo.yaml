@@ -42,6 +42,14 @@ spec:
             exporters:
               otlphttp/alloy:
                 endpoint: "http://k8s-monitoring-alloy-receiver.monitoring.svc:4318"
+            service:
+              pipelines:
+                traces:
+                  exporters: [otlphttp/alloy]
+                metrics:
+                  exporters: [otlphttp/alloy]
+                logs:
+                  exporters: [otlphttp/alloy]
         components:
           loadgenerator:
             enabled: false
