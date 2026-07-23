@@ -19,10 +19,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   default_node_pool {
     name                         = "system"
-    vm_size                      = "Standard_D2as_v5"
+    vm_size                      = "Standard_D2s_v3"
     zones                        = ["1"]
     node_count                   = 1
-    os_disk_type                 = "Ephemeral"
+    os_disk_type                 = "Managed"
     os_disk_size_gb              = 30
     vnet_subnet_id               = var.system_subnet_id
     only_critical_addons_enabled = true # Best practice for system node pool
