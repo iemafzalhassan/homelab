@@ -40,10 +40,10 @@ spec:
           load-generator:
             resources:
               requests:
-                memory: "50Mi"
+                memory: "64Mi"
                 cpu: "10m"
               limits:
-                memory: "100Mi"
+                memory: "256Mi"
 
         opensearch:
           enabled: false
