@@ -44,10 +44,7 @@ spec:
                 endpoint: "http://k8s-monitoring-alloy-receiver.monitoring.svc:4318"
         components:
           loadgenerator:
-            resources:
-              requests:
-                memory: 50Mi
-                cpu: 10m
+            enabled: false
         opensearch:
           enabled: false
   destination:
