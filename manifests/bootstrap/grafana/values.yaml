@@ -91,7 +91,7 @@ extraObjects:
     stringData:
       # Generate a strong secret: openssl rand -base64 32
       # Then store in Keycloak grafana client → Credentials → Client secret
-      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: "TzOOQtt29GGOmVBsTbGSZgO9CmXVAnXUfVQxLunNw+0="
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: "8f9JVVT1x6wBKDe4xWPRCFAHqYVWq6Z8"
   - apiVersion: gateway.networking.k8s.io/v1
     kind: HTTPRoute
     metadata:
