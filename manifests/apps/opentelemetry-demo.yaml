@@ -40,7 +40,7 @@ spec:
           valkey-cart:
             ports:
               - name: valkey-cart
-                value: 6380
+                value: 6379
           load-generator:
             resources:
               requests:
