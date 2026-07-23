@@ -2,49 +2,22 @@ cluster:
   name: homelab-aks
 
 destinations:
-  grafana-cloud-metrics:
+  prometheus:
     type: prometheus
-    url: https://prometheus-prod-43-prod-ap-south-1.grafana.net/api/prom/push
-    secret:
-      create: false
-      name: grafana-cloud-metrics-credentials
-    auth:
-      type: basic
-      username: "3347824"
-  grafana-cloud-logs:
+    url: http://prometheus-server.monitoring.svc.cluster.local:80/api/v1/write
+  loki:
     type: loki
-    url: https://logs-prod-028.grafana.net/loki/api/v1/push
-    secret:
-      create: false
-      name: grafana-cloud-logs-credentials
-    auth:
-      type: basic
-      username: "1669587"
-  gc-otlp-endpoint:
+    url: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
+  otlp:
     type: otlp
-    url: https://otlp-gateway-prod-ap-south-1.grafana.net/otlp
+    url: http://tempo.monitoring.svc.cluster.local:4318
     protocol: http
-    secret:
-      create: false
-      name: grafana-cloud-otlp-credentials
-    auth:
-      type: basic
-      username: "1711800"
     metrics:
       enabled: true
     logs:
       enabled: true
     traces:
       enabled: true
-  grafana-cloud-profiles:
-    type: pyroscope
-    url: https://profiles-prod-018.grafana.net:443
-    secret:
-      create: false
-      name: grafana-cloud-otlp-credentials
-    auth:
-      type: basic
-      username: "1711800"
 
 clusterMetrics:
   enabled: true
@@ -178,14 +151,6 @@ collectorCommon:
           operator: "Equal"
           value: "spot"
           effect: "NoSchedule"
-      volumes:
-        extra:
-          - name: secrets-store-inline
-            csi:
-              driver: secrets-store.csi.k8s.io
-              readOnly: true
-              volumeAttributes:
-                secretProviderClass: "grafana-cloud-token"
 
 alloy-logs:
   controller:
@@ -257,17 +222,7 @@ telemetryServices:
         operator: "Equal"
         value: "true"
         effect: "NoSchedule"
-    volumes:
-      - name: secrets-store-inline
-        csi:
-          driver: secrets-store.csi.k8s.io
-          readOnly: true
-          volumeAttributes:
-            secretProviderClass: "grafana-cloud-token"
-    volumeMounts:
-      - name: secrets-store-inline
-        mountPath: "/mnt/secrets-store"
-        readOnly: true
+
   node-exporter:
     deploy: false
     tolerations:
