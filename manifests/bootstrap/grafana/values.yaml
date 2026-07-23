@@ -1,0 +1,80 @@
+env:
+  GF_PLUGINS_ALLOW_LOADING_UNTRUSTED_PLUGINS: "grafana-llm-app"
+
+envFromSecret: "grafana-llm-secrets"
+
+plugins:
+  - grafana-llm-app
+
+grafana.ini:
+  server:
+    root_url: https://grafana.iemafzalhassan.tech
+  plugin.grafana-llm-app:
+    openai_url: "https://integrate.api.nvidia.com/v1"
+    # openai_api_key will be pulled from GF_PLUGIN_GRAFANA_LLM_APP_OPENAI_API_KEY env var which comes from secret
+    openai_mapping: "gpt-4:nvidia/nemotron-4-340b-instruct,gpt-3.5-turbo:nvidia/nemotron-4-340b-instruct,default:nvidia/nemotron-4-340b-instruct"
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-server.monitoring.svc.cluster.local:80
+        access: proxy
+        isDefault: true
+        uid: grafanacloud-prom
+      - name: Loki
+        type: loki
+        url: http://loki.monitoring.svc.cluster.local:3100
+        access: proxy
+        uid: grafanacloud-logs
+      - name: Tempo
+        type: tempo
+        url: http://tempo.monitoring.svc.cluster.local:3100
+        access: proxy
+        uid: grafanacloud-traces
+        jsonData:
+          tracesToLogsV2:
+            datasourceUid: 'grafanacloud-logs'
+            tags: ['job', 'instance', 'pod', 'namespace']
+            mapTagNamesEnabled: false
+            mapTagNames: {}
+            searchAllTime: false
+            filterByTraceID: false
+            filterBySpanID: false
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    memory: 512Mi
+
+tolerations:
+  - key: "kubernetes.azure.com/scalesetpriority"
+    operator: "Equal"
+    value: "spot"
+    effect: "NoSchedule"
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+extraObjects:
+  - apiVersion: gateway.networking.k8s.io/v1
+    kind: HTTPRoute
+    metadata:
+      name: grafana
+      namespace: monitoring
+    spec:
+      parentRefs:
+        - name: traefik-gateway
+          namespace: traefik
+          sectionName: websecure
+      hostnames:
+        - "grafana.iemafzalhassan.tech"
+      rules:
+        - backendRefs:
+            - name: grafana
+              port: 80
