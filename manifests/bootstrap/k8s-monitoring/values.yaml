@@ -232,10 +232,10 @@ alloy-receiver:
         operator: "Equal"
         value: "spot"
         effect: "NoSchedule"
-      volumeMounts:
-        - name: secrets-store-inline
-          mountPath: "/mnt/secrets-store"
-          readOnly: true
+    volumeMounts:
+      - name: secrets-store-inline
+        mountPath: "/mnt/secrets-store"
+        readOnly: true
     remoteConfig:
       enabled: false
 
