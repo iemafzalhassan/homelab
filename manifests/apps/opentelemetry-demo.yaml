@@ -37,6 +37,10 @@ spec:
         opentelemetry-collector:
           enabled: false
         components:
+          valkey-cart:
+            ports:
+              - name: valkey-cart
+                value: 6380
           load-generator:
             resources:
               requests:
