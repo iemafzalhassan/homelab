@@ -154,6 +154,7 @@ collectors:
           value: "spot"
           effect: "NoSchedule"
   alloy-profiles:
+    enabled: false
     presets:
       - privileged
       - daemonset
