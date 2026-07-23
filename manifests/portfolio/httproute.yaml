@@ -14,7 +14,7 @@ spec:
       namespace: traefik
       sectionName: portfolio
   hostnames:
-    - "portfolio.iemafzalhassan.tech"
+    - "iemafzalhassan.tech"
   rules:
     - backendRefs:
         - name: portfolio

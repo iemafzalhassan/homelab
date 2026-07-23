@@ -72,7 +72,7 @@ gateway:
     portfolio:
       port: 8443
       protocol: HTTPS
-      hostname: "portfolio.iemafzalhassan.tech"
+      hostname: "iemafzalhassan.tech"
       namespacePolicy:
         from: All
       mode: Terminate
