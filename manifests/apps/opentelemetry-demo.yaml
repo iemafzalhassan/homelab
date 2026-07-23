@@ -36,9 +36,7 @@ spec:
           enabled: false
         opentelemetry-collector:
           enabled: false
-        components:
-          loadgenerator:
-            enabled: true
+
         opensearch:
           enabled: false
   destination:
