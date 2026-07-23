@@ -13,9 +13,9 @@ destinations:
     url: http://tempo.monitoring.svc.cluster.local:4318
     protocol: http
     metrics:
-      enabled: true
+      enabled: false
     logs:
-      enabled: true
+      enabled: false
     traces:
       enabled: true
 
