@@ -35,6 +35,13 @@ grafana.ini:
     login_attribute_path: "preferred_username"
     name_attribute_path: "name"
 
+sidecar:
+  dashboards:
+    enabled: true
+    label: grafana_dashboard
+    labelValue: "1"
+    searchNamespace: ALL
+
 datasources:
   datasources.yaml:
     apiVersion: 1

@@ -1212,5 +1212,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    grafana_dashboard: "1"
   name: grafana-otel-demo-dashboard
   namespace: monitoring
