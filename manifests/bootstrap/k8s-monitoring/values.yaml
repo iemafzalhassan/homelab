@@ -57,9 +57,9 @@ hostMetrics:
   windowsHosts:
     enabled: false
   energyMetrics:
-    enabled: true
+    enabled: false
 costMetrics:
-  enabled: true
+  enabled: false
   collector: alloy-metrics
 annotationAutodiscovery:
   enabled: true
@@ -77,7 +77,7 @@ podLogsViaLoki:
   enabled: true
   collector: alloy-logs
 kubernetesManifests:
-  enabled: true
+  enabled: false
   collector: alloy-singleton
 applicationObservability:
   enabled: true
@@ -286,7 +286,7 @@ telemetryServices:
   kepler:
     deploy: false
   k8s-manifest-tail:
-    deploy: true
+    deploy: false
     config:
       objects:
         - apiVersion: v1
