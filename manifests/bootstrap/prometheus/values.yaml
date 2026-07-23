@@ -1,0 +1,31 @@
+alertmanager:
+  enabled: false
+
+kube-state-metrics:
+  enabled: false
+
+prometheus-node-exporter:
+  enabled: false
+
+prometheus-pushgateway:
+  enabled: false
+
+server:
+  global:
+    scrape_interval: 15s
+    evaluation_interval: 15s
+  retention: 7d
+  persistentVolume:
+    enabled: true
+    size: 20Gi
+  resources:
+    requests:
+      cpu: 50m
+      memory: 200Mi
+    limits:
+      memory: 1Gi
+
+  # We enable the Remote Write receiver so Alloy can push metrics here
+  extraFlags:
+    - web.enable-remote-write-receiver
+    - web.enable-lifecycle
