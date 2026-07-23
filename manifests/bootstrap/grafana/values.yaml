@@ -1,7 +1,9 @@
 env:
   GF_PLUGINS_ALLOW_LOADING_UNTRUSTED_PLUGINS: "grafana-llm-app"
 
-envFromSecret: "grafana-llm-secrets"
+envFromSecrets:
+  - name: grafana-llm-secrets
+  - name: grafana-oidc-secret
 
 plugins:
   - grafana-llm-app
@@ -13,6 +15,25 @@ grafana.ini:
     openai_url: "https://integrate.api.nvidia.com/v1"
     # openai_api_key will be pulled from GF_PLUGIN_GRAFANA_LLM_APP_OPENAI_API_KEY env var which comes from secret
     openai_mapping: "gpt-4:nvidia/nemotron-4-340b-instruct,gpt-3.5-turbo:nvidia/nemotron-4-340b-instruct,default:nvidia/nemotron-4-340b-instruct"
+  auth:
+    disable_login_form: false
+    oauth_auto_login: false
+  auth.generic_oauth:
+    enabled: true
+    name: "Keycloak"
+    allow_sign_up: true
+    client_id: "grafana"
+    client_secret: "${GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET}"
+    scopes: "openid email profile offline_access roles groups"
+    auth_url: "https://sso.iemafzalhassan.tech/realms/Platform/protocol/openid-connect/auth"
+    token_url: "https://sso.iemafzalhassan.tech/realms/Platform/protocol/openid-connect/token"
+    api_url: "https://sso.iemafzalhassan.tech/realms/Platform/protocol/openid-connect/userinfo"
+    tls_skip_verify_insecure: true
+    role_attribute_path: "contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'devops') && 'Editor' || 'Viewer'"
+    role_attribute_strict: false
+    groups_attribute_path: "groups"
+    login_attribute_path: "preferred_username"
+    name_attribute_path: "name"
 
 datasources:
   datasources.yaml:
@@ -61,6 +82,16 @@ persistence:
   enabled: false
 
 extraObjects:
+  - apiVersion: v1
+    kind: Secret
+    metadata:
+      name: grafana-oidc-secret
+      namespace: monitoring
+    type: Opaque
+    stringData:
+      # Generate a strong secret: openssl rand -base64 32
+      # Then store in Keycloak grafana client → Credentials → Client secret
+      GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: "TzOOQtt29GGOmVBsTbGSZgO9CmXVAnXUfVQxLunNw+0="
   - apiVersion: gateway.networking.k8s.io/v1
     kind: HTTPRoute
     metadata:

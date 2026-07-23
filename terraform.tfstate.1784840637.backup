@@ -1,0 +1,2229 @@
+{
+  "version": 4,
+  "terraform_version": "1.5.7",
+  "serial": 97,
+  "lineage": "c2554912-bf01-4448-e317-eafa6fa3700a",
+  "outputs": {
+    "aks_cluster_name": {
+      "value": "homelab-aks",
+      "type": "string"
+    },
+    "identity_client_ids": {
+      "value": {
+        "argocd": "c019f6b2-96fd-4a60-914a-7df36bb36939",
+        "cert-manager": "f94bd843-5f38-4512-8a29-ea97b2459736",
+        "jenkins": "50a296e5-6b94-42cb-8297-7778ce689fc9",
+        "monitoring": "fbec24a9-4d43-4c32-8a4a-f1e8056e8736",
+        "traefik": "fea8dd93-be15-4804-a790-b200eda1bae5"
+      },
+      "type": [
+        "object",
+        {
+          "argocd": "string",
+          "cert-manager": "string",
+          "jenkins": "string",
+          "monitoring": "string",
+          "traefik": "string"
+        }
+      ]
+    },
+    "infra_subnet_id": {
+      "value": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/infra-subnet",
+      "type": "string"
+    },
+    "ingress_subnet_id": {
+      "value": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/ingress-subnet",
+      "type": "string"
+    },
+    "keyvault_uri": {
+      "value": "https://homelab-kv-etnr.vault.azure.net/",
+      "type": "string"
+    },
+    "kube_config_raw": {
+      "value": "apiVersion: v1\nclusters:\n- cluster:\n    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUU2RENDQXRDZ0F3SUJBZ0lRR3ZLUkJ0WlRFRHJuc0R5K0ljdGNoREFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWdGdzB5TmpBM01ESXhPREV4TkRSYUdBOHlNRFUyTURjd01qRTRNakUwTkZvdwpEVEVMTUFrR0ExVUVBeE1DWTJFd2dnSWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUNEd0F3Z2dJS0FvSUNBUURvCkZvN3o4eEgvK1piL29SOFBmb2U5THFHbVVpaU0xbHRSRHFOT1U4bWxoaFZQK0dnby85TmtoOEdNRlYyUXNQQzUKcjJlOHMyT3lSbDBLbEU4MktoTDVLUzhDT1B0MkNKcEZqMytWWDg1UW5mb2UzY1oyaHdGdWpzTW9VNGQ0T2tTcApxVzkzWmI0OStqbWFPL0l1bjFjRFhGMm01elNaLzBsQm9IOTlGYTNtSkxnc0w1cWNISTFXQWxNYlB1ZDZTRU1vCnZ3VEhCSFY5WHhPODFxTDZ6dFZIdzBnV0VXbkx6NGdWNFFSMTllL0RER2FlclM3K053dlJ3RTNjTm4ySC9uRHoKM2hLVWFwd29YUHFzak4vV0V3VUFRVXcya01UNlB0Y2xyN3pteCtZYW9sYlBlQ3oxRTFhaHh5YjlrQ0ozVEwrcgpyL0F3L2ZrbFdDWkgwOE5XQzhad3NYNFZaSlllSTZwU2dFZW42WE5FZ0NQTnNaTWRoUlo5dHFFWEM2amZHS01oCkc4SjVVOU9UVFQ3VGdNUDVIVS9XNnF4bXJGNHZrQ2ZteDFERVVMT05IUFN3VjQxY3pkTnRTOE1xUkt6U0xuV3IKeVZqMXpEeGZ6VzRsSzE4aERVYU9wODVJWFUzeUwyc2VvQTJHMEM3TGg1dWhicnoveTNVei9oTGUzeVpnWjNIRApGMGo4Tys1VG5oaHoxVXNsWnV2TVlTMVE3MDFUU3ljQ2VwSlZ2MThrZVRDMDJOOUFvdGhKa0U3UFpZVTR5RHlBClZaTDcvVk5oVUZXUUtGcGJiTzQvVUVFeFpWQzJlUzlFMm84KzdqYmxoK0d3eVJOSUFuTFpRL1pXUmVUMEZkL0kKakNMT0ZsdkxFV2JKSkppMy9TcVRVK012cW1TRHozSEJ1bFZ0eGZyakpRSURBUUFCbzBJd1FEQU9CZ05WSFE4QgpBZjhFQkFNQ0FxUXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QWRCZ05WSFE0RUZnUVVQUzFSeFZVUTBLMGR5SnIwCmJhSkJ1OHJzQTF3d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dJQkFCQlhSQmh2a3dBMmYzSE05aXVLN3pnQzlpM2EKdGFCOTJXdXdrbFJCeXNxT2IyckJYNllEWXhScEtoWXBJL1FNQmdvc2daSzR4YXk1em5lUXNhbGVtL2NxenlOVgpoQ3lYSFRkRytGSlRZQ0NIYzQvT29QdGh4RjkvdHhCTExTa0pDaHJjdGRqUlhUYVRGMGFJZWx4Z1Z4WjhkcHNDClJsMUtoVjVsdnJSUEM3QnZWMzdmVGx5ZFRyRVlJVzhwQ3lLN1F3aVFjWEQ2MEprT2dVekxFeEdaSmhINHBuVkwKZVdWSzU1dnlZREppZERXU20xY0laN2RPaVFrbmZ5cDBEdUNsOVlZVXNMZUNvbWxSZmV6UlVibVZjOTJsVnZVVAovQkh3QjRVbjBzUW14MDR3TEdWcitGSzhGRDBJRUxmYXBmZ0htYnJ0Q3dabVduelZvSFB0RkEzUHhBZzB5Z2d2CkY3TDRoNFFsSStMVG9WV0FiL2ErY08vclNTZUNIa1FkQWdSc3RqdDkxMksxeUo0dnRMeUFleWt3VEwwK1ptenUKR2EzbE41QlNBNkVzY3Bkclhyc3V4ZmM2MzV4ekZSMmJkekxsZFBoNFgzUWp0N1luNzdPY0VqVEM1ZUwrQ2pJTwo3UjhSUGpGUVM5REFiSER1NUFBTmtXalFDZS9OcEpOL29TbUhGbktObE13bllVaWplcEZZSGxpZTBhTFV1Z2dFCkg1a0JTZGFVdHVRSVd5OEI2cS8wRkF4clVlMEZXc2J0ZFRXN0gyL2hrY3VFejNWL0cvaXFCdlhrZitnQ1U5OEoKZjdnbWU1WWxIWEZ6SVltUFg5bEEvMWxZbCtLTG9jSjczZWhlSkQyNEc2MkZXeDNibmROUDQ0Zkw3ZUFxcGcrYgpxSzJ1cTAzTzQzNUZMdVUyCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K\n    server: https://homelab-9iizz67q.hcp.centralindia.azmk8s.io:443\n  name: homelab-aks\ncontexts:\n- context:\n    cluster: homelab-aks\n    user: clusterUser_homelab-rg_homelab-aks\n  name: homelab-aks\ncurrent-context: homelab-aks\nkind: Config\nusers:\n- name: clusterUser_homelab-rg_homelab-aks\n  user:\n    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZIakNDQXdhZ0F3SUJBZ0lSQU84YkxFcTNnUEtkYlFYM1BITEpOZ293RFFZSktvWklodmNOQVFFTEJRQXcKRFRFTE1Ba0dBMVVFQXhNQ1kyRXdIaGNOTWpZd056QXlNVGd4TVRRMFdoY05Namd3TnpBeU1UZ3lNVFEwV2pBdwpNUmN3RlFZRFZRUUtFdzV6ZVhOMFpXMDZiV0Z6ZEdWeWN6RVZNQk1HQTFVRUF4TU1iV0Z6ZEdWeVkyeHBaVzUwCk1JSUNJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBZzhBTUlJQ0NnS0NBZ0VBcXBlM3VMcW80OUV5bmdJTU1TcFIKdCtsY2YyZmtWdERJdGpqVFJ0Z2RaVkk0a0RYUFphdnhlNEhMRDhwSWcwVzdIMUpJb2d4WGdSQ05MR2R5dmc2TAo5NUNMcTk0OEx2aUQvb09oRElTT3VMS0ZHTWhPZUM4Qkx5NWxwd2hkSUpnT09FU2hFcWZkckpOeksvdSt5NjBQCisvRnRzZnA3V0JVTkppMncwbzdZOW8wRFFITC9VUll1Mm9la2ZmMlZkNytLcUJGOG9vbjQ1OXV1TGIxWnhwRVAKaXFGOTlkamJPY1FteUZyRWx2TGllT0p2MTU0YXh3bGJqWFZBaGhlVFdTcy9tQ3hTc2g5N1h6L3lqbmd2bTUxdQpnNlJ2ZFRtK2hmYksxWmo1SlVsMjRxNlltdmxpbTZSd3RoY1VmSENIU0FvcGUvRGRqZmhhTXF0dlFQcWYrZ04vCmtMcjVua1BFMjZRaG8yYnJyQ3dyQXcyTHhGd0Q2ZnhoTkRjRVNJWitWWVBMOTBNSnI5UlowbWtPZ1dKSEF5NWYKSmxrWmhmSXdKV2t2S0tJOWM0VG52ZEczZUpYUXYxWU5EUVZhQ0dzQm5tQ3Z5ZGt6dHV6ZUlKcEx4K0IzOEhteAowYzNOTmdaVUlGWlM2OVZWblhPQW5HM0ZCTFNzV01nNlBJWVY1dGJZNTRhZ1kyU1FnVDVETDBLVkE4QUlHMkl1CkVCTmdVYmh2MGh5aHdSbWxhQTJKNWhnUTFQS3g3c1ZhUnBkRC9zZlowRkNoZEtQZ1pHSzBuRW9KbWdGL3JJYVAKRTBlaGRyMGpEQVhoWkNrNGFtd1h6Nnk3QUlGbkorRUovY29FaWpGQVVubE9QaWNGdTZnMllXWDc0YVU1a3dsdQpFSkNmYXI5ZXlLMExZUHFvZE5laFYxTUNBd0VBQWFOV01GUXdEZ1lEVlIwUEFRSC9CQVFEQWdXZ01CTUdBMVVkCkpRUU1NQW9HQ0NzR0FRVUZCd01DTUF3R0ExVWRFd0VCL3dRQ01BQXdId1lEVlIwakJCZ3dGb0FVUFMxUnhWVVEKMEswZHlKcjBiYUpCdThyc0Exd3dEUVlKS29aSWh2Y05BUUVMQlFBRGdnSUJBQUxtNHU4VUtPUnd6UFdmVklrTgpaUDNIQml3Q1dRaGFuMDZ4emUrZkQzMnVsWmN3RkNrQlhFb2liMGZwVWR3Y1lERWxCdUZWalJQK0tiMkljL3VSCnRXSTdkU1dYN3pNK1dQUS9PdHNoTlpLZkRYU25NL2lLd0dkNnR0M3k0M1llU0hRR3hlWm0zQUtHeStlaS9oMkkKaHNrOVBPWWZmK2YycVBNenVDaUoxcjliOVF6bkRiUHZFYWZiVUN3TCsrcUhxd05uQmE5ZzZEMStoTUpZbTlxdwo5eVAxa3MxK0lOdHphbml4QTg1d1dWdkM5OXkxMGRaT2lVbTJYQnBRS1ZZcG5WTjJVV2xtTHFGTFBpaDlxZU5xClRKbVNuYTkvZkh5aE05WFZyVGk3L0crTG9qQnlLRHdyNzcrcnUwNE4xSEhCYm1WZlFldzFNZmtwMzZRTEZPN2kKc0REN1hCZW80YXZHQ1pNWHRZLytDbXVFQkR5QTZGaS94bTR0ZDFta2RiTktaMVdJWXR2U3FEZTVhMXBLb2d1QQowc3lMQVZvODl5VmEvaDF2VnZLeUNNMXFMTS9TNGp6T05jRkdNdG5JNThzb0N2R3lFblZNSzhKeTExcHA5VU9jCkNnbmljakt3TW0wSTF2QmpuZXErbDVqMktjbm5zTEp6SktmTGN2OEl3SmhjZzVvN01JNnJzQksxU2xkMXhWOW0KMU1UNVFkSHV5NEZSWFFtTER6TGlvb25DYy9VQlY4Ny9OZCtpdVlZNmtrWDBaRVJBTHg2dDVMMmowR3IxeU9UcQpVZU16S3hsaXVSdUEyQ2V5Q0ZlM2tOTU5rTUVYT0YxVWE3VWJsSWJJeDFwa2k5RlJ6RFB0M2I5Nk9VMEZ0Z0hsCmRpUXFEcW9vaUZIN05pRzkva1Z4aFgyTwotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==\n    client-key-data: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlKS1FJQkFBS0NBZ0VBcXBlM3VMcW80OUV5bmdJTU1TcFJ0K2xjZjJma1Z0REl0ampUUnRnZFpWSTRrRFhQClphdnhlNEhMRDhwSWcwVzdIMUpJb2d4WGdSQ05MR2R5dmc2TDk1Q0xxOTQ4THZpRC9vT2hESVNPdUxLRkdNaE8KZUM4Qkx5NWxwd2hkSUpnT09FU2hFcWZkckpOeksvdSt5NjBQKy9GdHNmcDdXQlVOSmkydzBvN1k5bzBEUUhMLwpVUll1Mm9la2ZmMlZkNytLcUJGOG9vbjQ1OXV1TGIxWnhwRVBpcUY5OWRqYk9jUW15RnJFbHZMaWVPSnYxNTRhCnh3bGJqWFZBaGhlVFdTcy9tQ3hTc2g5N1h6L3lqbmd2bTUxdWc2UnZkVG0raGZiSzFaajVKVWwyNHE2WW12bGkKbTZSd3RoY1VmSENIU0FvcGUvRGRqZmhhTXF0dlFQcWYrZ04va0xyNW5rUEUyNlFobzJicnJDd3JBdzJMeEZ3RAo2ZnhoTkRjRVNJWitWWVBMOTBNSnI5UlowbWtPZ1dKSEF5NWZKbGtaaGZJd0pXa3ZLS0k5YzRUbnZkRzNlSlhRCnYxWU5EUVZhQ0dzQm5tQ3Z5ZGt6dHV6ZUlKcEx4K0IzOEhteDBjM05OZ1pVSUZaUzY5VlZuWE9BbkczRkJMU3MKV01nNlBJWVY1dGJZNTRhZ1kyU1FnVDVETDBLVkE4QUlHMkl1RUJOZ1ViaHYwaHlod1JtbGFBMko1aGdRMVBLeAo3c1ZhUnBkRC9zZlowRkNoZEtQZ1pHSzBuRW9KbWdGL3JJYVBFMGVoZHIwakRBWGhaQ2s0YW13WHo2eTdBSUZuCkorRUovY29FaWpGQVVubE9QaWNGdTZnMllXWDc0YVU1a3dsdUVKQ2ZhcjlleUswTFlQcW9kTmVoVjFNQ0F3RUEKQVFLQ0FnQWdwSlJ5eEVFQ0N1dEpJZklzVEVGRDFHTXZPL1dOQ1RtRzZOdkEwQ1RiMlA1YTFma2dKdVUzOFcrbQpUMXBOeUQrVXNEMld5STdMOHh0WWRsa1Y5aG1oWHliaTFjMGxYY2VBSWJiaytzNkdtQjV3emc5NTN1QzJvd1d2Cmp5R20xWUhQRVk3U3o0MVM4d29VVGdGRjN4RlNiL0hDSDBDUDY4Tk8zV3BhK0J1YkhnT1R4dzJFK2g0d0VjbVAKbEVFUUgzWk1UOEJPSitHWm1FYzltR0IvNXcwV3hXMGhhSVFXaXlxeXB1KzhSTERDV2UzMXo5cW00R3NFNS8xWApTMWFXTnZqZHlRbHY3U2RCNUM0cFJlVXlQVTlDNEdtMWdEMnRTN3FuWWJTM0JsWTU3UmZsZTdmN09WMlo4bE9vCnRpMmt3dEVLVnQ1R1J0SVhwUWRPWTBiT1kvSDZNMU80Q0dTaGFhK2QzQ25UYTh0cVFuMzJoN3ZWeVN3NUpnbEIKS0tESzZINmQydklSbDUvNnhUTmgwRHo5RTBxdXYyOG9uOGlMZnlmMzkyQzBLQnkrR1licDRKcktuN0ZpYWR4SQp3SGNuTmVRUW9lSHRwSTcwOTZ2Qk5MZm42SnpOb1Via29lWkl2b1Y2dUZIYnhtMXR0RVJESHNhRk9zbTJmcEUvCjRtRDhnb1lDQlp5WUU4MUF6a1RvcDk1ekt4NFRVa2RZYXdaTDEzNTJFWFVIQXVVZzZqaTRFOHZmeGpiRWwxbkcKSDlaYUdEWmJoc1pXcWdEK1lwR3BxaDlpd3lGNjd2d3hVUkhCZDE1YlladFpOL2FGS3E2V1ArOVpEU1lDWUFxSwoxYUt0bG45MjVtM3BuYTFtT2dRMnBuZ3JHSmpvYUdrYlhnVUgrWXlIOXFKZkZPb1lDUUtDQVFFQXk0TFlBZmFaCmxPeEk1R2tDbmp4cFdPQUF1ZUtsS0c4M04wRkYyaWlNQWh1WDVIanZTN1RMSE5Qa2tadXNMdlZWZjRyUnFDdDYKRTgwaTRjdTV1czBPNnZyUEYwWjZ6YW9WYXg3OU50MC9qbXZvN3JQa0xpT0hWNE9SajRmMG5OWUp6Zjdha2FGRAo2ek1JUjJiR29zQzBxTlhzUjY1Y0pPUUFzOHNIOVp6ZjJPWi9GK2MxMTErNWpxNkdNNktKU3lCT2pETWxUd0xUCmhOR3BrdlRpWUF5RDYzcUdMUFA3SkFWVER5WVNtbWVoWWE1VnVTTGVuZG01MmxmVTBjek16c2RDQ3R6UmQ0bm4KUGJPWkZYekh6cVZsbnhiTVVDYjV0MHRnb1FSbnJGd0hzbkJDSnBmT3o0NXZDdS9xL2Z1TkFTcG9lUmhJV0RGSwpENWVOTEpWRXlDeENXd0tDQVFFQTFwZGcxQmtwRTV0a0s0aUtMNkl3c3VGVVo0Wkd0MDN2bWk4ekxjMEEybGlJCjVtNXlJV0V5QlRJaFhCN1RLTWJaNXFlamVzQzhoekdFUW5KSlVyU2o1SXJObmNKNC9JcVJZcUVrTWdMQllPbGMKOFFVeVYrbVhRZmlnUzVZemV0dUN5MngwU0lqMWFMTnlEclpTU0dhOEpCQXdSMUREMUlaMHBkM3UzSHNQWDl0cgpyb1hpQWQwaEdOZXVnLzZLaVJuYU9Majc1cVBXek94czBTQnhHaVBDcEpaWHFZL0l4NXRpRWdGSzZuMHlzREF4CnRJaTVMSjJOcUFGTVFrNFArZFczeFpSS0NYZThWUGQzaGg0SW1LZXVmSk5LMmZCS2ZNUTZMQjJGNjdkVGRaYVoKWlFyOURaYS8veExFb3JiUG43bU9odm9ldHp1VWpGQ2MrdTExWVVoZ2FRS0NBUUFHOCtaclVzQjJmUWdVZlozdwpTQUlWWGpuSUgvMGlmNEkwYWc5MzM1REE5YTVmeU4zc0NUWXpPdTRCSjM5ZmIxUkhjamV0ZGliS2pHU1hzRDBkCks2cEp6dDNLWHNjTlJiVkxucGhxQ204RWI1MWFvbHkyVXRKcDQvM1NHSVA3NDdnY0NJdnhFOEJkUmJZUHNtd3cKM1VLT3poZ3ZicjZKS0J6NkI0S3pHblB2VmhpYmVYTzJjdmZFN3lONG1pSDBwaHJvNFVweUE1ZTBYdkZiS3ZDYwo5WENBV0FSRGZ1WmltYWYzeVlZekxqMHVPQ1dIbUxCZ1ZqTHFTYnZrbXdtWU91aC90SUdYZ3VlYWpRczYxN04vCjFOaSs4YWx6UjVHYWVJSEpubnZvUUpDbXdQMFJrbmduVVNkc0NUeFBCd3dQTVNLMm1HVElWbzdBTDU1TUdxRnAKOFZFbkFvSUJBUURIWWNkWnlqYmNQTmtKaWNlN0VsdGxHTyt2Y0pkcjRVSHFaRWlOR1pqZFJyMk1QTHBXUVZTVQpkMHQvcURSU0F0Q2Erczl1VW4zWXJ5MVAvNWdZL0RYN051eHMxREJObFFJWVBkaS9qc2ZXSDMxM2czaVBMajZYCjBVWStkTVJJTm9TRU5iU2xZSHVFV0paMURQbk93NFd6akVjUE8vOTRDNlYrSjRLejRMTWNRV2IvdE8yVkJieW0KdEY4MXpOOHpHNDRpZmQydklqT0dHM1hQcVBEdGRLUjVBQ2RiS0hsSTNScDEyRFdmUWN4QzM4U1BGU25ZUmx0RAo2bERNbW5ORmtrazVqdHByaVpDMjhXZGdlYTlMQnlHY0pjNjZTQVV0ZjdUOUlFRTZEZy9CaGJmb3Boa1E4eXhZCjl6czBZOTd0YlI3OFVwRVBkcEJDL3ZPY1FkMTZFaUZoQW9JQkFRREhzQWxtM1A2Y0FjQW9paE5MeCtDTzBwZy8KTHg0bFBNbDN4eTE5eHpFdmpTOHNKWVJ5bkU5QjR0NjU3U0IrQmlsYzRPR2ZCUG5lazN3TDI5K09GYi9PWXh3RApMdUltTFUvd2RWTUE2ZktFOUdaczlUMEZ5aHpJRU5WWWZrNGRmeFJNWEduMzQvK09uVzJ2ZTRjSVpUSVlFTjV6Ckhsa25jSTdkVmNyNGlQMnFTQjVoeDU1cGZXdmRTb1dtNlhNYUNSeGFvSUMxdWxLbkRLZ1NrWHkxcDM3WEkzclcKWUxjbXJHYTNGRUJza1I5clNwR0JwSUttSkxKOEhlWUw4WUZpZ0pSZXBRS2pacTZKRzFScnRUMlhRVjJxbXR4YwpsOGJSY1VQL3ZUNUkxN3NOejN4T1V4MEtzK0hMRVBHWGt1ZXZwZU5TUFRRN2xPM1ZUZ05hTFg4SVdUZi8KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0K\n    token: z922i8awv0tqk4pkzzhoxbi076f0psakxi5jd12d2ymyvjg6duy3gxdbnibq7rhkvafmo20kq806t7cdixzhwuszrwbgmzoqaok5xyn5bdsobzb6666n9whabbd07wir\n",
+      "type": "string",
+      "sensitive": true
+    },
+    "oidc_issuer_url": {
+      "value": "https://centralindia.oic.prod-aks.azure.com/b8eee1de-0853-417c-9dc9-c90794eb2751/a032589d-e8a9-4f4a-ab49-b2bfa21c2e8c/",
+      "type": "string"
+    },
+    "resource_group_name": {
+      "value": "homelab-rg",
+      "type": "string"
+    },
+    "system_subnet_id": {
+      "value": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/system-subnet",
+      "type": "string"
+    },
+    "user_subnet_id": {
+      "value": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/user-subnet",
+      "type": "string"
+    },
+    "vnet_id": {
+      "value": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "data",
+      "type": "azurerm_client_config",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "client_id": "04b07795-8ddb-461a-bbee-02f9e1bf7b46",
+            "id": "Y2xpZW50Q29uZmlncy9jbGllbnRJZD0wNGIwNzc5NS04ZGRiLTQ2MWEtYmJlZS0wMmY5ZTFiZjdiNDY7b2JqZWN0SWQ9ZDAxMGY2Y2YtMjgzNy00YWRiLTk1NmYtMzMzMmZkYjQ3NmEwO3N1YnNjcmlwdGlvbklkPTBiZDE1ZjA5LTdhOTAtNGEwZC05NGZhLTAyMjE0ZDkwZGVhOTt0ZW5hbnRJZD1iOGVlZTFkZS0wODUzLTQxN2MtOWRjOS1jOTA3OTRlYjI3NTE=",
+            "object_id": "d010f6cf-2837-4adb-956f-3332fdb476a0",
+            "subscription_id": "0bd15f09-7a90-4a0d-94fa-02214d90dea9",
+            "tenant_id": "b8eee1de-0853-417c-9dc9-c90794eb2751",
+            "timeouts": null
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_consumption_budget_resource_group",
+      "name": "budget",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "amount": 25,
+            "etag": "\"1dd0a4e45fcf732\"",
+            "filter": [],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Consumption/budgets/homelab-rg-budget",
+            "name": "homelab-rg-budget",
+            "notification": [
+              {
+                "contact_emails": [
+                  "iemafzalhassan@gmail.com"
+                ],
+                "contact_groups": [],
+                "contact_roles": [],
+                "enabled": true,
+                "operator": "EqualTo",
+                "threshold": 80,
+                "threshold_type": "Actual"
+              },
+              {
+                "contact_emails": [
+                  "iemafzalhassan@gmail.com"
+                ],
+                "contact_groups": [],
+                "contact_roles": [],
+                "enabled": true,
+                "operator": "GreaterThanOrEqualTo",
+                "threshold": 100,
+                "threshold_type": "Actual"
+              }
+            ],
+            "resource_group_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg",
+            "time_grain": "Monthly",
+            "time_period": [
+              {
+                "end_date": "2027-07-01T00:00:00Z",
+                "start_date": "2026-07-01T00:00:00Z"
+              }
+            ],
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "rg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg",
+            "location": "centralindia",
+            "managed_by": "",
+            "name": "homelab-rg",
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjo1NDAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_role_assignment",
+      "name": "acr_push_jenkins",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "condition": "",
+            "condition_version": "",
+            "delegated_managed_identity_resource_id": "",
+            "description": "",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ContainerRegistry/registries/homelabacrepb3n6/providers/Microsoft.Authorization/roleAssignments/ce02e8c1-c251-7351-60ec-b701f67738c7",
+            "name": "ce02e8c1-c251-7351-60ec-b701f67738c7",
+            "principal_id": "8c644abd-0948-4170-858b-e092c1ad1f45",
+            "principal_type": "ServicePrincipal",
+            "role_definition_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/providers/Microsoft.Authorization/roleDefinitions/8311e382-0749-4cb8-b61a-304f252e45ec",
+            "role_definition_name": "AcrPush",
+            "scope": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ContainerRegistry/registries/homelabacrepb3n6",
+            "skip_service_principal_aad_check": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.acr.azurerm_container_registry.acr",
+            "module.acr.random_string.acr_suffix",
+            "module.identity.azurerm_user_assigned_identity.identity"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_role_assignment",
+      "name": "kv_secrets_user",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "index_key": "argocd",
+          "schema_version": 0,
+          "attributes": {
+            "condition": "",
+            "condition_version": "",
+            "delegated_managed_identity_resource_id": "",
+            "description": "",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr/providers/Microsoft.Authorization/roleAssignments/c5b71df1-9962-5bfe-10f0-67dc3a2b919e",
+            "name": "c5b71df1-9962-5bfe-10f0-67dc3a2b919e",
+            "principal_id": "e03e161e-c0df-4332-9b60-75328e0c106d",
+            "principal_type": "ServicePrincipal",
+            "role_definition_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/providers/Microsoft.Authorization/roleDefinitions/4633458b-17de-408a-b874-0445c86b69e6",
+            "role_definition_name": "Key Vault Secrets User",
+            "scope": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr",
+            "skip_service_principal_aad_check": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.identity.azurerm_user_assigned_identity.identity",
+            "module.keyvault.azurerm_key_vault.kv",
+            "module.keyvault.data.azurerm_client_config.current",
+            "module.keyvault.random_string.kv_suffix"
+          ]
+        },
+        {
+          "index_key": "cert-manager",
+          "schema_version": 0,
+          "attributes": {
+            "condition": "",
+            "condition_version": "",
+            "delegated_managed_identity_resource_id": "",
+            "description": "",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr/providers/Microsoft.Authorization/roleAssignments/79b0a981-3b04-aed0-437c-0002269a2060",
+            "name": "79b0a981-3b04-aed0-437c-0002269a2060",
+            "principal_id": "966129dd-c131-41ed-a7a5-4cbd38aa19f8",
+            "principal_type": "ServicePrincipal",
+            "role_definition_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/providers/Microsoft.Authorization/roleDefinitions/4633458b-17de-408a-b874-0445c86b69e6",
+            "role_definition_name": "Key Vault Secrets User",
+            "scope": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr",
+            "skip_service_principal_aad_check": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.identity.azurerm_user_assigned_identity.identity",
+            "module.keyvault.azurerm_key_vault.kv",
+            "module.keyvault.data.azurerm_client_config.current",
+            "module.keyvault.random_string.kv_suffix"
+          ]
+        },
+        {
+          "index_key": "jenkins",
+          "schema_version": 0,
+          "attributes": {
+            "condition": "",
+            "condition_version": "",
+            "delegated_managed_identity_resource_id": "",
+            "description": "",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr/providers/Microsoft.Authorization/roleAssignments/f59d3f2e-5d13-b657-27e3-aaae9201a03c",
+            "name": "f59d3f2e-5d13-b657-27e3-aaae9201a03c",
+            "principal_id": "8c644abd-0948-4170-858b-e092c1ad1f45",
+            "principal_type": "ServicePrincipal",
+            "role_definition_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/providers/Microsoft.Authorization/roleDefinitions/4633458b-17de-408a-b874-0445c86b69e6",
+            "role_definition_name": "Key Vault Secrets User",
+            "scope": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr",
+            "skip_service_principal_aad_check": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.identity.azurerm_user_assigned_identity.identity",
+            "module.keyvault.azurerm_key_vault.kv",
+            "module.keyvault.data.azurerm_client_config.current",
+            "module.keyvault.random_string.kv_suffix"
+          ]
+        },
+        {
+          "index_key": "monitoring",
+          "schema_version": 0,
+          "attributes": {
+            "condition": "",
+            "condition_version": "",
+            "delegated_managed_identity_resource_id": "",
+            "description": "",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr/providers/Microsoft.Authorization/roleAssignments/a6e386b2-0d87-ffae-3f11-d7692cf88f27",
+            "name": "a6e386b2-0d87-ffae-3f11-d7692cf88f27",
+            "principal_id": "99e7cdc3-997c-4c78-9951-f7153766638d",
+            "principal_type": "ServicePrincipal",
+            "role_definition_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/providers/Microsoft.Authorization/roleDefinitions/4633458b-17de-408a-b874-0445c86b69e6",
+            "role_definition_name": "Key Vault Secrets User",
+            "scope": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr",
+            "skip_service_principal_aad_check": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.identity.azurerm_user_assigned_identity.identity",
+            "module.keyvault.azurerm_key_vault.kv",
+            "module.keyvault.data.azurerm_client_config.current",
+            "module.keyvault.random_string.kv_suffix"
+          ]
+        },
+        {
+          "index_key": "traefik",
+          "schema_version": 0,
+          "attributes": {
+            "condition": "",
+            "condition_version": "",
+            "delegated_managed_identity_resource_id": "",
+            "description": "",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr/providers/Microsoft.Authorization/roleAssignments/a3348996-03ec-30df-bc11-e344930da68f",
+            "name": "a3348996-03ec-30df-bc11-e344930da68f",
+            "principal_id": "bae86d0d-cf12-4286-94bb-83f9df20a356",
+            "principal_type": "ServicePrincipal",
+            "role_definition_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/providers/Microsoft.Authorization/roleDefinitions/4633458b-17de-408a-b874-0445c86b69e6",
+            "role_definition_name": "Key Vault Secrets User",
+            "scope": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr",
+            "skip_service_principal_aad_check": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.identity.azurerm_user_assigned_identity.identity",
+            "module.keyvault.azurerm_key_vault.kv",
+            "module.keyvault.data.azurerm_client_config.current",
+            "module.keyvault.random_string.kv_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.acr",
+      "mode": "managed",
+      "type": "azurerm_container_registry",
+      "name": "acr",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "admin_enabled": false,
+            "admin_password": "",
+            "admin_username": "",
+            "anonymous_pull_enabled": false,
+            "data_endpoint_enabled": false,
+            "data_endpoint_host_names": [],
+            "encryption": [],
+            "export_policy_enabled": true,
+            "georeplications": [],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ContainerRegistry/registries/homelabacrepb3n6",
+            "identity": [],
+            "location": "centralindia",
+            "login_server": "homelabacrepb3n6.azurecr.io",
+            "name": "homelabacrepb3n6",
+            "network_rule_bypass_option": "AzureServices",
+            "network_rule_set": [],
+            "public_network_access_enabled": true,
+            "quarantine_policy_enabled": false,
+            "resource_group_name": "homelab-rg",
+            "retention_policy_in_days": 0,
+            "sku": "Basic",
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform"
+            },
+            "timeouts": null,
+            "trust_policy_enabled": false,
+            "zone_redundancy_enabled": false
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIyIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.acr.random_string.acr_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.acr",
+      "mode": "managed",
+      "type": "random_string",
+      "name": "acr_suffix",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "id": "epb3n6",
+            "keepers": null,
+            "length": 6,
+            "lower": true,
+            "min_lower": 0,
+            "min_numeric": 0,
+            "min_special": 0,
+            "min_upper": 0,
+            "number": true,
+            "numeric": true,
+            "override_special": null,
+            "result": "epb3n6",
+            "special": false,
+            "upper": false
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.aks",
+      "mode": "managed",
+      "type": "azurerm_kubernetes_cluster",
+      "name": "aks",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "aci_connector_linux": [],
+            "ai_toolchain_operator_enabled": false,
+            "api_server_access_profile": [
+              {
+                "authorized_ip_ranges": [
+                  "114.79.185.192/32"
+                ],
+                "subnet_id": "",
+                "virtual_network_integration_enabled": false
+              }
+            ],
+            "auto_scaler_profile": [
+              {
+                "balance_similar_node_groups": false,
+                "daemonset_eviction_for_empty_nodes_enabled": false,
+                "daemonset_eviction_for_occupied_nodes_enabled": true,
+                "empty_bulk_delete_max": "10",
+                "expander": "random",
+                "ignore_daemonsets_utilization_enabled": false,
+                "max_graceful_termination_sec": "600",
+                "max_node_provisioning_time": "15m",
+                "max_unready_nodes": 3,
+                "max_unready_percentage": 45,
+                "new_pod_scale_up_delay": "0s",
+                "scale_down_delay_after_add": "10m",
+                "scale_down_delay_after_delete": "10s",
+                "scale_down_delay_after_failure": "3m",
+                "scale_down_unneeded": "10m",
+                "scale_down_unready": "20m",
+                "scale_down_utilization_threshold": "0.5",
+                "scan_interval": "10s",
+                "skip_nodes_with_local_storage": false,
+                "skip_nodes_with_system_pods": true
+              }
+            ],
+            "automatic_upgrade_channel": "",
+            "azure_active_directory_role_based_access_control": [],
+            "azure_policy_enabled": false,
+            "bootstrap_profile": [
+              {
+                "artifact_source": "Direct",
+                "container_registry_id": ""
+              }
+            ],
+            "confidential_computing": [],
+            "cost_analysis_enabled": false,
+            "current_kubernetes_version": "1.36.1",
+            "custom_ca_trust_certificates_base64": [],
+            "default_node_pool": [
+              {
+                "auto_scaling_enabled": false,
+                "capacity_reservation_group_id": "",
+                "fips_enabled": false,
+                "gpu_driver": "",
+                "gpu_instance": "",
+                "host_encryption_enabled": false,
+                "host_group_id": "",
+                "kubelet_config": [],
+                "kubelet_disk_type": "OS",
+                "linux_os_config": [],
+                "max_count": 0,
+                "max_pods": 250,
+                "min_count": 0,
+                "name": "system",
+                "node_count": 1,
+                "node_labels": {},
+                "node_network_profile": [],
+                "node_public_ip_enabled": false,
+                "node_public_ip_prefix_id": "",
+                "only_critical_addons_enabled": true,
+                "orchestrator_version": "1.36",
+                "os_disk_size_gb": 30,
+                "os_disk_type": "Managed",
+                "os_sku": "Ubuntu",
+                "pod_subnet_id": "",
+                "proximity_placement_group_id": "",
+                "scale_down_mode": "Delete",
+                "snapshot_id": "",
+                "tags": {},
+                "temporary_name_for_rotation": "",
+                "type": "VirtualMachineScaleSets",
+                "ultra_ssd_enabled": false,
+                "upgrade_settings": [
+                  {
+                    "drain_timeout_in_minutes": 0,
+                    "max_surge": "10%",
+                    "node_soak_duration_in_minutes": 0,
+                    "undrainable_node_behavior": ""
+                  }
+                ],
+                "vm_size": "Standard_D2s_v3",
+                "vnet_subnet_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/system-subnet",
+                "workload_runtime": "",
+                "zones": [
+                  "1"
+                ]
+              }
+            ],
+            "disk_encryption_set_id": "",
+            "dns_prefix": "homelab",
+            "dns_prefix_private_cluster": "",
+            "edge_zone": "",
+            "fqdn": "homelab-9iizz67q.hcp.centralindia.azmk8s.io",
+            "http_application_routing_enabled": false,
+            "http_application_routing_zone_name": "",
+            "http_proxy_config": [],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ContainerService/managedClusters/homelab-aks",
+            "identity": [
+              {
+                "identity_ids": [],
+                "principal_id": "074ffe87-9727-4b6f-b6c8-105a843ca30e",
+                "tenant_id": "b8eee1de-0853-417c-9dc9-c90794eb2751",
+                "type": "SystemAssigned"
+              }
+            ],
+            "image_cleaner_enabled": null,
+            "image_cleaner_interval_hours": null,
+            "ingress_application_gateway": [],
+            "key_management_service": [],
+            "key_vault_secrets_provider": [],
+            "kube_admin_config": [],
+            "kube_admin_config_raw": "",
+            "kube_config": [
+              {
+                "client_certificate": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZIakNDQXdhZ0F3SUJBZ0lSQU84YkxFcTNnUEtkYlFYM1BITEpOZ293RFFZSktvWklodmNOQVFFTEJRQXcKRFRFTE1Ba0dBMVVFQXhNQ1kyRXdIaGNOTWpZd056QXlNVGd4TVRRMFdoY05Namd3TnpBeU1UZ3lNVFEwV2pBdwpNUmN3RlFZRFZRUUtFdzV6ZVhOMFpXMDZiV0Z6ZEdWeWN6RVZNQk1HQTFVRUF4TU1iV0Z6ZEdWeVkyeHBaVzUwCk1JSUNJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBZzhBTUlJQ0NnS0NBZ0VBcXBlM3VMcW80OUV5bmdJTU1TcFIKdCtsY2YyZmtWdERJdGpqVFJ0Z2RaVkk0a0RYUFphdnhlNEhMRDhwSWcwVzdIMUpJb2d4WGdSQ05MR2R5dmc2TAo5NUNMcTk0OEx2aUQvb09oRElTT3VMS0ZHTWhPZUM4Qkx5NWxwd2hkSUpnT09FU2hFcWZkckpOeksvdSt5NjBQCisvRnRzZnA3V0JVTkppMncwbzdZOW8wRFFITC9VUll1Mm9la2ZmMlZkNytLcUJGOG9vbjQ1OXV1TGIxWnhwRVAKaXFGOTlkamJPY1FteUZyRWx2TGllT0p2MTU0YXh3bGJqWFZBaGhlVFdTcy9tQ3hTc2g5N1h6L3lqbmd2bTUxdQpnNlJ2ZFRtK2hmYksxWmo1SlVsMjRxNlltdmxpbTZSd3RoY1VmSENIU0FvcGUvRGRqZmhhTXF0dlFQcWYrZ04vCmtMcjVua1BFMjZRaG8yYnJyQ3dyQXcyTHhGd0Q2ZnhoTkRjRVNJWitWWVBMOTBNSnI5UlowbWtPZ1dKSEF5NWYKSmxrWmhmSXdKV2t2S0tJOWM0VG52ZEczZUpYUXYxWU5EUVZhQ0dzQm5tQ3Z5ZGt6dHV6ZUlKcEx4K0IzOEhteAowYzNOTmdaVUlGWlM2OVZWblhPQW5HM0ZCTFNzV01nNlBJWVY1dGJZNTRhZ1kyU1FnVDVETDBLVkE4QUlHMkl1CkVCTmdVYmh2MGh5aHdSbWxhQTJKNWhnUTFQS3g3c1ZhUnBkRC9zZlowRkNoZEtQZ1pHSzBuRW9KbWdGL3JJYVAKRTBlaGRyMGpEQVhoWkNrNGFtd1h6Nnk3QUlGbkorRUovY29FaWpGQVVubE9QaWNGdTZnMllXWDc0YVU1a3dsdQpFSkNmYXI5ZXlLMExZUHFvZE5laFYxTUNBd0VBQWFOV01GUXdEZ1lEVlIwUEFRSC9CQVFEQWdXZ01CTUdBMVVkCkpRUU1NQW9HQ0NzR0FRVUZCd01DTUF3R0ExVWRFd0VCL3dRQ01BQXdId1lEVlIwakJCZ3dGb0FVUFMxUnhWVVEKMEswZHlKcjBiYUpCdThyc0Exd3dEUVlKS29aSWh2Y05BUUVMQlFBRGdnSUJBQUxtNHU4VUtPUnd6UFdmVklrTgpaUDNIQml3Q1dRaGFuMDZ4emUrZkQzMnVsWmN3RkNrQlhFb2liMGZwVWR3Y1lERWxCdUZWalJQK0tiMkljL3VSCnRXSTdkU1dYN3pNK1dQUS9PdHNoTlpLZkRYU25NL2lLd0dkNnR0M3k0M1llU0hRR3hlWm0zQUtHeStlaS9oMkkKaHNrOVBPWWZmK2YycVBNenVDaUoxcjliOVF6bkRiUHZFYWZiVUN3TCsrcUhxd05uQmE5ZzZEMStoTUpZbTlxdwo5eVAxa3MxK0lOdHphbml4QTg1d1dWdkM5OXkxMGRaT2lVbTJYQnBRS1ZZcG5WTjJVV2xtTHFGTFBpaDlxZU5xClRKbVNuYTkvZkh5aE05WFZyVGk3L0crTG9qQnlLRHdyNzcrcnUwNE4xSEhCYm1WZlFldzFNZmtwMzZRTEZPN2kKc0REN1hCZW80YXZHQ1pNWHRZLytDbXVFQkR5QTZGaS94bTR0ZDFta2RiTktaMVdJWXR2U3FEZTVhMXBLb2d1QQowc3lMQVZvODl5VmEvaDF2VnZLeUNNMXFMTS9TNGp6T05jRkdNdG5JNThzb0N2R3lFblZNSzhKeTExcHA5VU9jCkNnbmljakt3TW0wSTF2QmpuZXErbDVqMktjbm5zTEp6SktmTGN2OEl3SmhjZzVvN01JNnJzQksxU2xkMXhWOW0KMU1UNVFkSHV5NEZSWFFtTER6TGlvb25DYy9VQlY4Ny9OZCtpdVlZNmtrWDBaRVJBTHg2dDVMMmowR3IxeU9UcQpVZU16S3hsaXVSdUEyQ2V5Q0ZlM2tOTU5rTUVYT0YxVWE3VWJsSWJJeDFwa2k5RlJ6RFB0M2I5Nk9VMEZ0Z0hsCmRpUXFEcW9vaUZIN05pRzkva1Z4aFgyTwotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==",
+                "client_key": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlKS1FJQkFBS0NBZ0VBcXBlM3VMcW80OUV5bmdJTU1TcFJ0K2xjZjJma1Z0REl0ampUUnRnZFpWSTRrRFhQClphdnhlNEhMRDhwSWcwVzdIMUpJb2d4WGdSQ05MR2R5dmc2TDk1Q0xxOTQ4THZpRC9vT2hESVNPdUxLRkdNaE8KZUM4Qkx5NWxwd2hkSUpnT09FU2hFcWZkckpOeksvdSt5NjBQKy9GdHNmcDdXQlVOSmkydzBvN1k5bzBEUUhMLwpVUll1Mm9la2ZmMlZkNytLcUJGOG9vbjQ1OXV1TGIxWnhwRVBpcUY5OWRqYk9jUW15RnJFbHZMaWVPSnYxNTRhCnh3bGJqWFZBaGhlVFdTcy9tQ3hTc2g5N1h6L3lqbmd2bTUxdWc2UnZkVG0raGZiSzFaajVKVWwyNHE2WW12bGkKbTZSd3RoY1VmSENIU0FvcGUvRGRqZmhhTXF0dlFQcWYrZ04va0xyNW5rUEUyNlFobzJicnJDd3JBdzJMeEZ3RAo2ZnhoTkRjRVNJWitWWVBMOTBNSnI5UlowbWtPZ1dKSEF5NWZKbGtaaGZJd0pXa3ZLS0k5YzRUbnZkRzNlSlhRCnYxWU5EUVZhQ0dzQm5tQ3Z5ZGt6dHV6ZUlKcEx4K0IzOEhteDBjM05OZ1pVSUZaUzY5VlZuWE9BbkczRkJMU3MKV01nNlBJWVY1dGJZNTRhZ1kyU1FnVDVETDBLVkE4QUlHMkl1RUJOZ1ViaHYwaHlod1JtbGFBMko1aGdRMVBLeAo3c1ZhUnBkRC9zZlowRkNoZEtQZ1pHSzBuRW9KbWdGL3JJYVBFMGVoZHIwakRBWGhaQ2s0YW13WHo2eTdBSUZuCkorRUovY29FaWpGQVVubE9QaWNGdTZnMllXWDc0YVU1a3dsdUVKQ2ZhcjlleUswTFlQcW9kTmVoVjFNQ0F3RUEKQVFLQ0FnQWdwSlJ5eEVFQ0N1dEpJZklzVEVGRDFHTXZPL1dOQ1RtRzZOdkEwQ1RiMlA1YTFma2dKdVUzOFcrbQpUMXBOeUQrVXNEMld5STdMOHh0WWRsa1Y5aG1oWHliaTFjMGxYY2VBSWJiaytzNkdtQjV3emc5NTN1QzJvd1d2Cmp5R20xWUhQRVk3U3o0MVM4d29VVGdGRjN4RlNiL0hDSDBDUDY4Tk8zV3BhK0J1YkhnT1R4dzJFK2g0d0VjbVAKbEVFUUgzWk1UOEJPSitHWm1FYzltR0IvNXcwV3hXMGhhSVFXaXlxeXB1KzhSTERDV2UzMXo5cW00R3NFNS8xWApTMWFXTnZqZHlRbHY3U2RCNUM0cFJlVXlQVTlDNEdtMWdEMnRTN3FuWWJTM0JsWTU3UmZsZTdmN09WMlo4bE9vCnRpMmt3dEVLVnQ1R1J0SVhwUWRPWTBiT1kvSDZNMU80Q0dTaGFhK2QzQ25UYTh0cVFuMzJoN3ZWeVN3NUpnbEIKS0tESzZINmQydklSbDUvNnhUTmgwRHo5RTBxdXYyOG9uOGlMZnlmMzkyQzBLQnkrR1licDRKcktuN0ZpYWR4SQp3SGNuTmVRUW9lSHRwSTcwOTZ2Qk5MZm42SnpOb1Via29lWkl2b1Y2dUZIYnhtMXR0RVJESHNhRk9zbTJmcEUvCjRtRDhnb1lDQlp5WUU4MUF6a1RvcDk1ekt4NFRVa2RZYXdaTDEzNTJFWFVIQXVVZzZqaTRFOHZmeGpiRWwxbkcKSDlaYUdEWmJoc1pXcWdEK1lwR3BxaDlpd3lGNjd2d3hVUkhCZDE1YlladFpOL2FGS3E2V1ArOVpEU1lDWUFxSwoxYUt0bG45MjVtM3BuYTFtT2dRMnBuZ3JHSmpvYUdrYlhnVUgrWXlIOXFKZkZPb1lDUUtDQVFFQXk0TFlBZmFaCmxPeEk1R2tDbmp4cFdPQUF1ZUtsS0c4M04wRkYyaWlNQWh1WDVIanZTN1RMSE5Qa2tadXNMdlZWZjRyUnFDdDYKRTgwaTRjdTV1czBPNnZyUEYwWjZ6YW9WYXg3OU50MC9qbXZvN3JQa0xpT0hWNE9SajRmMG5OWUp6Zjdha2FGRAo2ek1JUjJiR29zQzBxTlhzUjY1Y0pPUUFzOHNIOVp6ZjJPWi9GK2MxMTErNWpxNkdNNktKU3lCT2pETWxUd0xUCmhOR3BrdlRpWUF5RDYzcUdMUFA3SkFWVER5WVNtbWVoWWE1VnVTTGVuZG01MmxmVTBjek16c2RDQ3R6UmQ0bm4KUGJPWkZYekh6cVZsbnhiTVVDYjV0MHRnb1FSbnJGd0hzbkJDSnBmT3o0NXZDdS9xL2Z1TkFTcG9lUmhJV0RGSwpENWVOTEpWRXlDeENXd0tDQVFFQTFwZGcxQmtwRTV0a0s0aUtMNkl3c3VGVVo0Wkd0MDN2bWk4ekxjMEEybGlJCjVtNXlJV0V5QlRJaFhCN1RLTWJaNXFlamVzQzhoekdFUW5KSlVyU2o1SXJObmNKNC9JcVJZcUVrTWdMQllPbGMKOFFVeVYrbVhRZmlnUzVZemV0dUN5MngwU0lqMWFMTnlEclpTU0dhOEpCQXdSMUREMUlaMHBkM3UzSHNQWDl0cgpyb1hpQWQwaEdOZXVnLzZLaVJuYU9Majc1cVBXek94czBTQnhHaVBDcEpaWHFZL0l4NXRpRWdGSzZuMHlzREF4CnRJaTVMSjJOcUFGTVFrNFArZFczeFpSS0NYZThWUGQzaGg0SW1LZXVmSk5LMmZCS2ZNUTZMQjJGNjdkVGRaYVoKWlFyOURaYS8veExFb3JiUG43bU9odm9ldHp1VWpGQ2MrdTExWVVoZ2FRS0NBUUFHOCtaclVzQjJmUWdVZlozdwpTQUlWWGpuSUgvMGlmNEkwYWc5MzM1REE5YTVmeU4zc0NUWXpPdTRCSjM5ZmIxUkhjamV0ZGliS2pHU1hzRDBkCks2cEp6dDNLWHNjTlJiVkxucGhxQ204RWI1MWFvbHkyVXRKcDQvM1NHSVA3NDdnY0NJdnhFOEJkUmJZUHNtd3cKM1VLT3poZ3ZicjZKS0J6NkI0S3pHblB2VmhpYmVYTzJjdmZFN3lONG1pSDBwaHJvNFVweUE1ZTBYdkZiS3ZDYwo5WENBV0FSRGZ1WmltYWYzeVlZekxqMHVPQ1dIbUxCZ1ZqTHFTYnZrbXdtWU91aC90SUdYZ3VlYWpRczYxN04vCjFOaSs4YWx6UjVHYWVJSEpubnZvUUpDbXdQMFJrbmduVVNkc0NUeFBCd3dQTVNLMm1HVElWbzdBTDU1TUdxRnAKOFZFbkFvSUJBUURIWWNkWnlqYmNQTmtKaWNlN0VsdGxHTyt2Y0pkcjRVSHFaRWlOR1pqZFJyMk1QTHBXUVZTVQpkMHQvcURSU0F0Q2Erczl1VW4zWXJ5MVAvNWdZL0RYN051eHMxREJObFFJWVBkaS9qc2ZXSDMxM2czaVBMajZYCjBVWStkTVJJTm9TRU5iU2xZSHVFV0paMURQbk93NFd6akVjUE8vOTRDNlYrSjRLejRMTWNRV2IvdE8yVkJieW0KdEY4MXpOOHpHNDRpZmQydklqT0dHM1hQcVBEdGRLUjVBQ2RiS0hsSTNScDEyRFdmUWN4QzM4U1BGU25ZUmx0RAo2bERNbW5ORmtrazVqdHByaVpDMjhXZGdlYTlMQnlHY0pjNjZTQVV0ZjdUOUlFRTZEZy9CaGJmb3Boa1E4eXhZCjl6czBZOTd0YlI3OFVwRVBkcEJDL3ZPY1FkMTZFaUZoQW9JQkFRREhzQWxtM1A2Y0FjQW9paE5MeCtDTzBwZy8KTHg0bFBNbDN4eTE5eHpFdmpTOHNKWVJ5bkU5QjR0NjU3U0IrQmlsYzRPR2ZCUG5lazN3TDI5K09GYi9PWXh3RApMdUltTFUvd2RWTUE2ZktFOUdaczlUMEZ5aHpJRU5WWWZrNGRmeFJNWEduMzQvK09uVzJ2ZTRjSVpUSVlFTjV6Ckhsa25jSTdkVmNyNGlQMnFTQjVoeDU1cGZXdmRTb1dtNlhNYUNSeGFvSUMxdWxLbkRLZ1NrWHkxcDM3WEkzclcKWUxjbXJHYTNGRUJza1I5clNwR0JwSUttSkxKOEhlWUw4WUZpZ0pSZXBRS2pacTZKRzFScnRUMlhRVjJxbXR4YwpsOGJSY1VQL3ZUNUkxN3NOejN4T1V4MEtzK0hMRVBHWGt1ZXZwZU5TUFRRN2xPM1ZUZ05hTFg4SVdUZi8KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0K",
+                "cluster_ca_certificate": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUU2RENDQXRDZ0F3SUJBZ0lRR3ZLUkJ0WlRFRHJuc0R5K0ljdGNoREFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWdGdzB5TmpBM01ESXhPREV4TkRSYUdBOHlNRFUyTURjd01qRTRNakUwTkZvdwpEVEVMTUFrR0ExVUVBeE1DWTJFd2dnSWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUNEd0F3Z2dJS0FvSUNBUURvCkZvN3o4eEgvK1piL29SOFBmb2U5THFHbVVpaU0xbHRSRHFOT1U4bWxoaFZQK0dnby85TmtoOEdNRlYyUXNQQzUKcjJlOHMyT3lSbDBLbEU4MktoTDVLUzhDT1B0MkNKcEZqMytWWDg1UW5mb2UzY1oyaHdGdWpzTW9VNGQ0T2tTcApxVzkzWmI0OStqbWFPL0l1bjFjRFhGMm01elNaLzBsQm9IOTlGYTNtSkxnc0w1cWNISTFXQWxNYlB1ZDZTRU1vCnZ3VEhCSFY5WHhPODFxTDZ6dFZIdzBnV0VXbkx6NGdWNFFSMTllL0RER2FlclM3K053dlJ3RTNjTm4ySC9uRHoKM2hLVWFwd29YUHFzak4vV0V3VUFRVXcya01UNlB0Y2xyN3pteCtZYW9sYlBlQ3oxRTFhaHh5YjlrQ0ozVEwrcgpyL0F3L2ZrbFdDWkgwOE5XQzhad3NYNFZaSlllSTZwU2dFZW42WE5FZ0NQTnNaTWRoUlo5dHFFWEM2amZHS01oCkc4SjVVOU9UVFQ3VGdNUDVIVS9XNnF4bXJGNHZrQ2ZteDFERVVMT05IUFN3VjQxY3pkTnRTOE1xUkt6U0xuV3IKeVZqMXpEeGZ6VzRsSzE4aERVYU9wODVJWFUzeUwyc2VvQTJHMEM3TGg1dWhicnoveTNVei9oTGUzeVpnWjNIRApGMGo4Tys1VG5oaHoxVXNsWnV2TVlTMVE3MDFUU3ljQ2VwSlZ2MThrZVRDMDJOOUFvdGhKa0U3UFpZVTR5RHlBClZaTDcvVk5oVUZXUUtGcGJiTzQvVUVFeFpWQzJlUzlFMm84KzdqYmxoK0d3eVJOSUFuTFpRL1pXUmVUMEZkL0kKakNMT0ZsdkxFV2JKSkppMy9TcVRVK012cW1TRHozSEJ1bFZ0eGZyakpRSURBUUFCbzBJd1FEQU9CZ05WSFE4QgpBZjhFQkFNQ0FxUXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QWRCZ05WSFE0RUZnUVVQUzFSeFZVUTBLMGR5SnIwCmJhSkJ1OHJzQTF3d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dJQkFCQlhSQmh2a3dBMmYzSE05aXVLN3pnQzlpM2EKdGFCOTJXdXdrbFJCeXNxT2IyckJYNllEWXhScEtoWXBJL1FNQmdvc2daSzR4YXk1em5lUXNhbGVtL2NxenlOVgpoQ3lYSFRkRytGSlRZQ0NIYzQvT29QdGh4RjkvdHhCTExTa0pDaHJjdGRqUlhUYVRGMGFJZWx4Z1Z4WjhkcHNDClJsMUtoVjVsdnJSUEM3QnZWMzdmVGx5ZFRyRVlJVzhwQ3lLN1F3aVFjWEQ2MEprT2dVekxFeEdaSmhINHBuVkwKZVdWSzU1dnlZREppZERXU20xY0laN2RPaVFrbmZ5cDBEdUNsOVlZVXNMZUNvbWxSZmV6UlVibVZjOTJsVnZVVAovQkh3QjRVbjBzUW14MDR3TEdWcitGSzhGRDBJRUxmYXBmZ0htYnJ0Q3dabVduelZvSFB0RkEzUHhBZzB5Z2d2CkY3TDRoNFFsSStMVG9WV0FiL2ErY08vclNTZUNIa1FkQWdSc3RqdDkxMksxeUo0dnRMeUFleWt3VEwwK1ptenUKR2EzbE41QlNBNkVzY3Bkclhyc3V4ZmM2MzV4ekZSMmJkekxsZFBoNFgzUWp0N1luNzdPY0VqVEM1ZUwrQ2pJTwo3UjhSUGpGUVM5REFiSER1NUFBTmtXalFDZS9OcEpOL29TbUhGbktObE13bllVaWplcEZZSGxpZTBhTFV1Z2dFCkg1a0JTZGFVdHVRSVd5OEI2cS8wRkF4clVlMEZXc2J0ZFRXN0gyL2hrY3VFejNWL0cvaXFCdlhrZitnQ1U5OEoKZjdnbWU1WWxIWEZ6SVltUFg5bEEvMWxZbCtLTG9jSjczZWhlSkQyNEc2MkZXeDNibmROUDQ0Zkw3ZUFxcGcrYgpxSzJ1cTAzTzQzNUZMdVUyCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K",
+                "host": "https://homelab-9iizz67q.hcp.centralindia.azmk8s.io:443",
+                "password": "z922i8awv0tqk4pkzzhoxbi076f0psakxi5jd12d2ymyvjg6duy3gxdbnibq7rhkvafmo20kq806t7cdixzhwuszrwbgmzoqaok5xyn5bdsobzb6666n9whabbd07wir",
+                "username": "clusterUser_homelab-rg_homelab-aks"
+              }
+            ],
+            "kube_config_raw": "apiVersion: v1\nclusters:\n- cluster:\n    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUU2RENDQXRDZ0F3SUJBZ0lRR3ZLUkJ0WlRFRHJuc0R5K0ljdGNoREFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWdGdzB5TmpBM01ESXhPREV4TkRSYUdBOHlNRFUyTURjd01qRTRNakUwTkZvdwpEVEVMTUFrR0ExVUVBeE1DWTJFd2dnSWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUNEd0F3Z2dJS0FvSUNBUURvCkZvN3o4eEgvK1piL29SOFBmb2U5THFHbVVpaU0xbHRSRHFOT1U4bWxoaFZQK0dnby85TmtoOEdNRlYyUXNQQzUKcjJlOHMyT3lSbDBLbEU4MktoTDVLUzhDT1B0MkNKcEZqMytWWDg1UW5mb2UzY1oyaHdGdWpzTW9VNGQ0T2tTcApxVzkzWmI0OStqbWFPL0l1bjFjRFhGMm01elNaLzBsQm9IOTlGYTNtSkxnc0w1cWNISTFXQWxNYlB1ZDZTRU1vCnZ3VEhCSFY5WHhPODFxTDZ6dFZIdzBnV0VXbkx6NGdWNFFSMTllL0RER2FlclM3K053dlJ3RTNjTm4ySC9uRHoKM2hLVWFwd29YUHFzak4vV0V3VUFRVXcya01UNlB0Y2xyN3pteCtZYW9sYlBlQ3oxRTFhaHh5YjlrQ0ozVEwrcgpyL0F3L2ZrbFdDWkgwOE5XQzhad3NYNFZaSlllSTZwU2dFZW42WE5FZ0NQTnNaTWRoUlo5dHFFWEM2amZHS01oCkc4SjVVOU9UVFQ3VGdNUDVIVS9XNnF4bXJGNHZrQ2ZteDFERVVMT05IUFN3VjQxY3pkTnRTOE1xUkt6U0xuV3IKeVZqMXpEeGZ6VzRsSzE4aERVYU9wODVJWFUzeUwyc2VvQTJHMEM3TGg1dWhicnoveTNVei9oTGUzeVpnWjNIRApGMGo4Tys1VG5oaHoxVXNsWnV2TVlTMVE3MDFUU3ljQ2VwSlZ2MThrZVRDMDJOOUFvdGhKa0U3UFpZVTR5RHlBClZaTDcvVk5oVUZXUUtGcGJiTzQvVUVFeFpWQzJlUzlFMm84KzdqYmxoK0d3eVJOSUFuTFpRL1pXUmVUMEZkL0kKakNMT0ZsdkxFV2JKSkppMy9TcVRVK012cW1TRHozSEJ1bFZ0eGZyakpRSURBUUFCbzBJd1FEQU9CZ05WSFE4QgpBZjhFQkFNQ0FxUXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QWRCZ05WSFE0RUZnUVVQUzFSeFZVUTBLMGR5SnIwCmJhSkJ1OHJzQTF3d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dJQkFCQlhSQmh2a3dBMmYzSE05aXVLN3pnQzlpM2EKdGFCOTJXdXdrbFJCeXNxT2IyckJYNllEWXhScEtoWXBJL1FNQmdvc2daSzR4YXk1em5lUXNhbGVtL2NxenlOVgpoQ3lYSFRkRytGSlRZQ0NIYzQvT29QdGh4RjkvdHhCTExTa0pDaHJjdGRqUlhUYVRGMGFJZWx4Z1Z4WjhkcHNDClJsMUtoVjVsdnJSUEM3QnZWMzdmVGx5ZFRyRVlJVzhwQ3lLN1F3aVFjWEQ2MEprT2dVekxFeEdaSmhINHBuVkwKZVdWSzU1dnlZREppZERXU20xY0laN2RPaVFrbmZ5cDBEdUNsOVlZVXNMZUNvbWxSZmV6UlVibVZjOTJsVnZVVAovQkh3QjRVbjBzUW14MDR3TEdWcitGSzhGRDBJRUxmYXBmZ0htYnJ0Q3dabVduelZvSFB0RkEzUHhBZzB5Z2d2CkY3TDRoNFFsSStMVG9WV0FiL2ErY08vclNTZUNIa1FkQWdSc3RqdDkxMksxeUo0dnRMeUFleWt3VEwwK1ptenUKR2EzbE41QlNBNkVzY3Bkclhyc3V4ZmM2MzV4ekZSMmJkekxsZFBoNFgzUWp0N1luNzdPY0VqVEM1ZUwrQ2pJTwo3UjhSUGpGUVM5REFiSER1NUFBTmtXalFDZS9OcEpOL29TbUhGbktObE13bllVaWplcEZZSGxpZTBhTFV1Z2dFCkg1a0JTZGFVdHVRSVd5OEI2cS8wRkF4clVlMEZXc2J0ZFRXN0gyL2hrY3VFejNWL0cvaXFCdlhrZitnQ1U5OEoKZjdnbWU1WWxIWEZ6SVltUFg5bEEvMWxZbCtLTG9jSjczZWhlSkQyNEc2MkZXeDNibmROUDQ0Zkw3ZUFxcGcrYgpxSzJ1cTAzTzQzNUZMdVUyCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K\n    server: https://homelab-9iizz67q.hcp.centralindia.azmk8s.io:443\n  name: homelab-aks\ncontexts:\n- context:\n    cluster: homelab-aks\n    user: clusterUser_homelab-rg_homelab-aks\n  name: homelab-aks\ncurrent-context: homelab-aks\nkind: Config\nusers:\n- name: clusterUser_homelab-rg_homelab-aks\n  user:\n    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZIakNDQXdhZ0F3SUJBZ0lSQU84YkxFcTNnUEtkYlFYM1BITEpOZ293RFFZSktvWklodmNOQVFFTEJRQXcKRFRFTE1Ba0dBMVVFQXhNQ1kyRXdIaGNOTWpZd056QXlNVGd4TVRRMFdoY05Namd3TnpBeU1UZ3lNVFEwV2pBdwpNUmN3RlFZRFZRUUtFdzV6ZVhOMFpXMDZiV0Z6ZEdWeWN6RVZNQk1HQTFVRUF4TU1iV0Z6ZEdWeVkyeHBaVzUwCk1JSUNJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBZzhBTUlJQ0NnS0NBZ0VBcXBlM3VMcW80OUV5bmdJTU1TcFIKdCtsY2YyZmtWdERJdGpqVFJ0Z2RaVkk0a0RYUFphdnhlNEhMRDhwSWcwVzdIMUpJb2d4WGdSQ05MR2R5dmc2TAo5NUNMcTk0OEx2aUQvb09oRElTT3VMS0ZHTWhPZUM4Qkx5NWxwd2hkSUpnT09FU2hFcWZkckpOeksvdSt5NjBQCisvRnRzZnA3V0JVTkppMncwbzdZOW8wRFFITC9VUll1Mm9la2ZmMlZkNytLcUJGOG9vbjQ1OXV1TGIxWnhwRVAKaXFGOTlkamJPY1FteUZyRWx2TGllT0p2MTU0YXh3bGJqWFZBaGhlVFdTcy9tQ3hTc2g5N1h6L3lqbmd2bTUxdQpnNlJ2ZFRtK2hmYksxWmo1SlVsMjRxNlltdmxpbTZSd3RoY1VmSENIU0FvcGUvRGRqZmhhTXF0dlFQcWYrZ04vCmtMcjVua1BFMjZRaG8yYnJyQ3dyQXcyTHhGd0Q2ZnhoTkRjRVNJWitWWVBMOTBNSnI5UlowbWtPZ1dKSEF5NWYKSmxrWmhmSXdKV2t2S0tJOWM0VG52ZEczZUpYUXYxWU5EUVZhQ0dzQm5tQ3Z5ZGt6dHV6ZUlKcEx4K0IzOEhteAowYzNOTmdaVUlGWlM2OVZWblhPQW5HM0ZCTFNzV01nNlBJWVY1dGJZNTRhZ1kyU1FnVDVETDBLVkE4QUlHMkl1CkVCTmdVYmh2MGh5aHdSbWxhQTJKNWhnUTFQS3g3c1ZhUnBkRC9zZlowRkNoZEtQZ1pHSzBuRW9KbWdGL3JJYVAKRTBlaGRyMGpEQVhoWkNrNGFtd1h6Nnk3QUlGbkorRUovY29FaWpGQVVubE9QaWNGdTZnMllXWDc0YVU1a3dsdQpFSkNmYXI5ZXlLMExZUHFvZE5laFYxTUNBd0VBQWFOV01GUXdEZ1lEVlIwUEFRSC9CQVFEQWdXZ01CTUdBMVVkCkpRUU1NQW9HQ0NzR0FRVUZCd01DTUF3R0ExVWRFd0VCL3dRQ01BQXdId1lEVlIwakJCZ3dGb0FVUFMxUnhWVVEKMEswZHlKcjBiYUpCdThyc0Exd3dEUVlKS29aSWh2Y05BUUVMQlFBRGdnSUJBQUxtNHU4VUtPUnd6UFdmVklrTgpaUDNIQml3Q1dRaGFuMDZ4emUrZkQzMnVsWmN3RkNrQlhFb2liMGZwVWR3Y1lERWxCdUZWalJQK0tiMkljL3VSCnRXSTdkU1dYN3pNK1dQUS9PdHNoTlpLZkRYU25NL2lLd0dkNnR0M3k0M1llU0hRR3hlWm0zQUtHeStlaS9oMkkKaHNrOVBPWWZmK2YycVBNenVDaUoxcjliOVF6bkRiUHZFYWZiVUN3TCsrcUhxd05uQmE5ZzZEMStoTUpZbTlxdwo5eVAxa3MxK0lOdHphbml4QTg1d1dWdkM5OXkxMGRaT2lVbTJYQnBRS1ZZcG5WTjJVV2xtTHFGTFBpaDlxZU5xClRKbVNuYTkvZkh5aE05WFZyVGk3L0crTG9qQnlLRHdyNzcrcnUwNE4xSEhCYm1WZlFldzFNZmtwMzZRTEZPN2kKc0REN1hCZW80YXZHQ1pNWHRZLytDbXVFQkR5QTZGaS94bTR0ZDFta2RiTktaMVdJWXR2U3FEZTVhMXBLb2d1QQowc3lMQVZvODl5VmEvaDF2VnZLeUNNMXFMTS9TNGp6T05jRkdNdG5JNThzb0N2R3lFblZNSzhKeTExcHA5VU9jCkNnbmljakt3TW0wSTF2QmpuZXErbDVqMktjbm5zTEp6SktmTGN2OEl3SmhjZzVvN01JNnJzQksxU2xkMXhWOW0KMU1UNVFkSHV5NEZSWFFtTER6TGlvb25DYy9VQlY4Ny9OZCtpdVlZNmtrWDBaRVJBTHg2dDVMMmowR3IxeU9UcQpVZU16S3hsaXVSdUEyQ2V5Q0ZlM2tOTU5rTUVYT0YxVWE3VWJsSWJJeDFwa2k5RlJ6RFB0M2I5Nk9VMEZ0Z0hsCmRpUXFEcW9vaUZIN05pRzkva1Z4aFgyTwotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==\n    client-key-data: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlKS1FJQkFBS0NBZ0VBcXBlM3VMcW80OUV5bmdJTU1TcFJ0K2xjZjJma1Z0REl0ampUUnRnZFpWSTRrRFhQClphdnhlNEhMRDhwSWcwVzdIMUpJb2d4WGdSQ05MR2R5dmc2TDk1Q0xxOTQ4THZpRC9vT2hESVNPdUxLRkdNaE8KZUM4Qkx5NWxwd2hkSUpnT09FU2hFcWZkckpOeksvdSt5NjBQKy9GdHNmcDdXQlVOSmkydzBvN1k5bzBEUUhMLwpVUll1Mm9la2ZmMlZkNytLcUJGOG9vbjQ1OXV1TGIxWnhwRVBpcUY5OWRqYk9jUW15RnJFbHZMaWVPSnYxNTRhCnh3bGJqWFZBaGhlVFdTcy9tQ3hTc2g5N1h6L3lqbmd2bTUxdWc2UnZkVG0raGZiSzFaajVKVWwyNHE2WW12bGkKbTZSd3RoY1VmSENIU0FvcGUvRGRqZmhhTXF0dlFQcWYrZ04va0xyNW5rUEUyNlFobzJicnJDd3JBdzJMeEZ3RAo2ZnhoTkRjRVNJWitWWVBMOTBNSnI5UlowbWtPZ1dKSEF5NWZKbGtaaGZJd0pXa3ZLS0k5YzRUbnZkRzNlSlhRCnYxWU5EUVZhQ0dzQm5tQ3Z5ZGt6dHV6ZUlKcEx4K0IzOEhteDBjM05OZ1pVSUZaUzY5VlZuWE9BbkczRkJMU3MKV01nNlBJWVY1dGJZNTRhZ1kyU1FnVDVETDBLVkE4QUlHMkl1RUJOZ1ViaHYwaHlod1JtbGFBMko1aGdRMVBLeAo3c1ZhUnBkRC9zZlowRkNoZEtQZ1pHSzBuRW9KbWdGL3JJYVBFMGVoZHIwakRBWGhaQ2s0YW13WHo2eTdBSUZuCkorRUovY29FaWpGQVVubE9QaWNGdTZnMllXWDc0YVU1a3dsdUVKQ2ZhcjlleUswTFlQcW9kTmVoVjFNQ0F3RUEKQVFLQ0FnQWdwSlJ5eEVFQ0N1dEpJZklzVEVGRDFHTXZPL1dOQ1RtRzZOdkEwQ1RiMlA1YTFma2dKdVUzOFcrbQpUMXBOeUQrVXNEMld5STdMOHh0WWRsa1Y5aG1oWHliaTFjMGxYY2VBSWJiaytzNkdtQjV3emc5NTN1QzJvd1d2Cmp5R20xWUhQRVk3U3o0MVM4d29VVGdGRjN4RlNiL0hDSDBDUDY4Tk8zV3BhK0J1YkhnT1R4dzJFK2g0d0VjbVAKbEVFUUgzWk1UOEJPSitHWm1FYzltR0IvNXcwV3hXMGhhSVFXaXlxeXB1KzhSTERDV2UzMXo5cW00R3NFNS8xWApTMWFXTnZqZHlRbHY3U2RCNUM0cFJlVXlQVTlDNEdtMWdEMnRTN3FuWWJTM0JsWTU3UmZsZTdmN09WMlo4bE9vCnRpMmt3dEVLVnQ1R1J0SVhwUWRPWTBiT1kvSDZNMU80Q0dTaGFhK2QzQ25UYTh0cVFuMzJoN3ZWeVN3NUpnbEIKS0tESzZINmQydklSbDUvNnhUTmgwRHo5RTBxdXYyOG9uOGlMZnlmMzkyQzBLQnkrR1licDRKcktuN0ZpYWR4SQp3SGNuTmVRUW9lSHRwSTcwOTZ2Qk5MZm42SnpOb1Via29lWkl2b1Y2dUZIYnhtMXR0RVJESHNhRk9zbTJmcEUvCjRtRDhnb1lDQlp5WUU4MUF6a1RvcDk1ekt4NFRVa2RZYXdaTDEzNTJFWFVIQXVVZzZqaTRFOHZmeGpiRWwxbkcKSDlaYUdEWmJoc1pXcWdEK1lwR3BxaDlpd3lGNjd2d3hVUkhCZDE1YlladFpOL2FGS3E2V1ArOVpEU1lDWUFxSwoxYUt0bG45MjVtM3BuYTFtT2dRMnBuZ3JHSmpvYUdrYlhnVUgrWXlIOXFKZkZPb1lDUUtDQVFFQXk0TFlBZmFaCmxPeEk1R2tDbmp4cFdPQUF1ZUtsS0c4M04wRkYyaWlNQWh1WDVIanZTN1RMSE5Qa2tadXNMdlZWZjRyUnFDdDYKRTgwaTRjdTV1czBPNnZyUEYwWjZ6YW9WYXg3OU50MC9qbXZvN3JQa0xpT0hWNE9SajRmMG5OWUp6Zjdha2FGRAo2ek1JUjJiR29zQzBxTlhzUjY1Y0pPUUFzOHNIOVp6ZjJPWi9GK2MxMTErNWpxNkdNNktKU3lCT2pETWxUd0xUCmhOR3BrdlRpWUF5RDYzcUdMUFA3SkFWVER5WVNtbWVoWWE1VnVTTGVuZG01MmxmVTBjek16c2RDQ3R6UmQ0bm4KUGJPWkZYekh6cVZsbnhiTVVDYjV0MHRnb1FSbnJGd0hzbkJDSnBmT3o0NXZDdS9xL2Z1TkFTcG9lUmhJV0RGSwpENWVOTEpWRXlDeENXd0tDQVFFQTFwZGcxQmtwRTV0a0s0aUtMNkl3c3VGVVo0Wkd0MDN2bWk4ekxjMEEybGlJCjVtNXlJV0V5QlRJaFhCN1RLTWJaNXFlamVzQzhoekdFUW5KSlVyU2o1SXJObmNKNC9JcVJZcUVrTWdMQllPbGMKOFFVeVYrbVhRZmlnUzVZemV0dUN5MngwU0lqMWFMTnlEclpTU0dhOEpCQXdSMUREMUlaMHBkM3UzSHNQWDl0cgpyb1hpQWQwaEdOZXVnLzZLaVJuYU9Majc1cVBXek94czBTQnhHaVBDcEpaWHFZL0l4NXRpRWdGSzZuMHlzREF4CnRJaTVMSjJOcUFGTVFrNFArZFczeFpSS0NYZThWUGQzaGg0SW1LZXVmSk5LMmZCS2ZNUTZMQjJGNjdkVGRaYVoKWlFyOURaYS8veExFb3JiUG43bU9odm9ldHp1VWpGQ2MrdTExWVVoZ2FRS0NBUUFHOCtaclVzQjJmUWdVZlozdwpTQUlWWGpuSUgvMGlmNEkwYWc5MzM1REE5YTVmeU4zc0NUWXpPdTRCSjM5ZmIxUkhjamV0ZGliS2pHU1hzRDBkCks2cEp6dDNLWHNjTlJiVkxucGhxQ204RWI1MWFvbHkyVXRKcDQvM1NHSVA3NDdnY0NJdnhFOEJkUmJZUHNtd3cKM1VLT3poZ3ZicjZKS0J6NkI0S3pHblB2VmhpYmVYTzJjdmZFN3lONG1pSDBwaHJvNFVweUE1ZTBYdkZiS3ZDYwo5WENBV0FSRGZ1WmltYWYzeVlZekxqMHVPQ1dIbUxCZ1ZqTHFTYnZrbXdtWU91aC90SUdYZ3VlYWpRczYxN04vCjFOaSs4YWx6UjVHYWVJSEpubnZvUUpDbXdQMFJrbmduVVNkc0NUeFBCd3dQTVNLMm1HVElWbzdBTDU1TUdxRnAKOFZFbkFvSUJBUURIWWNkWnlqYmNQTmtKaWNlN0VsdGxHTyt2Y0pkcjRVSHFaRWlOR1pqZFJyMk1QTHBXUVZTVQpkMHQvcURSU0F0Q2Erczl1VW4zWXJ5MVAvNWdZL0RYN051eHMxREJObFFJWVBkaS9qc2ZXSDMxM2czaVBMajZYCjBVWStkTVJJTm9TRU5iU2xZSHVFV0paMURQbk93NFd6akVjUE8vOTRDNlYrSjRLejRMTWNRV2IvdE8yVkJieW0KdEY4MXpOOHpHNDRpZmQydklqT0dHM1hQcVBEdGRLUjVBQ2RiS0hsSTNScDEyRFdmUWN4QzM4U1BGU25ZUmx0RAo2bERNbW5ORmtrazVqdHByaVpDMjhXZGdlYTlMQnlHY0pjNjZTQVV0ZjdUOUlFRTZEZy9CaGJmb3Boa1E4eXhZCjl6czBZOTd0YlI3OFVwRVBkcEJDL3ZPY1FkMTZFaUZoQW9JQkFRREhzQWxtM1A2Y0FjQW9paE5MeCtDTzBwZy8KTHg0bFBNbDN4eTE5eHpFdmpTOHNKWVJ5bkU5QjR0NjU3U0IrQmlsYzRPR2ZCUG5lazN3TDI5K09GYi9PWXh3RApMdUltTFUvd2RWTUE2ZktFOUdaczlUMEZ5aHpJRU5WWWZrNGRmeFJNWEduMzQvK09uVzJ2ZTRjSVpUSVlFTjV6Ckhsa25jSTdkVmNyNGlQMnFTQjVoeDU1cGZXdmRTb1dtNlhNYUNSeGFvSUMxdWxLbkRLZ1NrWHkxcDM3WEkzclcKWUxjbXJHYTNGRUJza1I5clNwR0JwSUttSkxKOEhlWUw4WUZpZ0pSZXBRS2pacTZKRzFScnRUMlhRVjJxbXR4YwpsOGJSY1VQL3ZUNUkxN3NOejN4T1V4MEtzK0hMRVBHWGt1ZXZwZU5TUFRRN2xPM1ZUZ05hTFg4SVdUZi8KLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0K\n    token: z922i8awv0tqk4pkzzhoxbi076f0psakxi5jd12d2ymyvjg6duy3gxdbnibq7rhkvafmo20kq806t7cdixzhwuszrwbgmzoqaok5xyn5bdsobzb6666n9whabbd07wir\n",
+            "kubelet_identity": [
+              {
+                "client_id": "a2d738e7-7509-49f3-ad55-1109ec7db119",
+                "object_id": "b40d5e4c-3c7f-4d2b-8a3a-b4f277aeccb5",
+                "user_assigned_identity_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/MC_homelab-rg_homelab-aks_centralindia/providers/Microsoft.ManagedIdentity/userAssignedIdentities/homelab-aks-agentpool"
+              }
+            ],
+            "kubernetes_version": "1.36",
+            "linux_profile": [],
+            "local_account_disabled": false,
+            "location": "centralindia",
+            "maintenance_window": [],
+            "maintenance_window_auto_upgrade": [],
+            "maintenance_window_node_os": [],
+            "microsoft_defender": [],
+            "monitor_metrics": [],
+            "name": "homelab-aks",
+            "network_profile": [
+              {
+                "advanced_networking": [],
+                "dns_service_ip": "10.96.0.10",
+                "ip_versions": [
+                  "IPv4"
+                ],
+                "load_balancer_profile": [
+                  {
+                    "backend_pool_type": "NodeIPConfiguration",
+                    "effective_outbound_ips": [
+                      "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/MC_homelab-rg_homelab-aks_centralindia/providers/Microsoft.Network/publicIPAddresses/bb897380-56b5-4ed6-98ea-3745ff9cf0f8"
+                    ],
+                    "idle_timeout_in_minutes": 0,
+                    "managed_outbound_ip_count": 1,
+                    "managed_outbound_ipv6_count": 0,
+                    "outbound_ip_address_ids": [],
+                    "outbound_ip_prefix_ids": [],
+                    "outbound_ports_allocated": 0
+                  }
+                ],
+                "load_balancer_sku": "standard",
+                "nat_gateway_profile": [],
+                "network_data_plane": "azure",
+                "network_mode": "",
+                "network_plugin": "azure",
+                "network_plugin_mode": "overlay",
+                "network_policy": "",
+                "outbound_type": "loadBalancer",
+                "pod_cidr": "10.244.0.0/16",
+                "pod_cidrs": [
+                  "10.244.0.0/16"
+                ],
+                "service_cidr": "10.96.0.0/16",
+                "service_cidrs": [
+                  "10.96.0.0/16"
+                ]
+              }
+            ],
+            "node_os_upgrade_channel": "NodeImage",
+            "node_provisioning_profile": [
+              {
+                "default_node_pools": "Auto",
+                "mode": "Manual"
+              }
+            ],
+            "node_resource_group": "MC_homelab-rg_homelab-aks_centralindia",
+            "node_resource_group_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/MC_homelab-rg_homelab-aks_centralindia",
+            "oidc_issuer_enabled": true,
+            "oidc_issuer_url": "https://centralindia.oic.prod-aks.azure.com/b8eee1de-0853-417c-9dc9-c90794eb2751/a032589d-e8a9-4f4a-ab49-b2bfa21c2e8c/",
+            "oms_agent": [],
+            "open_service_mesh_enabled": false,
+            "portal_fqdn": "homelab-9iizz67q.portal.hcp.centralindia.azmk8s.io",
+            "private_cluster_enabled": false,
+            "private_cluster_public_fqdn_enabled": false,
+            "private_dns_zone_id": "",
+            "private_fqdn": "",
+            "resource_group_name": "homelab-rg",
+            "role_based_access_control_enabled": true,
+            "run_command_enabled": true,
+            "service_mesh_profile": [],
+            "service_principal": [],
+            "sku_tier": "Free",
+            "storage_profile": [],
+            "support_plan": "KubernetesOfficial",
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform"
+            },
+            "timeouts": null,
+            "upgrade_override": [],
+            "web_app_routing": [],
+            "windows_profile": [
+              {
+                "admin_password": "",
+                "admin_username": "azureuser",
+                "gmsa": [],
+                "license": ""
+              }
+            ],
+            "workload_autoscaler_profile": [],
+            "workload_identity_enabled": true
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjo1NDAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIyIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.networking.azurerm_subnet.system"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.aks",
+      "mode": "managed",
+      "type": "azurerm_kubernetes_cluster_node_pool",
+      "name": "spot",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "auto_scaling_enabled": true,
+            "capacity_reservation_group_id": "",
+            "eviction_policy": "Delete",
+            "fips_enabled": false,
+            "gpu_driver": null,
+            "gpu_instance": null,
+            "host_encryption_enabled": false,
+            "host_group_id": "",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ContainerService/managedClusters/homelab-aks/agentPools/spot",
+            "kubelet_config": [],
+            "kubelet_disk_type": "OS",
+            "kubernetes_cluster_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ContainerService/managedClusters/homelab-aks",
+            "linux_os_config": [],
+            "max_count": 4,
+            "max_pods": 250,
+            "min_count": 2,
+            "mode": "User",
+            "name": "spot",
+            "node_count": 1,
+            "node_image_version": "AKSUbuntu-2404gen2containerd-202607.02.0",
+            "node_labels": {
+              "kubernetes.azure.com/scalesetpriority": "spot"
+            },
+            "node_network_profile": [],
+            "node_public_ip_enabled": false,
+            "node_public_ip_prefix_id": "",
+            "node_taints": [
+              "kubernetes.azure.com/scalesetpriority=spot:NoSchedule"
+            ],
+            "orchestrator_version": "1.36",
+            "os_disk_size_gb": 30,
+            "os_disk_type": "Managed",
+            "os_sku": "Ubuntu",
+            "os_type": "Linux",
+            "pod_subnet_id": "",
+            "priority": "Spot",
+            "proximity_placement_group_id": "",
+            "scale_down_mode": "Delete",
+            "snapshot_id": null,
+            "spot_max_price": -1,
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform"
+            },
+            "temporary_name_for_rotation": null,
+            "timeouts": null,
+            "ultra_ssd_enabled": false,
+            "upgrade_settings": [],
+            "vm_size": "Standard_D2as_v5",
+            "vnet_subnet_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/system-subnet",
+            "windows_profile": [],
+            "workload_runtime": null,
+            "zones": [
+              "1",
+              "2"
+            ]
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.aks.azurerm_kubernetes_cluster.aks",
+            "module.networking.azurerm_subnet.system"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.identity",
+      "mode": "managed",
+      "type": "azurerm_federated_identity_credential",
+      "name": "federated_credential",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "index_key": "argocd",
+          "schema_version": 0,
+          "attributes": {
+            "audience": [
+              "api://AzureADTokenExchange"
+            ],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/argocd-identity/federatedIdentityCredentials/argocd-fic",
+            "issuer": "https://centralindia.oic.prod-aks.azure.com/b8eee1de-0853-417c-9dc9-c90794eb2751/a032589d-e8a9-4f4a-ab49-b2bfa21c2e8c/",
+            "name": "argocd-fic",
+            "parent_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/argocd-identity",
+            "resource_group_name": "homelab-rg",
+            "subject": "system:serviceaccount:argocd:argocd-repo-server",
+            "timeouts": null,
+            "user_assigned_identity_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/argocd-identity"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.aks.azurerm_kubernetes_cluster.aks",
+            "module.identity.azurerm_user_assigned_identity.identity",
+            "module.networking.azurerm_subnet.system",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        },
+        {
+          "index_key": "cert-manager",
+          "schema_version": 0,
+          "attributes": {
+            "audience": [
+              "api://AzureADTokenExchange"
+            ],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/cert-manager-identity/federatedIdentityCredentials/cert-manager-fic",
+            "issuer": "https://centralindia.oic.prod-aks.azure.com/b8eee1de-0853-417c-9dc9-c90794eb2751/a032589d-e8a9-4f4a-ab49-b2bfa21c2e8c/",
+            "name": "cert-manager-fic",
+            "parent_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/cert-manager-identity",
+            "resource_group_name": "homelab-rg",
+            "subject": "system:serviceaccount:cert-manager:cert-manager",
+            "timeouts": null,
+            "user_assigned_identity_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/cert-manager-identity"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.aks.azurerm_kubernetes_cluster.aks",
+            "module.identity.azurerm_user_assigned_identity.identity",
+            "module.networking.azurerm_subnet.system",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        },
+        {
+          "index_key": "jenkins",
+          "schema_version": 0,
+          "attributes": {
+            "audience": [
+              "api://AzureADTokenExchange"
+            ],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/jenkins-identity/federatedIdentityCredentials/jenkins-fic",
+            "issuer": "https://centralindia.oic.prod-aks.azure.com/b8eee1de-0853-417c-9dc9-c90794eb2751/a032589d-e8a9-4f4a-ab49-b2bfa21c2e8c/",
+            "name": "jenkins-fic",
+            "parent_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/jenkins-identity",
+            "resource_group_name": "homelab-rg",
+            "subject": "system:serviceaccount:jenkins:jenkins",
+            "timeouts": null,
+            "user_assigned_identity_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/jenkins-identity"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.aks.azurerm_kubernetes_cluster.aks",
+            "module.identity.azurerm_user_assigned_identity.identity",
+            "module.networking.azurerm_subnet.system",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        },
+        {
+          "index_key": "monitoring",
+          "schema_version": 0,
+          "attributes": {
+            "audience": [
+              "api://AzureADTokenExchange"
+            ],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/monitoring-identity/federatedIdentityCredentials/monitoring-fic",
+            "issuer": "https://centralindia.oic.prod-aks.azure.com/b8eee1de-0853-417c-9dc9-c90794eb2751/a032589d-e8a9-4f4a-ab49-b2bfa21c2e8c/",
+            "name": "monitoring-fic",
+            "parent_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/monitoring-identity",
+            "resource_group_name": "homelab-rg",
+            "subject": "system:serviceaccount:monitoring:k8s-monitoring-kube-state-metrics",
+            "timeouts": null,
+            "user_assigned_identity_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/monitoring-identity"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.aks.azurerm_kubernetes_cluster.aks",
+            "module.identity.azurerm_user_assigned_identity.identity",
+            "module.networking.azurerm_subnet.system",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        },
+        {
+          "index_key": "traefik",
+          "schema_version": 0,
+          "attributes": {
+            "audience": [
+              "api://AzureADTokenExchange"
+            ],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/traefik-identity/federatedIdentityCredentials/traefik-fic",
+            "issuer": "https://centralindia.oic.prod-aks.azure.com/b8eee1de-0853-417c-9dc9-c90794eb2751/a032589d-e8a9-4f4a-ab49-b2bfa21c2e8c/",
+            "name": "traefik-fic",
+            "parent_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/traefik-identity",
+            "resource_group_name": "homelab-rg",
+            "subject": "system:serviceaccount:traefik:traefik",
+            "timeouts": null,
+            "user_assigned_identity_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/traefik-identity"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.aks.azurerm_kubernetes_cluster.aks",
+            "module.identity.azurerm_user_assigned_identity.identity",
+            "module.networking.azurerm_subnet.system",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.identity",
+      "mode": "managed",
+      "type": "azurerm_user_assigned_identity",
+      "name": "identity",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "index_key": "argocd",
+          "schema_version": 1,
+          "attributes": {
+            "client_id": "c019f6b2-96fd-4a60-914a-7df36bb36939",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/argocd-identity",
+            "isolation_scope": "",
+            "location": "centralindia",
+            "name": "argocd-identity",
+            "principal_id": "e03e161e-c0df-4332-9b60-75328e0c106d",
+            "resource_group_name": "homelab-rg",
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform",
+              "workload": "argocd"
+            },
+            "tenant_id": "b8eee1de-0853-417c-9dc9-c90794eb2751",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        },
+        {
+          "index_key": "cert-manager",
+          "schema_version": 1,
+          "attributes": {
+            "client_id": "f94bd843-5f38-4512-8a29-ea97b2459736",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/cert-manager-identity",
+            "isolation_scope": "",
+            "location": "centralindia",
+            "name": "cert-manager-identity",
+            "principal_id": "966129dd-c131-41ed-a7a5-4cbd38aa19f8",
+            "resource_group_name": "homelab-rg",
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform",
+              "workload": "cert-manager"
+            },
+            "tenant_id": "b8eee1de-0853-417c-9dc9-c90794eb2751",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        },
+        {
+          "index_key": "jenkins",
+          "schema_version": 1,
+          "attributes": {
+            "client_id": "50a296e5-6b94-42cb-8297-7778ce689fc9",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/jenkins-identity",
+            "isolation_scope": "",
+            "location": "centralindia",
+            "name": "jenkins-identity",
+            "principal_id": "8c644abd-0948-4170-858b-e092c1ad1f45",
+            "resource_group_name": "homelab-rg",
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform",
+              "workload": "jenkins"
+            },
+            "tenant_id": "b8eee1de-0853-417c-9dc9-c90794eb2751",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        },
+        {
+          "index_key": "monitoring",
+          "schema_version": 1,
+          "attributes": {
+            "client_id": "fbec24a9-4d43-4c32-8a4a-f1e8056e8736",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/monitoring-identity",
+            "isolation_scope": "",
+            "location": "centralindia",
+            "name": "monitoring-identity",
+            "principal_id": "99e7cdc3-997c-4c78-9951-f7153766638d",
+            "resource_group_name": "homelab-rg",
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform",
+              "workload": "monitoring"
+            },
+            "tenant_id": "b8eee1de-0853-417c-9dc9-c90794eb2751",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        },
+        {
+          "index_key": "traefik",
+          "schema_version": 1,
+          "attributes": {
+            "client_id": "fea8dd93-be15-4804-a790-b200eda1bae5",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/traefik-identity",
+            "isolation_scope": "",
+            "location": "centralindia",
+            "name": "traefik-identity",
+            "principal_id": "bae86d0d-cf12-4286-94bb-83f9df20a356",
+            "resource_group_name": "homelab-rg",
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform",
+              "workload": "traefik"
+            },
+            "tenant_id": "b8eee1de-0853-417c-9dc9-c90794eb2751",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.keyvault",
+      "mode": "data",
+      "type": "azurerm_client_config",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "client_id": "04b07795-8ddb-461a-bbee-02f9e1bf7b46",
+            "id": "Y2xpZW50Q29uZmlncy9jbGllbnRJZD0wNGIwNzc5NS04ZGRiLTQ2MWEtYmJlZS0wMmY5ZTFiZjdiNDY7b2JqZWN0SWQ9ZDAxMGY2Y2YtMjgzNy00YWRiLTk1NmYtMzMzMmZkYjQ3NmEwO3N1YnNjcmlwdGlvbklkPTBiZDE1ZjA5LTdhOTAtNGEwZC05NGZhLTAyMjE0ZDkwZGVhOTt0ZW5hbnRJZD1iOGVlZTFkZS0wODUzLTQxN2MtOWRjOS1jOTA3OTRlYjI3NTE=",
+            "object_id": "d010f6cf-2837-4adb-956f-3332fdb476a0",
+            "subscription_id": "0bd15f09-7a90-4a0d-94fa-02214d90dea9",
+            "tenant_id": "b8eee1de-0853-417c-9dc9-c90794eb2751",
+            "timeouts": null
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.keyvault",
+      "mode": "managed",
+      "type": "azurerm_key_vault",
+      "name": "kv",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "access_policy": [],
+            "contact": [],
+            "enable_rbac_authorization": true,
+            "enabled_for_deployment": false,
+            "enabled_for_disk_encryption": false,
+            "enabled_for_template_deployment": false,
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr",
+            "location": "centralindia",
+            "name": "homelab-kv-etnr",
+            "network_acls": [
+              {
+                "bypass": "AzureServices",
+                "default_action": "Deny",
+                "ip_rules": [
+                  "114.79.185.192/32"
+                ],
+                "virtual_network_subnet_ids": []
+              }
+            ],
+            "public_network_access_enabled": true,
+            "purge_protection_enabled": false,
+            "rbac_authorization_enabled": true,
+            "resource_group_name": "homelab-rg",
+            "sku_name": "standard",
+            "soft_delete_retention_days": 90,
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform"
+            },
+            "tenant_id": "b8eee1de-0853-417c-9dc9-c90794eb2751",
+            "timeouts": null,
+            "vault_uri": "https://homelab-kv-etnr.vault.azure.net/"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIyIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.keyvault.data.azurerm_client_config.current",
+            "module.keyvault.random_string.kv_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.keyvault",
+      "mode": "managed",
+      "type": "azurerm_key_vault_secret",
+      "name": "cloudflare_api_token",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "content_type": "",
+            "expiration_date": "",
+            "id": "https://homelab-kv-etnr.vault.azure.net/secrets/cloudflare-api-token/6c03b6b2ba3b4dfe9dc3e42e921b93ff",
+            "key_vault_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr",
+            "name": "cloudflare-api-token",
+            "not_before_date": "",
+            "resource_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr/secrets/cloudflare-api-token/versions/6c03b6b2ba3b4dfe9dc3e42e921b93ff",
+            "resource_versionless_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr/secrets/cloudflare-api-token",
+            "tags": {},
+            "timeouts": null,
+            "value": "cfut_KvifmZQHBOdT3LlO0YEI3FsQIyIoh25tsi7UJ3xk99b65296",
+            "value_wo": null,
+            "value_wo_version": 0,
+            "version": "6c03b6b2ba3b4dfe9dc3e42e921b93ff",
+            "versionless_id": "https://homelab-kv-etnr.vault.azure.net/secrets/cloudflare-api-token"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "data.azurerm_client_config.current",
+            "module.keyvault.azurerm_key_vault.kv",
+            "module.keyvault.azurerm_role_assignment.admin_kv_access",
+            "module.keyvault.data.azurerm_client_config.current",
+            "module.keyvault.random_string.kv_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.keyvault",
+      "mode": "managed",
+      "type": "azurerm_private_dns_zone",
+      "name": "kv_dns",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net",
+            "max_number_of_record_sets": 25000,
+            "max_number_of_virtual_network_links": 1000,
+            "max_number_of_virtual_network_links_with_registration": 100,
+            "name": "privatelink.vaultcore.azure.net",
+            "number_of_record_sets": 2,
+            "resource_group_name": "homelab-rg",
+            "soa_record": [
+              {
+                "email": "azureprivatedns-host.microsoft.com",
+                "expire_time": 2419200,
+                "fqdn": "privatelink.vaultcore.azure.net.",
+                "host_name": "azureprivatedns.net",
+                "minimum_ttl": 10,
+                "refresh_time": 3600,
+                "retry_time": 300,
+                "serial_number": 1,
+                "tags": {},
+                "ttl": 3600
+              }
+            ],
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.keyvault",
+      "mode": "managed",
+      "type": "azurerm_private_dns_zone_virtual_network_link",
+      "name": "kv_dns_link",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net/virtualNetworkLinks/kv-vnet-link",
+            "name": "kv-vnet-link",
+            "private_dns_zone_name": "privatelink.vaultcore.azure.net",
+            "registration_enabled": false,
+            "resolution_policy": "Default",
+            "resource_group_name": "homelab-rg",
+            "tags": {},
+            "timeouts": null,
+            "virtual_network_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.keyvault.azurerm_private_dns_zone.kv_dns",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.keyvault",
+      "mode": "managed",
+      "type": "azurerm_private_endpoint",
+      "name": "kv_pe",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "custom_dns_configs": [],
+            "custom_network_interface_name": "",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/privateEndpoints/homelab-kv-etnr-pe",
+            "ip_configuration": [],
+            "location": "centralindia",
+            "name": "homelab-kv-etnr-pe",
+            "network_interface": [
+              {
+                "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkInterfaces/homelab-kv-etnr-pe.nic.9d33d80d-68df-4f4f-9179-7bebc8940547",
+                "name": "homelab-kv-etnr-pe.nic.9d33d80d-68df-4f4f-9179-7bebc8940547"
+              }
+            ],
+            "private_dns_zone_configs": [
+              {
+                "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/privateEndpoints/homelab-kv-etnr-pe/privateDnsZoneGroups/kv-dns-zone-group/privateDnsZoneConfigs/privatelink.vaultcore.azure.net",
+                "name": "privatelink.vaultcore.azure.net",
+                "private_dns_zone_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net",
+                "record_sets": [
+                  {
+                    "fqdn": "homelab-kv-etnr.privatelink.vaultcore.azure.net",
+                    "ip_addresses": [
+                      "10.0.4.4"
+                    ],
+                    "name": "homelab-kv-etnr",
+                    "ttl": 10,
+                    "type": "A"
+                  }
+                ]
+              }
+            ],
+            "private_dns_zone_group": [
+              {
+                "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/privateEndpoints/homelab-kv-etnr-pe/privateDnsZoneGroups/kv-dns-zone-group",
+                "name": "kv-dns-zone-group",
+                "private_dns_zone_ids": [
+                  "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net"
+                ]
+              }
+            ],
+            "private_service_connection": [
+              {
+                "is_manual_connection": false,
+                "name": "homelab-kv-etnr-psc",
+                "private_connection_resource_alias": "",
+                "private_connection_resource_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr",
+                "private_ip_address": "10.0.4.4",
+                "request_message": "",
+                "subresource_names": [
+                  "vault"
+                ]
+              }
+            ],
+            "resource_group_name": "homelab-rg",
+            "subnet_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/infra-subnet",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.keyvault.azurerm_key_vault.kv",
+            "module.keyvault.azurerm_private_dns_zone.kv_dns",
+            "module.keyvault.data.azurerm_client_config.current",
+            "module.keyvault.random_string.kv_suffix",
+            "module.networking.azurerm_subnet.infra",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.keyvault",
+      "mode": "managed",
+      "type": "azurerm_role_assignment",
+      "name": "admin_kv_access",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "condition": "",
+            "condition_version": "",
+            "delegated_managed_identity_resource_id": "",
+            "description": "",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr/providers/Microsoft.Authorization/roleAssignments/082ec7fc-9963-3526-12b8-069d6d452ea4",
+            "name": "082ec7fc-9963-3526-12b8-069d6d452ea4",
+            "principal_id": "d010f6cf-2837-4adb-956f-3332fdb476a0",
+            "principal_type": "User",
+            "role_definition_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/providers/Microsoft.Authorization/roleDefinitions/b86a8fe4-44ce-4948-aee5-eccb2c155cd7",
+            "role_definition_name": "Key Vault Secrets Officer",
+            "scope": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.KeyVault/vaults/homelab-kv-etnr",
+            "skip_service_principal_aad_check": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "data.azurerm_client_config.current",
+            "module.keyvault.azurerm_key_vault.kv",
+            "module.keyvault.data.azurerm_client_config.current",
+            "module.keyvault.random_string.kv_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.keyvault",
+      "mode": "managed",
+      "type": "random_string",
+      "name": "kv_suffix",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "id": "etnr",
+            "keepers": null,
+            "length": 4,
+            "lower": true,
+            "min_lower": 0,
+            "min_numeric": 0,
+            "min_special": 0,
+            "min_upper": 0,
+            "number": true,
+            "numeric": true,
+            "override_special": null,
+            "result": "etnr",
+            "special": false,
+            "upper": false
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "infra_nsg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/infra-nsg",
+            "location": "centralindia",
+            "name": "infra-nsg",
+            "resource_group_name": "homelab-rg",
+            "security_rule": [
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "Internet",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "",
+                "destination_port_ranges": [
+                  "443",
+                  "80"
+                ],
+                "direction": "Outbound",
+                "name": "AllowInternetOutbound",
+                "priority": 100,
+                "protocol": "Tcp",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Inbound",
+                "name": "AllowVnetInbound",
+                "priority": 100,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "AllowVnetOutbound",
+                "priority": 105,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Deny",
+                "description": "",
+                "destination_address_prefix": "*",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "DenyAllOutbound",
+                "priority": 4096,
+                "protocol": "*",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              }
+            ],
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "ingress_nsg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/ingress-nsg",
+            "location": "centralindia",
+            "name": "ingress-nsg",
+            "resource_group_name": "homelab-rg",
+            "security_rule": [
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "*",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "",
+                "destination_port_ranges": [
+                  "443",
+                  "80"
+                ],
+                "direction": "Inbound",
+                "name": "AllowInternetInbound",
+                "priority": 100,
+                "protocol": "Tcp",
+                "source_address_prefix": "Internet",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "Internet",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "",
+                "destination_port_ranges": [
+                  "443",
+                  "80"
+                ],
+                "direction": "Outbound",
+                "name": "AllowInternetOutbound",
+                "priority": 100,
+                "protocol": "Tcp",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Inbound",
+                "name": "AllowVnetInbound",
+                "priority": 110,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "AllowVnetOutbound",
+                "priority": 105,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Deny",
+                "description": "",
+                "destination_address_prefix": "*",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "DenyAllOutbound",
+                "priority": 4096,
+                "protocol": "*",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              }
+            ],
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "system_nsg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/system-nsg",
+            "location": "centralindia",
+            "name": "system-nsg",
+            "resource_group_name": "homelab-rg",
+            "security_rule": [
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "*",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "",
+                "destination_port_ranges": [
+                  "443",
+                  "80"
+                ],
+                "direction": "Inbound",
+                "name": "AllowInternetInbound",
+                "priority": 110,
+                "protocol": "Tcp",
+                "source_address_prefix": "Internet",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "Internet",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "",
+                "destination_port_ranges": [
+                  "443",
+                  "80"
+                ],
+                "direction": "Outbound",
+                "name": "AllowInternetOutbound",
+                "priority": 100,
+                "protocol": "Tcp",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "Internet",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "123",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "AllowNTPOutbound",
+                "priority": 110,
+                "protocol": "Udp",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "Internet",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "53",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "AllowDNSOutbound",
+                "priority": 115,
+                "protocol": "*",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Inbound",
+                "name": "AllowVnetInbound",
+                "priority": 100,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "AllowVnetOutbound",
+                "priority": 105,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Deny",
+                "description": "",
+                "destination_address_prefix": "*",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "DenyAllOutbound",
+                "priority": 4096,
+                "protocol": "*",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              }
+            ],
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_network_security_group",
+      "name": "user_nsg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/user-nsg",
+            "location": "centralindia",
+            "name": "user-nsg",
+            "resource_group_name": "homelab-rg",
+            "security_rule": [
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "Internet",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "",
+                "destination_port_ranges": [
+                  "443",
+                  "80"
+                ],
+                "direction": "Outbound",
+                "name": "AllowInternetOutbound",
+                "priority": 100,
+                "protocol": "Tcp",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "Internet",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "123",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "AllowNTPOutbound",
+                "priority": 110,
+                "protocol": "Udp",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Inbound",
+                "name": "AllowVnetInbound",
+                "priority": 100,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Allow",
+                "description": "",
+                "destination_address_prefix": "VirtualNetwork",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "AllowVnetOutbound",
+                "priority": 105,
+                "protocol": "*",
+                "source_address_prefix": "VirtualNetwork",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              },
+              {
+                "access": "Deny",
+                "description": "",
+                "destination_address_prefix": "*",
+                "destination_address_prefixes": [],
+                "destination_application_security_group_ids": [],
+                "destination_port_range": "*",
+                "destination_port_ranges": [],
+                "direction": "Outbound",
+                "name": "DenyAllOutbound",
+                "priority": 4096,
+                "protocol": "*",
+                "source_address_prefix": "*",
+                "source_address_prefixes": [],
+                "source_application_security_group_ids": [],
+                "source_port_range": "*",
+                "source_port_ranges": []
+              }
+            ],
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "infra",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.0.4.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/infra-subnet",
+            "ip_address_pool": [],
+            "name": "infra-subnet",
+            "private_endpoint_network_policies": "Disabled",
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "homelab-rg",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "sharing_scope": "",
+            "timeouts": null,
+            "virtual_network_name": "homelab-vnet"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "ingress",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.0.5.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/ingress-subnet",
+            "ip_address_pool": [],
+            "name": "ingress-subnet",
+            "private_endpoint_network_policies": "Disabled",
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "homelab-rg",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "sharing_scope": "",
+            "timeouts": null,
+            "virtual_network_name": "homelab-vnet"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "system",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.0.1.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/system-subnet",
+            "ip_address_pool": [],
+            "name": "system-subnet",
+            "private_endpoint_network_policies": "Disabled",
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "homelab-rg",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "sharing_scope": "",
+            "timeouts": null,
+            "virtual_network_name": "homelab-vnet"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "user",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.0.2.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [],
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/user-subnet",
+            "ip_address_pool": [],
+            "name": "user-subnet",
+            "private_endpoint_network_policies": "Disabled",
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "homelab-rg",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "sharing_scope": "",
+            "timeouts": null,
+            "virtual_network_name": "homelab-vnet"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_subnet_network_security_group_association",
+      "name": "infra_nsg_assoc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/infra-subnet",
+            "network_security_group_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/infra-nsg",
+            "subnet_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/infra-subnet",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.networking.azurerm_network_security_group.infra_nsg",
+            "module.networking.azurerm_subnet.infra",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_subnet_network_security_group_association",
+      "name": "ingress_nsg_assoc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/ingress-subnet",
+            "network_security_group_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/ingress-nsg",
+            "subnet_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/ingress-subnet",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.networking.azurerm_network_security_group.ingress_nsg",
+            "module.networking.azurerm_subnet.ingress",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_subnet_network_security_group_association",
+      "name": "system_nsg_assoc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/system-subnet",
+            "network_security_group_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/system-nsg",
+            "subnet_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/system-subnet",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.networking.azurerm_network_security_group.system_nsg",
+            "module.networking.azurerm_subnet.system",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_subnet_network_security_group_association",
+      "name": "user_nsg_assoc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/user-subnet",
+            "network_security_group_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/user-nsg",
+            "subnet_id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/user-subnet",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "module.networking.azurerm_network_security_group.user_nsg",
+            "module.networking.azurerm_subnet.user",
+            "module.networking.azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.networking",
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "vnet",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_space": [
+              "10.0.0.0/16"
+            ],
+            "bgp_community": "",
+            "ddos_protection_plan": [],
+            "dns_servers": [],
+            "edge_zone": "",
+            "encryption": [],
+            "flow_timeout_in_minutes": 0,
+            "guid": "3c5c740c-bced-4e20-a802-2472fdc008bc",
+            "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet",
+            "ip_address_pool": [],
+            "location": "centralindia",
+            "name": "homelab-vnet",
+            "private_endpoint_vnet_policies": "Disabled",
+            "resource_group_name": "homelab-rg",
+            "subnet": [
+              {
+                "address_prefixes": [
+                  "10.0.1.0/24"
+                ],
+                "default_outbound_access_enabled": true,
+                "delegation": [],
+                "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/system-subnet",
+                "name": "system-subnet",
+                "private_endpoint_network_policies": "Disabled",
+                "private_link_service_network_policies_enabled": true,
+                "route_table_id": "",
+                "security_group": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/system-nsg",
+                "service_endpoint_policy_ids": [],
+                "service_endpoints": []
+              },
+              {
+                "address_prefixes": [
+                  "10.0.2.0/24"
+                ],
+                "default_outbound_access_enabled": true,
+                "delegation": [],
+                "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/user-subnet",
+                "name": "user-subnet",
+                "private_endpoint_network_policies": "Disabled",
+                "private_link_service_network_policies_enabled": true,
+                "route_table_id": "",
+                "security_group": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/user-nsg",
+                "service_endpoint_policy_ids": [],
+                "service_endpoints": []
+              },
+              {
+                "address_prefixes": [
+                  "10.0.4.0/24"
+                ],
+                "default_outbound_access_enabled": true,
+                "delegation": [],
+                "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/infra-subnet",
+                "name": "infra-subnet",
+                "private_endpoint_network_policies": "Disabled",
+                "private_link_service_network_policies_enabled": true,
+                "route_table_id": "",
+                "security_group": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/infra-nsg",
+                "service_endpoint_policy_ids": [],
+                "service_endpoints": []
+              },
+              {
+                "address_prefixes": [
+                  "10.0.5.0/24"
+                ],
+                "default_outbound_access_enabled": true,
+                "delegation": [],
+                "id": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/virtualNetworks/homelab-vnet/subnets/ingress-subnet",
+                "name": "ingress-subnet",
+                "private_endpoint_network_policies": "Disabled",
+                "private_link_service_network_policies_enabled": true,
+                "route_table_id": "",
+                "security_group": "/subscriptions/0bd15f09-7a90-4a0d-94fa-02214d90dea9/resourceGroups/homelab-rg/providers/Microsoft.Network/networkSecurityGroups/ingress-nsg",
+                "service_endpoint_policy_ids": [],
+                "service_endpoints": []
+              }
+            ],
+            "tags": {
+              "environment": "homelab",
+              "managed-by": "terraform"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
