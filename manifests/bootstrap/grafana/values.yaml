@@ -58,8 +58,7 @@ tolerations:
     effect: "NoSchedule"
 
 persistence:
-  enabled: true
-  size: 10Gi
+  enabled: false
 
 extraObjects:
   - apiVersion: gateway.networking.k8s.io/v1

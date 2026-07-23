@@ -13,8 +13,7 @@ storage:
       path: /var/tempo/traces
 
 persistence:
-  enabled: true
-  size: 20Gi
+  enabled: false
 
 resources:
   requests:
