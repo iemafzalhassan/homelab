@@ -79,6 +79,16 @@ gateway:
       certificateRefs:
         - kind: Secret
           name: portfolio-tls-secret
+    grafana:
+      port: 8443
+      protocol: HTTPS
+      hostname: "grafana.iemafzalhassan.tech"
+      namespacePolicy:
+        from: All
+      mode: Terminate
+      certificateRefs:
+        - kind: Secret
+          name: grafana-tls-secret
 
 
 serviceAccountAnnotations:
