@@ -57,7 +57,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "spot" {
   min_count             = 2
   max_count             = 4
   
-  os_disk_type          = "Ephemeral"
+  os_disk_type          = "Managed"
   os_disk_size_gb       = 30
   vnet_subnet_id        = var.system_subnet_id
 
