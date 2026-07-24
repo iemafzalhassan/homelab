@@ -79,14 +79,14 @@ resources:
   limits:
     memory: 512Mi
 
-tolerations:
-  - key: "kubernetes.azure.com/scalesetpriority"
-    operator: "Equal"
-    value: "spot"
-    effect: "NoSchedule"
+nodeSelector:
+  agentpool: system
 
 persistence:
-  enabled: false
+  enabled: true
+  type: pvc
+  storageClassName: default
+  size: 2Gi
 
 extraObjects:
   - apiVersion: v1
