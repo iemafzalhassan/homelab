@@ -1,8 +1,0 @@
-# Stage Incident Configuration for OpenTelemetry Demo
-# Misconfigured Redis Cart Cache port 6380 (causes ConnectionRefused error)
-
-components:
-  cartService:
-    env:
-      - name: REDIS_ADDR
-        value: "opentelemetry-demo-redis:6380"

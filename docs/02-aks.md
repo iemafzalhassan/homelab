@@ -26,4 +26,3 @@ Production-patterned deployment guide on Azure Kubernetes Service (AKS) with Git
    kubectl apply -f manifests/apps/root.yaml
    ```
 
-3. ArgoCD automatically reconciles `opentelemetry-demo` and `opentelemetry-demo-extras`.

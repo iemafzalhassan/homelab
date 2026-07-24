@@ -114,23 +114,7 @@ controller:
                       }
                   }
               }
-          - script: >
-              pipelineJob('homelab-demo') {
-                  definition {
-                      cpsScm {
-                          scm {
-                              git {
-                                  remote {
-                                      url('https://github.com/iemafzalhassan/homelab.git')
-                                      credentials('github-token')
-                                  }
-                                  branches('*/main')
-                              }
-                          }
-                          scriptPath('apps/homelab-demo/Jenkinsfile.demo')
-                      }
-                  }
-              }
+
           - script: >
               pipelineJob('portfolio-build') {
                   definition {

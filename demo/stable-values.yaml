@@ -1,8 +1,0 @@
-# Stable Production Configuration for OpenTelemetry Demo
-# Redis Cart Cache listening on standard port 6379
-
-components:
-  cartService:
-    env:
-      - name: REDIS_ADDR
-        value: "opentelemetry-demo-redis:6379"
