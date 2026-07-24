@@ -48,6 +48,16 @@ spec:
                 cpu: "10m"
               limits:
                 memory: "256Mi"
+          productCatalogService:
+            resources:
+              requests:
+                memory: "64Mi"
+                cpu: "50m"
+              limits:
+                memory: "128Mi"
+            env:
+              - name: GOMEMLIMIT
+                value: "64MiB"
 
         opensearch:
           enabled: false
