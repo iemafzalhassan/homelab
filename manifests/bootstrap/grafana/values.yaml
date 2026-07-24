@@ -82,6 +82,11 @@ resources:
 nodeSelector:
   agentpool: system
 
+tolerations:
+  - key: "CriticalAddonsOnly"
+    operator: "Exists"
+    effect: "NoSchedule"
+
 persistence:
   enabled: true
   type: pvc
