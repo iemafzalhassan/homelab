@@ -11,5 +11,5 @@ update-ip:
 	echo "Updating AKS authorized IP ranges..." ; \
 	az aks update --resource-group homelab-rg --name homelab-aks --api-server-authorized-ip-ranges "$$CURRENT_IP/32" ; \
 	echo "Updating terraform.tfvars with new IP..." ; \
-	sed -i '' "s|admin_ip_range.*|admin_ip_range       = \"$$CURRENT_IP/32\"|g" ../terraform.tfvars ; \
+	sed -i '' "s|admin_ip_ranges.*|admin_ip_ranges      = [\"$$CURRENT_IP/32\"]|g" ../terraform.tfvars ; \
 	echo "Done."
