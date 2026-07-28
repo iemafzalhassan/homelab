@@ -13,7 +13,7 @@ provider "azurerm" {
 
 locals {
   tags = {
-    environment = "homelab"
+    environment = "kube-telemetry-stage"
     managed-by  = "terraform"
   }
 }

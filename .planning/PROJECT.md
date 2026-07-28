@@ -1,8 +1,8 @@
-# Homelab AKS Platform
+# Kube Telemetry Stage
 
 ## What This Is
 
-A cost-optimized, production-patterned Azure Kubernetes Service homelab running 24x7 within a $100 budget for 6-8 months (~$12-25/month). The platform runs ArgoCD for GitOps-based deployments, Jenkins with ephemeral JNLP build agents, and a full observability stack — all secured via Workload Identity Federation, private networking, and Azure Key Vault for secrets. Provisioned entirely with Terraform.
+A production-patterned Kubernetes observability and Grafana demo environment for CNCF virtual speaking events. The platform runs ArgoCD for GitOps-based deployments, Jenkins with ephemeral JNLP build agents, and a full observability stack — all secured via Workload Identity Federation, private networking, and Azure Key Vault for secrets. Provisioned entirely with Terraform.
 
 ## Core Value
 

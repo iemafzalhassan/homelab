@@ -1,9 +1,9 @@
 <!-- GSD:project-start source:PROJECT.md -->
 ## Project
 
-**Homelab AKS Platform**
+**Kube Telemetry Stage**
 
-A cost-optimized, production-patterned Azure Kubernetes Service homelab running 24x7 within a $100 budget for 6-8 months (~$12-25/month). The platform runs ArgoCD for GitOps-based deployments, Jenkins with ephemeral JNLP build agents, and a full observability stack — all secured via Workload Identity Federation, private networking, and Azure Key Vault for secrets. Provisioned entirely with Terraform.
+A production-patterned Kubernetes observability and Grafana demo environment for CNCF virtual speaking events. The platform runs ArgoCD for GitOps-based deployments, Jenkins with ephemeral JNLP build agents, and a full observability stack — all secured via Workload Identity Federation, private networking, and Azure Key Vault for secrets. Provisioned entirely with Terraform.
 
 **Core Value:** A real, running Kubernetes platform that teaches production-grade patterns (GitOps, zero-trust secrets, HA networking) without breaking the bank — the cluster must stay alive 24x7 within the $100 total budget.
 
@@ -98,9 +98,25 @@ Do not make direct repo edits outside a GSD workflow unless the user explicitly 
 
 
 
-<!-- GSD:profile-start -->
-## Developer Profile
+<!-- GSD:profile-start -->\n## Developer Profile
 
-> Profile not yet configured. Run `/gsd-profile-user` to generate your developer profile.
-> This section is managed by `generate-claude-profile` -- do not edit manually.
-<!-- GSD:profile-end -->
+**Name:** Afzal Hassan
+**Role:** DevOps Engineer & CNCF Community Leader
+**Goals:** Mastery in Cloud Native Architecture, Platform Engineering, and Community Leadership
+
+### Engineering Philosophy
+- **Production-Grade First:** Treat homelab and side projects with enterprise rigor.
+- **GitOps & Automation:** Everything as code, no manual ClickOps.
+- **Deep Understanding:** Focus on the "Why", "How", and Tradeoffs—not just the "What".
+- **Maintainability & Open Source:** Prefer long-term maintainable, open-source solutions.
+
+### Communication Style
+- **Tone:** Humble, confident, respectful, concise, and engineering-oriented.
+- **Vibe:** Friendly and professional; sounds like a real engineer, not corporate HR.
+- **Mentorship:** Prefers learning through diagrams, analogies, step-by-step reasoning, and real production examples.
+
+### Collaboration Protocol
+- **Challenge Ideas:** Act as a Senior Staff/Principal reviewer—do not blindly agree.
+- **Structured Problem Solving:** Context -> Reasoning -> Architecture -> Tradeoffs -> Best Practice -> Future Improvements.
+- **Focus:** Build systems and workflows for productivity; optimize health (sleep, fitness) around long office hours.
+\n<!-- GSD:profile-end -->
