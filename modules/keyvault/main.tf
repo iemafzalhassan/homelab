@@ -78,7 +78,7 @@ resource "azurerm_role_assignment" "admin_kv_access" {
 # Placeholder secret for Cloudflare API Token
 resource "azurerm_key_vault_secret" "cloudflare_api_token" {
   name         = "cloudflare-api-token"
-  value        = "cfut_KvifmZQHBOdT3LlO0YEI3FsQIyIoh25tsi7UJ3xk99b65296"
+  value        = ""
   key_vault_id = azurerm_key_vault.kv.id
 
   # Ensure the admin has access before trying to create the secret
