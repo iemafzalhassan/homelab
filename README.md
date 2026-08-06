@@ -89,9 +89,6 @@ A real, running Kubernetes platform that teaches production-grade patterns (GitO
 - **Zero Trust Identity**: No Service Principal secrets are used. All K8s to Azure authentication goes through Workload Identity Federation.
 - **Private by Default**: Worker nodes lack public IPs. The Key Vault is only accessible internally via Private Endpoints. The API server is secured by an IP whitelist.
 
-## 🐛 Debugging & Runbooks
-
-Active debug sessions and historical troubleshooting context are kept in `.planning/debug/`. The cluster utilizes GSD workflows for stateful session persistence.
 
 ---
 *Created for presentation and production-grade demonstration purposes.*
